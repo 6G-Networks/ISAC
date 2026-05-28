@@ -1,3 +1,5 @@
+The website is maintained by ![Vikram](https://vikramsinghanttal.github.io/IIT-Kanpur/)
+
 ## Overview
 
 This repository hosts a website that curates and documents knowledge generated from in-depth discussions held during the development of Integrated Sensing and Communication (ISAC) standards in 3GPP. 
