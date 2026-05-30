@@ -1,0 +1,34 @@
+==============================================
+Week-6 2025 (17/02 to 23/02)
+==============================================
+
+**Note**: Sivan was busy, the weekly meeting didn't happen.
+
+Updates: Week-6
+******************
+
+
+1. (**Vikram**) 6G Air interface IP completed and PS is filed with *PS number: 202541013162*.
+    - 1 IPs on Positioning is remaining.
+
+2. LLS for data communication (PDSCH/PUSCH):
+    - (**Vijay**) Upper Physical layer: Completed
+        - **Vijay** will assist **Salija** with Scrambler and Layer Mapper this week
+
+    - (**Salija**) Lower Physical layer: Channel estimator and interpolator is pending, rest completed.
+        - She will complete the code by 21 Feb and initiate the documentation by 1st March.
+
+3. (**Vikram**) SLS Antenna models and Node Mobility is completed:
+    - System layout implementation is in progress
+
+4. This week (**Vikram**) we have to attend 3GPP meetings:
+    - Session times Afternoon: 2:30 PM till 5 PM and 8:30 PM till 11:30 PM
+    - Comment times: 4 AM till 1 PM.
+
+
+Followups: Week-6
+******************
+
+1. Progress on GPU procurement
+2. Procuring GitHub Enterprise or Proceed with Gerrit.
+

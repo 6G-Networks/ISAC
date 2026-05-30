@@ -1,0 +1,69 @@
+==============================================
+Sivan please check this
+==============================================
+
+Week-7 Updates and Followups
+###############################
+
+Updates
+*********
+
+1. (**Vikram**) IP work expected till March end is completed.
+
+    - 1 IPs on Positioning | 1 IP on 6G.
+2. LLS for data communication (PDSCH/PUSCH):
+    - (**Vijay**) Upper Physical layer: Completed | Scrambler and Layer Mapper Completed
+
+        - Documentation and conformance/complaince testing is pending
+
+    - (**Salija**) Lower Physical layer: Channel Interpolator is pending, rest completed.
+
+        - She will complete the code by 28 Feb
+        - Documentation and conformance/complaince testing is pending
+        - Will initiate the documentation and conformance/complaince testing from 1st March and complete by 5th March
+
+3. (**Vikram**) LLS (All TDLs and CDLs) Channel models are completed.
+4. (**Vikram**) SLS Antenna models and Node Mobility is completed:
+
+    - System layout implementation is in progress
+
+5. Last week was 3GPP meeting week:
+
+    - (**Vikram**) participated in all the online meeting and provided comments on all the Positioning related discussions,
+    - (**Vijaya**) and (**Vikram**) attended all the ISAC related sessions.
+
+6. **Vikram** have to provide inputs for AI-ML related positioning aspects for 6G in RAN-107:
+
+    - RAN planery meeting going to happen in March 2025.
+
+7. Dataset for Temporal beam prediction (TBP) problem is generated for 30 kmph mobility case,
+
+    - For 3kmph, the dataset is yet to be generated.
+    - It takes ~ 7 days to generate the dataset on 192.168.230.93 server.
+
+
+---------
+
+
+Followups
+*********
+
+1. Hiring interns
+2. Procuring GitHub Enterprise or Proceed with Gerrit.
+
+
+
+---------
+
+
+
+Past weeks: Arxivs
+###################
+
+The arxivs were maintained from Week-6 onwards:
+
+.. toctree::
+   :maxdepth: 3
+
+   week6
+

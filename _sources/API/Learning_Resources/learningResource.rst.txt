@@ -1,0 +1,80 @@
+==============================================
+Learning Resources
+==============================================
+
+It is important to have a strong understanding of the fundamentals of wireless communication, signal processing, 
+machine learning, and 3GPP 5G standards to fully grasp the content of this website. While not all of these 
+prerequisites are required for every topic, a solid foundation in these areas will significantly enhance your 
+understanding of the material.
+
+
+Pre-requisites: Must have
+--------------------------------
+
+The following subjects are crucial ti understand the physical layer and scheduler design aspects of ISAC in 3GPP. 
+Reader is expected to have a good understanding of these subjects before diving into the content of this website.
+
+1. Probability and Random Processes
+    - Reference: `Probability and Random Processes <https://www.cambridge.org/core/journals/mathematical-gazette/article/abs/probability-and-random-processes-4th-edition-by-geoffrey-r-grimmett-and-david-r-stirzaker-pp-669-40-paper-isbn-978019884759-oxford-university-press-2020/0222046279595EB113671FD07CC80F57>`_ by Geoffrey Grimmett and David Stirzaker.
+
+2. Linear Algebra and Matrix Theory
+    - Reference: `Linear Algebra and Its Applications <https://www.cengage.co.in/book-list/print/linear-algebra-and-its-applications-cn>`_ by Gilbert Strang.
+
+3. Fundamentals of Wireless Communication
+    - Reference: `Fundamentals of Wireless Communication <http://stanford.edu/~dntse/wireless_book.html>`_ by David Tse & Pramod Viswanath.
+
+
+.. image:: images/Books-1.png
+  :width: 800
+  :alt: Alternative text
+
+-------------------------------
+
+Pre-requisites: Optional
+---------------------------
+
+Following subjects are not mandatory but will be helpful to understand the content of this website. Reader is 
+expected to have a good understanding of these subjects to get the most out of the content of this website.
+
+1. Fundamentals of 5G-NR Standards
+    - Reference: `5G-NR in Bullets <http://www.5g-bullets.com/>`_ by Chris Johnson.
+    - Reference: 5G NR: The Next Generation Wireless Access Technology (`Edition-1 <https://shop.elsevier.com/books/5g-nr-the-next-generation-wireless-access-technology/dahlman/978-0-12-814323-0>`_ | `Edition-2 <https://shop.elsevier.com/books/5g-nr/dahlman/978-0-12-822320-8>`_ | `Edition-3 <https://shop.elsevier.com/books/5g-5g-advanced/dahlman/978-0-443-13173-8>`_) by Erik Dahlman, Stefan Parkvall and, Johan Skold.
+
+
+2. Artificial Intelligence and Machine Learning
+    - Reference: `Understanding Deep Learning <https://udlbook.github.io/udlbook/>`_ by Simon J. D. Prince.
+
+3. Detection and Estimation Theory
+    - Reference: `Principles of Signal Detection and Parameter Estimation <https://www.springer.com/in/book/9780387765426>`_ by Bernard C. Levy.
+
+
+.. image:: images/Books-2.png
+  :width: 800
+  :alt: Alternative text
+
+-------------------------------
+
+
+Coding Skills
+--------------------
+
+I intend to provide code snippets in Python and MATLAB to illustrate the concepts and algorithms discussed in this 
+website. It is recommended to have a good understanding of Python and MATLAB programming to fully benefit from these 
+code snippets.
+
+
+- Python coding
+    - TensorFlow
+    - Keras
+    - NumPy
+    - SciPy
+    - Matplotlib
+    - Pytest
+    - Sphinx Documentation
+- MATLAB scripting
+    - 5G Toolbox
+
+
+.. image:: images/Tools.png
+  :width: 800
+  :alt: Alternative text

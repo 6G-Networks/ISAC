@@ -1,0 +1,78 @@
+=========================
+System Simulations Work
+=========================
+
+The Team is primarily responsible for development of the Tejas-SLS which is a system level simulation tool for 5G and
+beyond networks. The tool is being developed with following objectives in mind:
+
+Design Objectives for Tejas-SLS
+###################################
+
+- Modulator design for Plug and Play
+- GPU Acceleration (NVIDIA)
+- Integration with SDRs and other hardware's
+- System/Product development/testing
+- Standards developments and Standards driven research
+- Native AI Support
+- Network Deployment and Optimization (based on ray-tracing or MDT data)
+
+.. image:: images/Design_Objectives.png
+  :width: 800
+  :alt: Alternative text
+
+Performance Objectives
+###################################
+
+- End to End system level simulations for 21 BSs and 210 UE should complete within 6-12 hours.
+- Links level simulations for each chain for 1-million batches should complete within 2-6 hours.
+
+
+Vision for the Tool
+###################################
+
+Build a System Level Simulator which can accept the coordinates of the site deployed anywhere on the globe as input and provide the golden network configurations for deployment.
+
+Mission for the Tool
+###################################
+
+3GPP complaint System Level Simulator which can complete Basic System Simulations with 1-6 hours and Exhaustive System Simulations within 6-12 hours.
+
+Development Roadmap for Tejas-SLS
+###################################
+
+The roadmap for the Tejas-SLS is shown below:
+
+.. image:: images/Development_Roadmap.png
+  :width: 800
+  :alt: Alternative text
+
+Development Timeline for Tejas-SLS
+###################################
+
+The roadmap for the Tejas-SLS is shown below:
+
+.. image:: images/Timeline2.png
+  :width: 800
+  :align: center
+  :alt: Alternative text
+
+Division of Work
+##################
+
+The work is divided amongst Vijay, Salija, and, Vikram as follows:
+
+.. image:: images/Responsibilities.png
+  :width: 800
+  :align: center
+  :alt: Alternative text
+
+TejasSLS Documentation
+###################################
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+   TejasSLS-R24a <file://bhoomi/tejas-jnr/wireless/SLS_Team/TejasSLS-Documentation/R24a.0.1/index.html>
+   TejasSLS-R25a (To be released in July 2025)

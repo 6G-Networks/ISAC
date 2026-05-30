@@ -1,0 +1,38 @@
+==============================================
+How GPUs Work
+==============================================
+
+
+A Graphics Processing Unit (GPU) is a specialized processor designed to handle many tasks at the same time especially
+tasks involving graphics and large-scale computations. GPUs are designed to do a lot of operations at the same time.
+A CPU will do one operation faster than a GPU, but a GPU will do 10,000 operations faster than a CPU. This is especially
+important when drawing stuff to a screen, as each pixel has its own set of operations needed to draw something to it.
+However, GPUs can also do other things that require a lot of operations at the same time. The first examples that come
+to mind are crypto mining and AI.
+
+⚙️ How Does a GPU Work?
+------------------------
+
+1. Parallel Processing:
+    - Unlike CPUs, which have a few powerful cores for sequential tasks, GPUs have hundreds or thousands of smaller cores.
+    - These cores work in parallel, meaning they can perform many operations simultaneously.
+
+2. Optimized for Repetitive Tasks:
+    - GPUs are ideal for tasks that involve repeating the same operation across large datasets like applying filters to images or calculating values for each pixel on a screen.
+
+3. Memory Bandwidth:
+    - GPUs have high memory bandwidth, allowing them to move large amounts of data quickly between memory and processing units.
+
+4. Graphics Rendering:
+    - Originally designed for rendering graphics, GPUs calculate how light, color, and texture interact with objects in a scene to display realistic images.
+
+5. General-Purpose Computing (GPGPU): Modern GPUs are also used for non-graphics tasks like:
+    - Machine Learning: Training neural networks.
+    - Scientific Simulations: Modeling physical systems.
+    - Cryptocurrency Mining: Solving complex mathematical problems.
+
+Some useful references:
+-------------------------
+
+- For Beginner: `How do Graphics Cards Work? <https://www.youtube.com/watch?v=h9Z4oGN89MU>`_
+- Technical: `How GPUs works by Jim Keller? <https://www.youtube.com/watch?v=bYHDK6DOWMQ>`_

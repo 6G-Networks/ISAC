@@ -1,0 +1,24 @@
+==============================================
+Team Philosophy
+==============================================
+
+
+.. pull-quote::
+
+            `"Make every single detail perfect and you have to limit the number of details"`
+
+                                                                                -- Jack Dorsey
+
+
+.. pull-quote::
+
+            `"Nothing meaningful is easy, nor impossible, easy doesn't enter into the grown-up life!"`
+
+                                                                                -- James May
+
+
+.. pull-quote::
+
+            `"Internalize your responsibility, quieten your ego, maintain a low ego to ability ratio and, strengthen your RL feedback loop to reality!"`
+
+                                                                                -- Elon Musk

@@ -1,0 +1,17 @@
+==================================================
+TensorFlow Sucks
+==================================================
+
+TensorFlow wasn't particularly likeable from the beginning. However, the fragmentation of its modules, Google's "shiny
+object syndrome," poor architectural decisions, and a monopoly-style approach to machine learning further hindered its
+adoption across essential toolchains in the ML ecosystem.
+
+The TensorFlow team attempted to address these issues with the TensorFlow v2 refactor, but it was too little, too late.
+Moreover, it abandoned core components while still clinging to legacy systems.
+
+.. code-block:: python
+    :linenos:
+    :emphasize-lines: 2
+
+    import tensorflow as wtf
+

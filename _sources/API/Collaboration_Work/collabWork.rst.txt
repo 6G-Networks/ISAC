@@ -1,0 +1,320 @@
+==============================================
+Academic Collaboration
+==============================================
+
+.. role:: red
+
+The SLS team manages research colaboration with academic institutes. Currently, we are working with `Prof. Preetam Kumar
+<https://www.iitp.ac.in/~pkumar/>`_  from `Indian Institute of Technology, Patna <https://www.iitp.ac.in/>`_. We work with
+the following researchers from his team.
+
+.. caution::
+
+    **Aditya** and **Priya** may not be available from the end of May onward, which could lead to a discontinuity in the positioning work. The professor has assured us that new individuals will be found to take their places by August. However, if both decide not to continue their current work, progress might be hindered for 2-3 months.
+
+AI-ML for Time measurements based Positioning
+------------------------------------------------
+
+We work with **Aditya Gupta** on AI-ML for Positioning Enhancements (research and system simulations for Release-19 of 3GPP).
+We worked to design and identification of the AI-ML models for the following problems:
+
+.. image:: images/Time_based_Positioning.png
+  :width: 600
+  :align: center
+  :alt: Time_based_Positioning
+
+The details of the problem statement can be found here: (Page isn't created yet)
+
+1. **Problem Statement-1 (PS-1)**: Unquantized and raw CIR/PDP based **Direct AI-ML Positioning.** (Completed on Jan 18, 2025)
+2. **Problem Statement-2 (PS-2)**: Unquantized and raw CIR/PDP based **AI-ML Assisted Positioning** (Almost Completed on Feb 14, 2025)
+
+    - Estimate the time of arrival (ToA) measurement.
+3. **Problem Statement-3 (PS-3)**: Unquantized and truncated CIR/PDP based **Direct AI-ML Positioning** (Started on Feb 17, 2025):
+
+    - For truncation defined by Nt = 128 | Nt' = 24
+    - For truncation defined by Nt = 128 | Nt' = 16
+    - For truncation defined by Nt = 128 | Nt' = 12
+    - For truncation defined by Nt = 128 | Nt' = 8
+    - For truncation defined by Nt = 64  | Nt' = 24
+    - For truncation defined by Nt = 64  | Nt' = 16
+    - For truncation defined by Nt = 64  | Nt' = 8
+    - For truncation defined by Nt = 64  | Nt' = 4
+    - For truncation defined by Nt = 32  | Nt' = 16
+    - For truncation defined by Nt = 32  | Nt' = 12
+    - For truncation defined by Nt = 32  | Nt' = 8
+    - For truncation defined by Nt = 32  | Nt' = 4
+4. **Problem Statement-4 (PS-4)**: Unquantized and truncated CIR/PDP based **Direct AI-ML Assisted Positioning** (To be started):
+
+    - For truncation defined by Nt = 128 | Nt' = 24
+    - For truncation defined by Nt = 128 | Nt' = 16
+    - For truncation defined by Nt = 128 | Nt' = 12
+    - For truncation defined by Nt = 128 | Nt' = 8
+    - For truncation defined by Nt = 64  | Nt' = 24
+    - For truncation defined by Nt = 64  | Nt' = 16
+    - For truncation defined by Nt = 64  | Nt' = 8
+    - For truncation defined by Nt = 64  | Nt' = 4
+    - For truncation defined by Nt = 32  | Nt' = 16
+    - For truncation defined by Nt = 32  | Nt' = 12
+    - For truncation defined by Nt = 32  | Nt' = 8
+    - For truncation defined by Nt = 32  | Nt' = 4
+
+Project Directory-I
+~~~~~~~~~~~~~~~~~~~~~~
+
+All the files related to this work are stored on: `Link-T Positioning <https://tejasnet-my.sharepoint.com/:f:/g/personal/vikramsin_tejasnetworks_com/EgU-A-pnULxDgap89EeUXxABvhdLAS1dc8ga7JMwAGGPnQ?e=GkvKN6>`_
+
+1. `Dataset Generation Script-T Positioning <q>`_,
+2. `Dataset used for Positioning-T Positioning <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/EYqJnvoxWMpKkyN1HLM7GXEBzooGW5zw6rWXQo_fC6rkIw?e=bMaM95>`_,
+3. `Script for Training the Model-T Positioning <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/EXluWzs95iZDhuketnH3OV4BYdTqKrhOZjGfIsiEF3UqFA?e=0AVCvz>`_ and,
+4. Script for Performance Evaluation of the Model:
+
+    - **PS-1**: `Direct AI-ML Positioning-T Positioning <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/EYGb_PuMBx9NiMrOceTk54YBQm3eTSv4wr-r-HGBefQKgw?e=ifN5Vv>`_,
+    - **PS-2**: `AI-ML Assisted Positioning-T Positioning <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/EQUCEzXpB9JNuCHb9vkFsiEB2mSjVhY_6fRu8AHsW47HlQ?e=0tRuOy>`_,
+    - **PS-3**: Not started yet,
+    - **PS-4**: Not started yet.
+
+-----------
+
+
+Project Deliverables so far-I
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The deliverable are the final model architecture, as shown below, which meets the KPIs targets as detailed below:
+
+.. image:: images/AI-ML_Model_Architecture_for_Direct_Positioning.png
+  :width: 600
+  :align: center
+  :alt: AI-ML_Model_Architecture_for_Direct_Positioning
+
+1. Final Model Architecture fo **PS-1** (`Pytorch Model-1 <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/EXp3kAtd28NIsJWY3uvqyHQB-HTedFyKthp0dzbnfD8uRg?e=8Zx4BN>`_).
+
+    - Performance achieved: ~12 cm (2D positioning accuracy).
+2. Final Model Architecture fo **PS-2** (`Pytorch Model-2 <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/ESm_Ot00P3dDvGq5tcZXHN4Bw0FXffZzuswGx4LwbyT3mQ?e=IuDQT6>`_).
+
+    - Performance achieved: ~8 cm (2D positioning accuracy) | 28 cm (3D positioning accuracy)
+
+.. image:: images/PS_1_Performance.png
+  :width: 600
+  :align: center
+  :alt: PS_1_Performance
+
+3. Final Model Architecture fo **PS-3**: No progress yet.
+4. Final Model Architecture fo **PS-4**: No progress yet.
+
+
+
+-----------
+
+
+Challenges Records-I
+~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Requires a GPU with dedicated memory of approximately 16 GB.
+2. The spatio-temporal pattern in the channel generated using the SoS model is very weak. Therefore, a spatial filtering-based method is used, which provides a strong pattern but results in slightly inconsistent parameter statistics.
+
+
+-----------
+
+AI-ML for Angle-Time measurements based Positioning
+----------------------------------------------------
+
+We work with **Priya Roushni** on AI-ML for Positioning Enhancements, focusing on research and system simulations for 3GPP
+Release-20. Our work involves designing and identifying AI-ML models for various problems, including:
+
+The details of the problem statement can be found here: (Page isn't created yet)
+
+.. image:: images/Angle_Time_based_Positioning.png
+  :width: 600
+  :align: center
+  :alt: Angle_Time_based_Positioning
+
+1. Unquantized and raw Angle-Time information based **Direct AI-ML Positioning**.
+2. Unquantized and raw Angle-Time information based **Direct AI-ML Assisted Positioning**:
+
+    - Estimate the time of arrival (ToA) and angle of arrival (AoA) measurement.
+
+-----------
+
+Project Directory-II
+~~~~~~~~~~~~~~~~~~~~~~
+
+All the files related to this work are stored on: `Link-AT Positioning <https://tejasnet-my.sharepoint.com/:f:/g/personal/vikramsin_tejasnetworks_com/EkkrQjHOqglJi9TB94NwKwsBWqWUZKjVtv-LJOH2f6nRig?e=CpCTMG>`_
+
+1. `Dataset Generation Script-AT Positioning <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/ETplL_MqtrBBvJRbX4scM6oBE1oIonH2OcR2PbR_03iTpg?e=sdsjIc>`_,
+2. Dataset used for Positioning (`Training-AT Positioning <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/EUyq9VZ02vNBhu8-ZYJnYJ8BGvUwCX6iSRMIW4EYPGhhYw?e=cOPR0s>`_ | `Test-AT Positioning <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/EYKBKQ9AeB9JrGWhuCLJ3EcBo_OCv7SV_zmn18_ikgB70Q?e=hgayiJ>`_),
+3. `Script for Training the Model-AT Positioning <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/EWxThv10eQBOttBwp8iQzXkBy9KGglUSRMm1rPo0vuezHw?e=CtTMw5>`_ and,
+4. `Script fpr Performance Evaluation of the Model-AT Positioning <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/EYwHfGUoubhGiwwpnYTRg_kBDR7d_tVjlO9867PNtBXEdQ?e=qqpmW9>`_.
+
+-----------
+
+Project Deliverables so far-II
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+No progress yet.
+
+
+Challenges Records-II
+~~~~~~~~~~~~~~~~~~~~~~~
+
+1. A GPU with dedicated memory of approximately 64 GB is required.
+2. Due to the large input size (100,000 x 18 x 23 x 256), a significantly large model required to effectively learn the patterns to achieve the desired accuracy.
+
+    - This results in the requirement of a large dataset and an extensive model that requires more time to converge.
+    - Longer iteration cycles for model evaluation lead to increased turnaround time (TaT).
+
+-----------
+
+
+AI-ML for Beam-management: R19
+-------------------------------
+
+We work with **Aruj Gautam**, **Divyansh Gupta**, and **Adarsh Ravi** on AI-ML for Beam Management, focusing on research and system
+simulations for 3GPP Release-19. Our work involves designing and identifying AI-ML models for the following problems:
+
+The details of the problem statement can be found here: ?
+
+.. important::
+    Standards Team (**Jishnu A.**) wishes to extend this work to AI-ML for Mobility Management for release-20 which aims to solve the following problem:
+
+        - L1-RSRP and L3-RSRP prediction for triggering events and RLF prediction
+        - Proactive Load-balancing
+
+
+1. AI-ML for **Spatial Beam Prediction**:
+
+    - **PS-1**: Static user scenario with unquantified RSRPs.
+    - **PS-2**: Static user scenario with quantized RSRPs.
+    - **PS-3**: Mobile user scenario (3 Km/h) with quantized RSRPs.
+
+.. image:: images/SBP_PS.png
+  :width: 800
+  :align: center
+  :alt: Angle_Time_based_Positioning
+
+2. AI-ML for **Spatio Temporal Beam Prediction**:
+    - **PS-4**: Mobile user scenario (30 Km/h) with quantized RSRPs.
+
+.. image:: images/TBP_PS.png
+  :width: 800
+  :align: center
+  :alt: Angle_Time_based_Positioning
+
+
+-----------
+
+Project Directory-III
+~~~~~~~~~~~~~~~~~~~~~~
+
+All the files related to this work are stored on: `Link <https://tejasnet-my.sharepoint.com/:f:/g/personal/vikramsin_tejasnetworks_com/EoT505nIwnRMmMy1_uAinuwB_7dmUywjFoE4RvGgQ2PN8A?e=XAQbPr>`_
+
+1. `Dataset Generation Script-BM <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/EbtciRDSR5dJuy2bl-6PywYBgC6Aa9w7WyQYbpfqihu5Vg?e=sYlYa7>`_,
+2. Dataset used for Positioning (`Training-BM <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/EcPnMbdAkHBKs_1GL4pNGWgBnAC_xTChfCEUa3FvqD1Z-g?e=MQe7qu>`_ | `Test-BM <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/ETPuSVNGlb1Grey-zxXU7hABGfFD5IjcM0EnS9BomSvr8w?e=VLCg6a>`_),
+3. `Script for Training the Model-BM <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/EcPnMbdAkHBKs_1GL4pNGWgBnAC_xTChfCEUa3FvqD1Z-g?e=3t8R46>`_ and,
+4. `Script fpr Performance Evaluation of the Model-BM <https://tejasnet-my.sharepoint.com/:u:/g/personal/vikramsin_tejasnetworks_com/ERtt4MmXzxRDqSkXiUtIDRUBC74ix1dHuSuI0sDemD0xvg?e=OFjTI4>`_.
+
+-----------
+
+Project Deliverables so far-III
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. **PS-1** is solved and meets the target KPIs:
+    - Inaccuracy in RSRP for 90%ile UEs:
+    - Top-1/K Beam accuracy:
+    - Top-3/K Beam Accuracy:
+    - Top-K/3 Beam Accuracy:
+
+.. image:: images/8to64_UnQuantized/Unquantized_RSRP_8to64.png
+  :width: 600
+  :align: center
+  :alt: Unquantized_RSRP_8to64
+
+
+.. image:: images/16to64_UnQuantized/Unquantized_RSRP_16to64.png
+  :width: 600
+  :align: center
+  :alt: Unquantized_RSRP_16to64
+
+2. **PS-2** is almost solved and meets the target KPIs:
+    - Inaccuracy in RSRP for 90%ile UEs:
+    - Top-1/K Beam accuracy:
+    - Top-3/K Beam Accuracy:
+    - Top-K/3 Beam Accuracy:
+
+.. image:: images/8to64_Quantized/Quantized_RSRP_8to64.png
+  :width: 600
+  :align: center
+  :alt: Quantized_RSRP_8to64
+
+3. **PS-3** is not started yet.
+    - Inaccuracy in RSRP for 90%ile UEs: NA
+    - Top-1/K Beam accuracy: NA
+    - Top-3/K Beam Accuracy: NA
+    - Top-K/3 Beam Accuracy: NA
+
+3. **PS-4** is not started yet.
+    - Inaccuracy in RSRP for 90%ile UEs: NA
+    - Top-1/K Beam accuracy: NA
+    - Top-3/K Beam Accuracy: NA
+    - Top-K/3 Beam Accuracy: NA
+
+
+Challenges and Observation Records-III
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Size the the input is very small resulting in very little information and small feature size for model to learn and interpolate from. Hence, a lot of domain knowledge is required to solve this problem.
+2. The model identified is decently small, hence computation is not a big challenge, but, innovation is.
+3. Across the time the rate at which the RSRPs change is abrupt (changes at the rate of UE mobility), making it difficult for the model to learn the pattern.
+
+-----------
+
+
+Minutes of the meeting
+------------------------------------------------
+
+
++---------------+---------------+-------------------------------------+
+| Meeting       | Date          | Minutes of the Meeting              |
++===============+===============+=====================================+
++ Initiation    | --            | `MoM-1 <Meeting/Meeting-1.pdf>`_    |
++---------------+---------------+-------------------------------------+
++ Meeting-1     | 14-Nov-2024   | `MoM-2 <Meeting/Meeting-2.pdf>`_    |
++---------------+---------------+-------------------------------------+
++ Meeting-2     | 21-Nov-2024   | `MoM-3 <Meeting/Meeting-3.pdf>`_    |
++---------------+---------------+-------------------------------------+
++ Meeting-3     | 28-Nov-2024   | `MoM-4 <Meeting/Meeting-4.pdf>`_    |
++---------------+---------------+-------------------------------------+
++ Meeting-4     | 05-Dec-2024   | `MoM-5 <Meeting/Meeting-5.pdf>`_    |
++---------------+---------------+-------------------------------------+
++ Meeting-5     | 12-Dec-2024   | `MoM-6 <Meeting/Meeting-6.pdf>`_    |
++---------------+---------------+-------------------------------------+
++ Meeting-6     | 19-Dec-2024   | `MoM-7 <Meeting/Meeting-7.pdf>`_    |
++---------------+---------------+-------------------------------------+
++ Meeting-7     | 26-Dec-2024   | `MoM-8 <Meeting/Meeting-8.pdf>`_    |
++---------------+---------------+-------------------------------------+
++ Meeting-8     | 02-Jan-2024   | `MoM-9 <Meeting/Meeting-9.pdf>`_    |
++---------------+---------------+-------------------------------------+
++ Meeting-9     | 09-Jan-2024   | `MoM-10 <Meeting/Meeting-10.pdf>`_  |
++---------------+---------------+-------------------------------------+
++ Meeting-10    | 16-Jan-2024   | `MoM-11 <Meeting/Meeting-11.pdf>`_  |
++---------------+---------------+-------------------------------------+
++ Meeting-11    | 23-Jan-2024   | `MoM-12 <Meeting/Meeting-12.pdf>`_  |
++---------------+---------------+-------------------------------------+
++ Meeting-12    | 30-Jan-2024   | `MoM-13 <Meeting/Meeting-13.pdf>`_  |
++---------------+---------------+-------------------------------------+
++ Meeting-13    | 07-Feb-2024   | `MoM-14 <Meeting/Meeting-14.pdf>`_  |
++---------------+---------------+-------------------------------------+
++ Meeting-14    | 14-Feb-2024   | `MoM-15 <Meeting/Meeting-15.pdf>`_  |
++---------------+---------------+-------------------------------------+
++ Meeting-15    | 21-Feb-2024   | `MoM-16 <Meeting/Meeting-16.pdf>`_  |
++---------------+---------------+-------------------------------------+
++ Meeting-16    | 28-Feb-2024   | `MoM-17 <Meeting/Meeting-17.pdf>`_  |
++---------------+---------------+-------------------------------------+
++ Meeting-17    | 07-Mar-2024   | `MoM-18 <Meeting/Meeting-18.pdf>`_  |
++---------------+---------------+-------------------------------------+
++ Meeting-18    | 14-Mar-2024   | Yet to happen                       |
++---------------+---------------+-------------------------------------+
++ Meeting-19    | 21-Mar-2024   | Yet to happen                       |
++---------------+---------------+-------------------------------------+
++ Meeting-20    | 28-Mar-2024   | Yet to happen                       |
++---------------+---------------+-------------------------------------+
+

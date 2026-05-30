@@ -1,0 +1,180 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Simulations Work &mdash; 6G-ISAC 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/6G_ISAC.css?v=5aa4b4e6" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=7026087e"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            6G-ISAC
+              <img src="../../_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Learning_Resources/learningResource.html">Learning Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Learning_Resources/learningResource.html#pre-requisites-must-have">Pre-requisites: Must have</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Learning_Resources/learningResource.html#pre-requisites-optional">Pre-requisites: Optional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Learning_Resources/learningResource.html#coding-skills">Coding Skills</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ISAC_in_3GPP/isac3GPP.html">ISAC in 3GPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-ran1">ISAC in 3GPP RAN1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-ran2">ISAC in 3GPP RAN2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-ran3">ISAC in 3GPP RAN3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-ran4">ISAC in 3GPP RAN4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-sa-groups">ISAC in 3GPP SA Groups</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">6G-ISAC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">System Simulations Work</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="system-simulations-work">
+<h1>System Simulations Work<a class="headerlink" href="#system-simulations-work" title="Link to this heading"></a></h1>
+<p>The Team is primarily responsible for development of the Tejas-SLS which is a system level simulation tool for 5G and
+beyond networks. The tool is being developed with following objectives in mind:</p>
+<section id="design-objectives-for-tejas-sls">
+<h2>Design Objectives for Tejas-SLS<a class="headerlink" href="#design-objectives-for-tejas-sls" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Modulator design for Plug and Play</p></li>
+<li><p>GPU Acceleration (NVIDIA)</p></li>
+<li><p>Integration with SDRs and other hardware’s</p></li>
+<li><p>System/Product development/testing</p></li>
+<li><p>Standards developments and Standards driven research</p></li>
+<li><p>Native AI Support</p></li>
+<li><p>Network Deployment and Optimization (based on ray-tracing or MDT data)</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/Design_Objectives.png"><img alt="Alternative text" src="../../_images/Design_Objectives.png" style="width: 800px;" />
+</a>
+</section>
+<section id="performance-objectives">
+<h2>Performance Objectives<a class="headerlink" href="#performance-objectives" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>End to End system level simulations for 21 BSs and 210 UE should complete within 6-12 hours.</p></li>
+<li><p>Links level simulations for each chain for 1-million batches should complete within 2-6 hours.</p></li>
+</ul>
+</section>
+<section id="vision-for-the-tool">
+<h2>Vision for the Tool<a class="headerlink" href="#vision-for-the-tool" title="Link to this heading"></a></h2>
+<p>Build a System Level Simulator which can accept the coordinates of the site deployed anywhere on the globe as input and provide the golden network configurations for deployment.</p>
+</section>
+<section id="mission-for-the-tool">
+<h2>Mission for the Tool<a class="headerlink" href="#mission-for-the-tool" title="Link to this heading"></a></h2>
+<p>3GPP complaint System Level Simulator which can complete Basic System Simulations with 1-6 hours and Exhaustive System Simulations within 6-12 hours.</p>
+</section>
+<section id="development-roadmap-for-tejas-sls">
+<h2>Development Roadmap for Tejas-SLS<a class="headerlink" href="#development-roadmap-for-tejas-sls" title="Link to this heading"></a></h2>
+<p>The roadmap for the Tejas-SLS is shown below:</p>
+<a class="reference internal image-reference" href="../../_images/Development_Roadmap.png"><img alt="Alternative text" src="../../_images/Development_Roadmap.png" style="width: 800px;" />
+</a>
+</section>
+<section id="development-timeline-for-tejas-sls">
+<h2>Development Timeline for Tejas-SLS<a class="headerlink" href="#development-timeline-for-tejas-sls" title="Link to this heading"></a></h2>
+<p>The roadmap for the Tejas-SLS is shown below:</p>
+<a class="reference internal image-reference" href="../../_images/Timeline2.png"><img alt="Alternative text" class="align-center" src="../../_images/Timeline2.png" style="width: 800px;" />
+</a>
+</section>
+<section id="division-of-work">
+<h2>Division of Work<a class="headerlink" href="#division-of-work" title="Link to this heading"></a></h2>
+<p>The work is divided amongst Vijay, Salija, and, Vikram as follows:</p>
+<a class="reference internal image-reference" href="../../_images/Responsibilities.png"><img alt="Alternative text" class="align-center" src="../../_images/Responsibilities.png" style="width: 800px;" />
+</a>
+</section>
+<section id="tejassls-documentation">
+<h2>TejasSLS Documentation<a class="headerlink" href="#tejassls-documentation" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="file://bhoomi/tejas-jnr/wireless/SLS_Team/TejasSLS-Documentation/R24a.0.1/index.html">TejasSLS-R24a</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Vikram Singh &lt;vikram.singh.anttal@gmail.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

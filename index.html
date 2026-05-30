@@ -1,72 +1,293 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Integrated Sensing and Communications</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 40px;
-            max-width: 900px;
-        }
-        h1, h2 {
-            color: #2c3e50;
-        }
-        ul {
-            margin-top: 10px;
-        }
-    </style>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Integrated Sensing and Communication (ISAC) &mdash; 6G-ISAC 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/css/6G_ISAC.css?v=5aa4b4e6" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=7026087e"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Learning Resources" href="API/Learning_Resources/learningResource.html" /> 
 </head>
-<body>
 
-    <h1>Maintainers</h1>
-    <p>
-        <ul>
-        <li><a href="https://vikramsinghanttal.github.io/IIT-Kanpur/">Vikram Singh</a></li>
-        <li>Waiting for you to join. Please reach me out at vikram.singh.anttal@gmail.com</a></li>
-        </ul>
-    </p>
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-    
-    <h1>Overview</h1>
-    <p>
-        This repository hosts a website that curates and documents knowledge generated 
-        from in-depth discussions held during the development of Integrated Sensing and 
-        Communication (ISAC) standards in 3GPP.
-    </p>
+          
+          
+          <a href="#" class="icon icon-home">
+            6G-ISAC
+              <img src="_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="API/Learning_Resources/learningResource.html">Learning Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="API/Learning_Resources/learningResource.html#pre-requisites-must-have">Pre-requisites: Must have</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/Learning_Resources/learningResource.html#pre-requisites-optional">Pre-requisites: Optional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/Learning_Resources/learningResource.html#coding-skills">Coding Skills</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="API/ISAC_in_3GPP/isac3GPP.html">ISAC in 3GPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="API/ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-ran1">ISAC in 3GPP RAN1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-ran2">ISAC in 3GPP RAN2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-ran3">ISAC in 3GPP RAN3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-ran4">ISAC in 3GPP RAN4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-sa-groups">ISAC in 3GPP SA Groups</a></li>
+</ul>
+</li>
+</ul>
 
-    <p>
-        The content captures key insights, technical viewpoints, and learnings derived from 
-        contributions and debates that took place throughout Release 20 and continue into 
-        subsequent releases. It aims to serve as a centralized reference for researchers, 
-        engineers, and stakeholders involved in or following the evolution of ISAC within 
-        the 3GPP standardization process.
-    </p>
+        </div>
+      </div>
+    </nav>
 
-    <h2>Purpose</h2>
-    <ul>
-        <li>Consolidate insights from technical discussions and contributions</li>
-        <li>Provide contextual understanding of ISAC standardization decisions</li>
-        <li>Serve as a knowledge base for ongoing and future 3GPP releases</li>
-    </ul>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">6G-ISAC</a>
+      </nav>
 
-    <h2>Scope</h2>
-    <p>The repository focuses on:</p>
-    <ul>
-        <li>ISAC-related topics within 3GPP</li>
-        <li>Discussions from Release 20 and beyond</li>
-        <li>Evolving concepts, challenges, and perspectives in standard development</li>
-    </ul>
-    
-    <h2>3GPP Meetings</h2>
-    <p>The repository derives views from the following 3GPP meeting discussions along with many IEEE/arxiv papers:</p>
-    <ul>
-        <li>RAN1#124</li>
-        <li>RAN1#124-bis</li>
-        <li>RAN1#125</li>
-    </ul>
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Integrated Sensing and Communication (ISAC)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="integrated-sensing-and-communication-isac">
+<h1>Integrated Sensing and Communication (ISAC)<a class="headerlink" href="#integrated-sensing-and-communication-isac" title="Link to this heading"></a></h1>
+<p><strong>Last updated on</strong>: 2026-05-30 by <a class="reference external" href="https://vikramsinghanttal.github.io/IIT-Kanpur/">Vikram</a>.</p>
+<section id="introduction-to-isac">
+<h2>Introduction to ISAC<a class="headerlink" href="#introduction-to-isac" title="Link to this heading"></a></h2>
+<p>Integrated Sensing and Communication (ISAC), also referred to as joint communication and
+sensing (JCAS) in IEEE literature,is an emerging technology that unifies wireless communication
+and sensing within a single platform. The sensing will enable the network to perceive the
+physical environment using RADAR like capabilities without a perceivable impact on the communication
+performance. However, the integration of sensing and communication feature is not that straightforward
+and requires a careful design of the system. The design of the system should be such that
+it can support both communication and sensing functionalities without compromising on the
+performance of either.</p>
+</section>
+<section id="level-of-integration-between-communication-and-sensing">
+<h2>Level of Integration between Communication and Sensing<a class="headerlink" href="#level-of-integration-between-communication-and-sensing" title="Link to this heading"></a></h2>
+<p>Integration of communication and sensing can be achieved at various levels, ranging from
+spectrum sharing and co-existence to fully unified waveform design and joint signal processing.</p>
+<ul class="simple">
+<li><p><strong>Infrastructure Sharing</strong>: At this level, communication and sensing systems share the same
+physical infrastructure, such as antennas and transceivers. This allows for cost savings and
+efficient use of hardware resources, but the communication and sensing functions may still
+operate independently.</p></li>
+<li><p><strong>Spectrum Sharing and Co-existence</strong>: At this level, communication and sensing systems operate
+independently but share the same spectrum resources. This requires careful management of
+interference and coordination to ensure that both functions can coexist without significant
+performance degradation.</p></li>
+<li><p><strong>Unified Waveform Design</strong>: In this approach, the same waveform is designed to simultaneously
+support both communication and sensing functionalities. For example, an OFDM waveform can be
+adapted to incorporate radar-like sensing capabilities, allowing for the extraction of both
+communication and sensing information from the same signal.</p></li>
+<li><p><strong>Joint Signal Processing</strong>: At this level, communication and sensing functions are tightly
+integrated, with joint resource allocation and cross-layer optimization across network nodes.
+This allows for enhanced performance and efficiency, as sensing information can be used to
+improve communication processes, such as beamforming and channel estimation.</p></li>
+</ul>
+<p>The level of integration depends on the specific use case, system requirements, and deployment scenarios.</p>
+</section>
+<section id="why-did-isac-have-to-wait-until-6g">
+<h2>Why Did ISAC Have to Wait Until 6G??<a class="headerlink" href="#why-did-isac-have-to-wait-until-6g" title="Link to this heading"></a></h2>
+<p>6G Networks will be equiped with advanced technologies such as large transmission bandwidths
+(cmWave, mmWave, and THz), massive MIMO antenna arrays, artificial intelligence, and advanced
+signal processing techniques. These technologies enable high-resolution delay–Doppler–angle
+estimation, facilitating precise localization and imaging capabilities. Communication waveforms,
+such as OFDM, can be adapted to incorporate radar-like sensing functionalities, allowing simultaneous
+extraction of communication and sensing information. The details of the hardware and compute capabilities
+of 6G networks are detailed in the following table:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Technology</p></th>
+<th class="head"><p>5G-Advanced</p></th>
+<th class="head"><p>6G</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="2"><p>Bandwidth</p></td>
+<td><p>Up to 100 MHz at FR1</p></td>
+<td><p>Up to 200-400 MHz at FR1 and FR3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Up to 400 MHz at FR2</p></td>
+<td><p>Up to 1 GHz at FR2 and THz range</p></td>
+</tr>
+<tr class="row-even"><td rowspan="3"><p>Frequency Bands</p></td>
+<td><p>700 MHz (Coverage)</p></td>
+<td><p>decimeter Wave (Coverage)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sub-6 GHz (Capacity)</p></td>
+<td><p>Sub-6 GHz, ~7 GHz  (Capacity),</p></td>
+</tr>
+<tr class="row-even"><td><p>mmWave with ABF (Precision)</p></td>
+<td><p>mmWave with DBF, THz with ABF (Precision)</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>MIMO</p></td>
+<td rowspan="2"><p>Up to 256 antennas</p></td>
+<td rowspan="2"><p>4-16 times more antennas compared to</p>
+<p>5G Networks</p>
+</td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td><p>AI Integration</p></td>
+<td><p>Limited AI capabilities</p></td>
+<td><p>Native AI integration</p></td>
+</tr>
+<tr class="row-even"><td><p>Signal Processing</p></td>
+<td><p>Traditional DSP techniques</p></td>
+<td><p>Advanced signal
+processing techniques</p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="_images/Why-6G.svg"><img alt="Alternative text" src="_images/Why-6G.svg" style="width: 800px;" />
+</a>
+</section>
+<section id="scope-of-this-website">
+<h2>Scope of this Website<a class="headerlink" href="#scope-of-this-website" title="Link to this heading"></a></h2>
+<p>This website will focus on the ISAC and related standardization work in 3GPP. The website will cover
+the following topics:</p>
+<ul class="simple">
+<li><p>3GPP standardization work on ISAC</p>
+<ul>
+<li><p>ISAC usecases in 6G</p></li>
+<li><p>Standardization work across 3GPP working groups</p></li>
+<li><p>ISAC related study items and work items in 3GPP</p></li>
+<li><p>ISAC System Simulation and Performance Evaluation related Aspects</p></li>
+<li><p>ISAC Channel Modeling and Measurement related Aspects</p></li>
+<li><p>ISAC Waveform Design and Reference Signal related Aspects</p></li>
+<li><p>ISAC Hardware and Implementation related Aspects</p></li>
+<li><p>ISAC Signal Processing and AI related Aspects</p></li>
+<li><p>ISAC RAN Digital Twin and Network Optimization related Aspects</p></li>
+</ul>
+</li>
+<li><p>Standards Driven Research on ISAC</p>
+<ul>
+<li><p>Waveform design for ISAC</p></li>
+<li><p>Reference signal design for ISAC</p></li>
+<li><p>Channel modeling for ISAC</p></li>
+<li><p>Resource allocation and scheduling for ISAC</p></li>
+<li><p>AI for ISAC</p></li>
+<li><p>Clutter cancellation algorithms for ISAC</p></li>
+<li><p>Target detection algorithms for ISAC</p></li>
+<li><p>Target localization algorithms for ISAC</p></li>
+<li><p>Target tracking algorithms for ISAC</p></li>
+<li><p>Communication assisted sensing via ISAC</p></li>
+<li><p>Sensing assisted communication via ISAC</p>
+<ul>
+<li><p>Sensing assisted beamforming for ISAC</p></li>
+<li><p>Sensing assisted channel estimation for ISAC</p></li>
+<li><p>Sensing assisted CSI acquisition for ISAC</p></li>
+<li><p>Sensing assisted resource allocation for ISAC</p></li>
+<li><p>Sensing assisted mobility management for ISAC</p></li>
+<li><p>Sensing assisted interference management for ISAC</p></li>
+<li><p>Sensing assisted localization for ISAC</p></li>
+<li><p>Sensing assisted power control for ISAC</p></li>
+<li><p>Sensing asssited power saving</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="where-to-find-detailed-information">
+<h3>Where to find detailed information?<a class="headerlink" href="#where-to-find-detailed-information" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="API/Learning_Resources/learningResource.html">Learning Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="API/Learning_Resources/learningResource.html#pre-requisites-must-have">Pre-requisites: Must have</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/Learning_Resources/learningResource.html#pre-requisites-optional">Pre-requisites: Optional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/Learning_Resources/learningResource.html#coding-skills">Coding Skills</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="API/ISAC_in_3GPP/isac3GPP.html">ISAC in 3GPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="API/ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-ran1">ISAC in 3GPP RAN1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-ran2">ISAC in 3GPP RAN2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-ran3">ISAC in 3GPP RAN3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-ran4">ISAC in 3GPP RAN4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/ISAC_in_3GPP/isac3GPP.html#isac-in-3gpp-sa-groups">ISAC in 3GPP SA Groups</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="features">
+<h3>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="API/Learning_Resources/learningResource.html" class="btn btn-neutral float-right" title="Learning Resources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Vikram Singh &lt;vikram.singh.anttal@gmail.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
 
 </body>
 </html>

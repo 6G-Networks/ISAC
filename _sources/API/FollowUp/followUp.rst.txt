@@ -1,0 +1,61 @@
+==============================================
+Followups and Updates as of |today|
+==============================================
+
+This document serves as a progress tracker for the SLS team’s responsibilities, standardization efforts, and system
+simulation development. Updates will be incorporated as tasks progress.
+
+Followups: Aggregated
+##################################
+
+
++-------------------+----------------------------------------------+-------------------------------------+
+| Criticality       | Urgent                                       | Non-Urgent                          |
++===================+==============================================+=====================================+
++ **Important**     | - VCS Tool (Gerrit or GitHub)                | - GPU acquisition                   |
+|                   | - SLS Work                                   | - System Team Work: Positioning     |
+|                   | - Onboarding an Intern by Mid March/2025     | - Hiring full-time members          |
++-------------------+----------------------------------------------+-------------------------------------+
++ **Non-Important** | Dataset Generation for BM Case-2             | AI-ML for Positioning Enhancement-2 |
++-------------------+----------------------------------------------+-------------------------------------+
+
+
+
+.. list-table:: Followups and updates on tasks
+   :widths: 15 10 50
+   :header-rows: 1
+
+   * - Tasks
+     - Deadline
+     - Last Update
+   * - GPU acquisition
+     - ASAP
+     - With Legal Team
+   * - VCS Tool
+     - ASAP
+     - GitHub Enterprise supports local deployment (21$/user/month)
+   * - Dataset Generation for BM Case-2
+     - 21/02/2025
+     - **Pavan** will provide the values for Pt,Nt,T1,and T2.
+   * - SLS work: PDSCH Upper Phy
+     - 14/02/2025
+     - Completed (**Vijay**)
+   * - SLS work: PDSCH Lower Phy
+     - 14/02/2025
+     - PDSCH Channel interpolation is pending (**Salija**).
+   * - SLS work: Channel Implementation
+     - 14/02/2025
+     - System Layout Implementation is in progress (**Vikram**).
+
+Followups: Team Member Specific
+###################################
+
+.. toctree::
+   :maxdepth: 3
+
+   For_Sivan
+   For_Vikram
+   For_Salija
+   For_Vijay
+   For_Tejas_Networks
+

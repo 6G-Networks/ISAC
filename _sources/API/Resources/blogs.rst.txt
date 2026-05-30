@@ -1,0 +1,11 @@
+==============================================
+Blogs: Tejas-SLS
+==============================================
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+   Blogs/How_GPUs_Work
+   Blogs/Scalable_Python_Codes
+   Blogs/TensorFlow_Sucks

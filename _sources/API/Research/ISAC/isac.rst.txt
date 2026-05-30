@@ -1,0 +1,15 @@
+==============================================
+Integrated Sensing and Communication (ISAC)
+==============================================
+
+The team is involved in research and development on:
+
+    - AI-ML for Positioning Enhancement
+    - AI-ML for Beam-management
+    - Channel Modelling for ISAC
+
+
+Research Deliverable: ISAC
+###########################
+
+Nothing published or filed as of Now.

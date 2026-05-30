@@ -1,0 +1,58 @@
+====================================================
+AI-ML for Time-Angle Measurements based Positioning
+====================================================
+
+Yet to be written!
+
+Motivation: AI-ML_PosAT
+############################
+
+Yet to be written!
+
+
+System Model: AI-ML_PosAT
+##########################
+
+Yet to be written!
+
+
+Dataset Generation: AI-ML_PosAT
+######################################
+
+Yet to be written!
+
+
+AI-ML Model for Time Measurement based Positioning: AI-ML_PosAT
+#####################################################################
+
+Yet to be written!
+
+
+Evaluation Methodology: AI-ML_PosAT
+####################################
+
+Yet to be written!
+
+
+Results: AI-ML_PosAT
+#####################
+
+Yet to be written!
+
+
+Benchmarking Against the State of the Art and Previous Release of 3GPP Standards: AI-ML_PosAT
+####################################################################################################
+
+Yet to be written!
+
+
+Relevant References: AI-ML_PosAT
+#################################
+
+Yet to be written!
+
+
+Gaps in Existing Solutions: AI-ML_PosAT
+#########################################
+
+Yet to be written!

@@ -1,0 +1,47 @@
+==============================================
+Research and Development Activities
+==============================================
+
+The team is involved in research and development on:
+
+    - AI-ML for Positioning Enhancement
+    - AI-ML for Beam-management
+    - Channel Modelling for ISAC
+
+Research Publications: SLS Team
+###################################
+
+1. Rahul Pal, **Vikram Singh**, and **Vijay Mareedu**, `"Performance Evaluation of AI-based CSI Feedback Techniques for 5G Advance and 6G Networks" <https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.172927298.82215493/v3>`_ manuscript ID: PHYCOM-D-24-01425R2 has been accepted on Aug-03/2025 for publication in Physical Communication Journal..
+2. Adarsh Ravi, Divyansh Gupta, **Vikram Singh**, and Preetam Kumar, `"SuperConvNet: Super Resolution Orchestrated Deep Convolutional Neural Network for Spatial Beam Prediction in B5G and 6G Systems" <https://drive.google.com/file/d/1jywh3KdxKMN69oXvjJQjTEVdeOHoelNJ/view?usp=sharing>`_ has been submitted to IEEE Transactions on Wireless Communications.
+3. Aditya Gupta, **Vikram Singh**, and Preetam Kumar, `"PosNet: A CNN-based Transformer model for UE localization in NLOS dominated scenarios" <https://drive.google.com/file/d/16SVC0f4JUjwJC7PpXQjt9viFevKddBSo/view?usp=drive_lin>`_ has been submitted to IEEE Communications Letters.
+
+
+.. note::
+
+    The following pages on ``research areas`` will provide the following
+
+        - Complete details of the problem statements,
+
+            - Motivation,
+            - System Model,
+            - Dataset generation,
+            - Methodology used to solve the problem or (AI/ML model),
+            - Results,
+            - Observations,
+            - References.
+
+        - Simulation setups along with the source code,
+        - Results achieved and the target 3GPP KPIs,
+        - Useful insights ito the problem
+        - The publications and the patent filed on the problems.
+
+
+Research Areas
+###################################
+
+.. toctree::
+   :maxdepth: 3
+
+   Positioning/positioning
+   BeamManagement/beamManagement
+   ISAC/isac

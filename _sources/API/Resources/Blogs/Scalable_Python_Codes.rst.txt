@@ -1,0 +1,8 @@
+==================================================
+Designing Embarrassingly Scalable Python Packages
+==================================================
+
+- Talk-1: `Fast Differentiable Dynamic Graphs in Python <https://www.youtube.com/watch?v=DBVLcgq2Eg0&t=1853s>`_
+- Talk-2: `CUDA Mode Keynote by Andrej Karpathy <https://www.youtube.com/watch?v=aR6CzM0x-g0>`_
+- Youtube Playlist (High level): `CUDA Mode <https://www.youtube.com/playlist?list=PLVEjdmwEDkgW0uEWNt4olLk-bnSueZARH>`_
+- CUDA Programming Course: `(Low level) <https://www.youtube.com/watch?v=86FAWCzIe_4>`_

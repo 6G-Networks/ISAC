@@ -1,0 +1,39 @@
+==============================================
+Week-12 2025 (17/03 to 23/03)
+==============================================
+
+**Note**: Sivan was busy, the weekly meeting didn't happen.
+
+Updates: Week-12
+******************
+
+- Integrating assuming AWGN Channel: No Channel Estimation and equalization required.
+- Integrating assuming Perfect Channel Estimate information: Pass P*H*V as channel estimate information
+- Integrating with no assumption: Channel is estimated using DMRS and symbols are equalized using the estimated channel 
+- Verification for static channel
+- Verification for Mobile channel (Pedestrian UEs): 3 kmph
+- Verification for Mobile Channel (Vehicular UEs): 30 kmph
+- Verification for Mobile Channel (High speed UEs): 100 kmph
+
+
+
+1. (**Vikram**) First IP on Angle Time Positioning for R-19 to be filed to be filed this week.
+    - 1 IPs on Positioning is remaining.
+
+2. LLS for data communication (PDSCH/PUSCH):
+    - (**Salija** and **Vijay**) First Case of the Integration is completed. 2 more cases are remaining.
+
+3. (**Vikram**) SLS Antenna models and Node Mobility is completed:
+    - Parameter Generation is yet to be started.
+
+4. This week (**Vikram**) we have to initiate writing the 3GPP-RAN1-120bis contribution.
+
+5. We will interview 7 candidates for internships for upcoming summers from IIT-KGP.
+
+
+Followups: Week-12
+******************
+
+1. Progress on GPU procurement
+2. Procuring GitHub Enterprise or Proceed with Gerrit.
+3. Quick-Onboaring of a candidate.

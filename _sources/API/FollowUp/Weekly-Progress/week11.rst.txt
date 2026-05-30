@@ -1,0 +1,35 @@
+==============================================
+Week-11 2025 (10/03 to 16/03)
+==============================================
+
+**Note**: Sivan was busy, the weekly meeting didn't happen.
+
+Updates: Week-11
+******************
+
+
+1. LLS for data communication (PDSCH/PUSCH):
+    - (**Vijay**) Upper Physical layer: Completed
+        - **Vijay** will assist **Salija** with Scrambler and Layer Mapper this week
+
+    - (**Salija**) Lower Physical layer: Channel estimator and interpolator is pending, rest completed.
+        - She will complete the code by 21 Feb and initiate the documentation by 1st March.
+
+2. (**Vikram**) SLS System Layout is still in progress:
+    - Very little time due to lack of time and consistency.
+
+3. We will be attending the First 6G Workshop with following objective:
+    - Companies vision, views and priorities for 6G.
+
+4. We will be attending the RAN Planery and assisting the delegates and standards team members for the following agendas:
+    - Akshatha for RAN3-ISAC agendas
+    - Vikram for AI-ML for Positioning related agendas
+    - SLS team for Additional AI-ML for Air Interface: Phase-2 work.
+    - SriGanesh and Sreekanth for AI-ML for Mobility Management.
+
+Followups: Week-6
+******************
+
+1. Progress on GPU procurement
+2. Procuring GitHub Enterprise or Proceed with Gerrit.
+
