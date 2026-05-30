@@ -141,8 +141,8 @@ Where to find detailed information?
 
    API/Learning_Resources/learningResource
    API/ISAC_in_3GPP/isac3GPP
-   .. API/SLS_Work/slsWork
-   .. API/3GPP_Work/3gppWork
+   API/ISAC_Details/ISAC_details
+   API/Tutorials/tutorials
    .. API/Collaboration_Work/collabWork.md
    .. API/Research/research
    .. API/FollowUp/followUp.rst

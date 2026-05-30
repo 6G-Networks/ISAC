@@ -4,98 +4,21 @@ ISAC in 3GPP
 
 The following table provides the URL of the 3GPP documents related to ISAC and some useful 
 references for each ISAC feature. The table will be updated as and when new documents are 
-released by 3GPP and new references are added.
+released by 3GPP and new references are added. The link are attached from the latest version
+of the documents. Please check the version of the document before referring to it.
 
-ISAC in 3GPP RAN1
---------------------
+5G-New Radio Tracks
+---------------------
 
-3GPP RAN1 is responsible for the physical layer design and standardization of 5G/6G radios. The following 
-table provides the URL of the 3GPP documents related to ISAC in RAN1 and some useful references for each 
-ISAC feature. The table will be updated as and when new documents are released by 3GPP and new references 
-are added.
-
-.. table:: ISAC in 3GPP RAN1
-   :widths: auto
-   :align: left
-
-   +------------------+-------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+
-   | ISAC Feature     |                         3GPP Document                                                                             | Useful Reference                                                            |
-   +==================+===================================================================================================================+=============================================================================+
-   | Channel Model    | `TR 3GPP 38.901 (version later than 19.3.0) <https://www.3gpp.org/ftp/Specs/archive/38_series/38.901/>`_          | `Survey <https://ieeexplore.ieee.org/document/11274965>`_                   |
-   +------------------+-------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+
+- Stage-1/SA1 (Service Requirements): `TR 22.837 Release-19  Study on Integrated Sensing and Communication <https://www.3gpp.org/ftp/Specs/archive/22_series/22.837/22837-j40.zip>`_
+- Stage-1/SA1: `3GPP TS 22.137 Release-19 Integrated Sensing and Communication <https://www.3gpp.org/ftp/Specs/archive/22_series/22.137/22137-j10.zip>`_.
+- ISAC Channel Model: `TR 3GPP 38.901 (version later than 19.3.0) <https://www.3gpp.org/ftp/Specs/archive/38_series/38.901/>`_.
+- RAN1/RAN2/RAN3: `3GPP TR 38.765: Study on Integrated Sensing and Communication (ISAC) for NR Release-20 <https://www.3gpp.org/ftp/Specs/archive/38_series/38.765/38765-100.zip>`_.
 
 
-ISAC in 3GPP RAN2
---------------------
-3GPP RAN2 is responsible for the design and standardization of the radio interface and protocols of 5G/6G radios. 
-The following table provides the URL of the 3GPP documents related to ISAC in RAN2 and some useful references for 
-each ISAC feature. The table will be updated as and when new documents are released by 3GPP and new references 
-are added.
+6G Track
+------------
 
-
-.. table:: ISAC in 3GPP RAN2
-   :widths: auto
-   :align: left
-
-   +------------------+-------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+
-   | ISAC Feature     |                         3GPP Document                                                                             | Useful Reference                                                            |
-   +==================+===================================================================================================================+=============================================================================+
-   | Channel Model    | `TR 3GPP 38.901 (version later than 19.3.0) <https://www.3gpp.org/ftp/Specs/archive/38_series/38.901/>`_          | `Survey <https://ieeexplore.ieee.org/document/11274965>`_                   |
-   +------------------+-------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+
-
-
-ISAC in 3GPP RAN3
---------------------
-3GPP RAN3 is responsible for the design and standardization of the RAN architecure, radio resource management and 
-scheduling of 5G/6G radios. The following table provides the URL of the 3GPP documents related to ISAC in RAN3 and 
-some useful references for each ISAC feature. The table will be updated as and when new documents are released by 
-3GPP and new references are added.
-
-
-.. table:: ISAC in 3GPP RAN3
-   :widths: auto
-   :align: left
-
-   +------------------+-------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+
-   | ISAC Feature     |                         3GPP Document                                                                             | Useful Reference                                                            |
-   +==================+===================================================================================================================+=============================================================================+
-   | Channel Model    | `TR 3GPP 38.901 (version later than 19.3.0) <https://www.3gpp.org/ftp/Specs/archive/38_series/38.901/>`_          | `Survey <https://ieeexplore.ieee.org/document/11274965>`_                   |
-   +------------------+-------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+
-
-
-ISAC in 3GPP RAN4
---------------------
-3GPP RAN4 is responsible for the design and standardization of the radio performance and measurement aspects of 5G/6G 
-radios. The following table provides the URL of the 3GPP documents related to ISAC in RAN4 and some useful references 
-for each ISAC feature. The table will be updated as and when new   documents are released by 3GPP and new references 
-are added.   
-
-
-.. table:: ISAC in 3GPP RAN1
-   :widths: auto
-   :align: left
-
-   +------------------+-------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+
-   | ISAC Feature     |                         3GPP Document                                                                             | Useful Reference                                                            |
-   +==================+===================================================================================================================+=============================================================================+
-   | Channel Model    | `TR 3GPP 38.901 (version later than 19.3.0) <https://www.3gpp.org/ftp/Specs/archive/38_series/38.901/>`_          | `Survey <https://ieeexplore.ieee.org/document/11274965>`_                   |
-   +------------------+-------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+
-
-
-
-ISAC in 3GPP SA Groups
-----------------------
-3GPP SA1/SA2/SA3/SA4/SA5 is responsible for the design and standardization of the service requirements, system architecture, 
-security, and core network aspects of 5G/6G radios. The following table provides the URL of the 3GPP documents related to 
-ISAC in SA groups and some useful references for each ISAC feature. The table will be updated as and when new documents are 
-released by 3GPP and new references are added. 
-
-.. table:: ISAC in 3GPP RAN1
-   :widths: auto
-   :align: left
-
-   +------------------+-------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+
-   | ISAC Feature     |                         3GPP Document                                                                             | Useful Reference                                                            |
-   +==================+===================================================================================================================+=============================================================================+
-   | Channel Model    | `TR 3GPP 38.901 (version later than 19.3.0) <https://www.3gpp.org/ftp/Specs/archive/38_series/38.901/>`_          | `Survey <https://ieeexplore.ieee.org/document/11274965>`_                   |
-   +------------------+-------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+
+- Stage-2/SA2 (System Architecture): `3GPP TS 23.137, Integrated Sensing and Communication; Stage 2 Release 20 <https://www.3gpp.org/ftp/Specs/archive/23_series/23.137/23137-020.zip>`_.
+- Stage-2/SA2 (System Architecture): `3GPP TR 23.700-14, Study on Architecture Enhancement to Support Integrated Sensing and Communication Stage 2 / SA2 (System Architecture) <https://www.3gpp.org/ftp/Specs/archive/23_series/23.700-14/23700-14-k00.zip>`_.
+- Stage-1/SA1 (Service Requirements): `3GPP TR 22.870: Study on 6G Use Cases and Service Requirements Release-20 <https://www.3gpp.org/ftp/Specs/archive/22_series/22.870/22870-k00.zip>`_.
