@@ -1,0 +1,173 @@
+Sensing Assisted Power Saving
+=============================
+
+Introduction
+------------
+
+Power saving is a critical concern for both UE battery life and network energy consumption. In 5G NR, UE power
+saving mechanisms include DRX (Discontinuous Reception), BWP (Bandwidth Part) adaptation, PDCCH monitoring
+reduction, and cross-slot scheduling. On the network side, cell DTX, antenna muting, and carrier shutdown reduce
+gNB energy consumption during low-traffic periods.
+
+Sensing-assisted power saving leverages environmental and situational awareness from sensing to make **smarter
+decisions about when to activate or deactivate** communication components, reducing energy waste without
+sacrificing performance when it matters.
+
+.. code-block:: text
+
+     Sensing-Assisted Power Saving: Conceptual Flow
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │                                                                      │
+    │   ┌──────────────┐    ┌──────────────────┐    ┌──────────────────┐   │
+    │   │   Sensing    │    │   Activity       │    │   Power Saving   │   │
+    │   │   Subsystem  │───▶│   Assessment     │───▶│   Decisions      │   │
+    │   │              │    │                  │    │                  │   │
+    │   └──────────────┘    │  ● UE detected?  │    │  ● Activate DRX │   │
+    │                       │  ● UE moving?    │    │  ● Mute antennas│   │
+    │                       │  ● UE approaching?│   │  ● Reduce BW    │   │
+    │                       │  ● Area empty?   │    │  ● Wake-up      │   │
+    │                       └──────────────────┘    └──────────────────┘   │
+    │                                                                      │
+    └──────────────────────────────────────────────────────────────────────┘
+
+
+Key Concepts
+------------
+
+Sensing-Aware DRX Adaptation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+DRX (Discontinuous Reception) allows the UE to sleep during periods of inactivity. Conventionally, DRX
+parameters (on-duration timer, inactivity timer, cycle length) are semi-statically configured. Sensing can
+dynamically adapt DRX by detecting UE activity:
+
+.. code-block:: text
+
+     DRX Adaptation Based on Sensing
+    ┌──────────────────────────────────────────────────────────────────┐
+    │                                                                  │
+    │   Scenario 1: Sensing detects UE is stationary                   │
+    │   → Extend DRX cycle (longer sleep, save power)                  │
+    │                                                                  │
+    │   ┌───┐   ┌───┐                        ┌───┐                     │
+    │   │ ON│   │OFF│  ........long sleep.... │ ON│                     │
+    │   └───┘   └───┘                        └───┘                     │
+    │                                                                  │
+    │   Scenario 2: Sensing detects UE is moving fast                  │
+    │   → Shorten DRX cycle (frequent wake-ups for HO prep)            │
+    │                                                                  │
+    │   ┌───┐┌───┐┌───┐┌───┐┌───┐┌───┐┌───┐┌───┐                     │
+    │   │ ON││OFF││ ON││OFF││ ON││OFF││ ON││OFF│                     │
+    │   └───┘└───┘└───┘└───┘└───┘└───┘└───┘└───┘                     │
+    │                                                                  │
+    │   Scenario 3: Sensing detects no UEs in area                     │
+    │   → gNB enters cell DTX / deep sleep                             │
+    │                                                                  │
+    │   ┌──────────────────────────────────────────┐                   │
+    │   │              gNB DEEP SLEEP              │                   │
+    │   └──────────────────────────────────────────┘                   │
+    │                                                                  │
+    └──────────────────────────────────────────────────────────────────┘
+
+
+Network Energy Saving via Sensing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On the gNB side, sensing enables aggressive energy saving by detecting the absence of UEs or traffic:
+
+- **Antenna muting**: When sensing detects no targets in a particular angular sector, the corresponding
+  antenna elements or panels can be powered down.
+- **Carrier shutdown**: If sensing confirms no active UEs in the cell, secondary carriers can be deactivated.
+- **Lean carrier operation**: Sensing-triggered lean operation reduces reference signal transmission
+  (SSB, CSI-RS) when no UEs are detected, saving transmit power.
+- **Sensing-triggered wake-up**: When sensing detects an approaching UE or vehicle, the gNB proactively
+  wakes up from sleep mode before the UE initiates RACH, reducing access latency.
+
+.. code-block:: text
+
+     Network Energy Saving State Machine
+    ┌──────────────────────────────────────────────────────────────────┐
+    │                                                                  │
+    │                    ┌──────────────────┐                           │
+    │    Sensing:        │                  │    Sensing:               │
+    │    No UE ─────────▶│   Deep Sleep     │◀── all UEs left          │
+    │    detected        │   (minimal TX)   │                          │
+    │                    │                  │                           │
+    │                    └────────┬─────────┘                           │
+    │                             │                                    │
+    │                Sensing:     │ UE approaching                     │
+    │                             ▼                                    │
+    │                    ┌──────────────────┐                           │
+    │                    │                  │                           │
+    │                    │  Light Sleep     │                           │
+    │                    │  (SSB only)      │                           │
+    │                    │                  │                           │
+    │                    └────────┬─────────┘                           │
+    │                             │                                    │
+    │                UE enters    │ coverage                           │
+    │                             ▼                                    │
+    │                    ┌──────────────────┐                           │
+    │                    │                  │                           │
+    │                    │  Active          │                           │
+    │                    │  (Full operation)│                           │
+    │                    │                  │                           │
+    │                    └──────────────────┘                           │
+    │                                                                  │
+    └──────────────────────────────────────────────────────────────────┘
+
+
+UE Wake-Up Signal Enhancement
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+3GPP Rel-16 introduced wake-up signals (WUS) for paging occasion optimization. Sensing can enhance WUS
+triggering by:
+
+1. **Proximity-based WUS**: Sensing detects that a target (potential UE) is approaching the cell, triggering
+   WUS transmission only when the UE is likely within range.
+2. **Directional WUS**: WUS is transmitted only in the beam direction where sensing detects activity, saving
+   power on idle beams.
+3. **Eliminating unnecessary WUS**: If sensing confirms no targets are present, WUS can be skipped entirely
+   for that paging occasion.
+
+
+PDCCH Monitoring Reduction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sensing can inform whether the UE needs to actively monitor PDCCH:
+
+- **Stationary UE**: If sensing confirms the UE is stationary with stable channel conditions, PDCCH
+  monitoring can be reduced (fewer PDCCH monitoring occasions per DRX cycle).
+- **Predictable mobility**: If the UE is on a predictable trajectory (e.g., highway), PDCCH monitoring
+  can be scheduled to coincide with expected beam switches rather than being continuous.
+
+
+Benefits
+--------
+
+.. list-table:: Benefits of Sensing-Assisted Power Saving
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Benefit
+     - Description
+   * - Extended UE battery life
+     - Sensing-optimized DRX and PDCCH monitoring reduce UE power consumption.
+   * - Reduced network energy
+     - Sensing-triggered sleep and antenna muting cut gNB energy usage during idle periods.
+   * - Faster wake-up
+     - Proactive wake-up from sensing avoids cold-start delays when UEs arrive.
+   * - Green network operation
+     - Intelligent sleep aligns with sustainability goals for 6G networks.
+
+
+Challenges
+----------
+
+- **Sensing power consumption**: The sensing subsystem itself consumes power. The net energy saving must
+  account for the sensing overhead; sensing should be "lighter" than continuous communication monitoring.
+- **False alarm rate**: False sensing detections (ghost targets) could unnecessarily wake up the gNB,
+  negating power savings. Low false-alarm sensing algorithms are needed.
+- **Missed detection risk**: If sensing fails to detect an approaching UE, the gNB may remain asleep,
+  causing access delay or failure.
+- **Standardization gap**: No current 3GPP mechanism links sensing measurements to DRX/DTX configuration.
+  New RRC/MAC signaling would be needed to enable sensing-driven power saving.

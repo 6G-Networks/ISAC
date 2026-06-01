@@ -1,0 +1,132 @@
+Sensing Assisted Beamforming for ISAC
+=====================================
+
+Introduction
+------------
+
+In conventional communication systems, beamforming relies on pilot-based channel estimation and codebook-based
+feedback to steer transmit and receive beams towards the intended user. This process involves significant overhead
+due to beam sweeping, CSI-RS transmission, and feedback reporting, especially for millimeter-wave (mmWave) and
+sub-THz bands where narrow beams are required and the beam search space is vast.
+
+Sensing-assisted beamforming leverages radar-like sensing information — such as angle of arrival (AoA), angle of
+departure (AoD), range, and velocity of targets — to **predict** or **refine** beam directions without exhaustive
+beam sweeping. By exploiting the spatial information extracted from sensing echoes, the base station (gNB) can
+narrow down the beam search space, reduce beam alignment latency, and improve beam tracking for mobile users.
+
+.. code-block:: text
+
+     Sensing-Assisted Beamforming: High-Level Flow
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │                                                                     │
+    │   ┌──────────────┐    ┌──────────────────┐    ┌──────────────────┐  │
+    │   │   Sensing    │    │   Spatial Info    │    │   Beam Candidate │  │
+    │   │   Signal     │───▶│   Extraction      │───▶│   Narrowing     │  │
+    │   │   (Echo)     │    │   (AoA/AoD/Range) │    │   (Reduced Set) │  │
+    │   └──────────────┘    └──────────────────┘    └───────┬──────────┘  │
+    │                                                       │             │
+    │                                                       ▼             │
+    │   ┌──────────────┐    ┌──────────────────┐    ┌──────────────────┐  │
+    │   │  Beamformed  │    │   Beam Refinement │    │   Beam Selection │  │
+    │   │  Data TX/RX  │◀───│   (Fine Alignment)│◀───│   (Best Beam)   │  │
+    │   └──────────────┘    └──────────────────┘    └──────────────────┘  │
+    │                                                                     │
+    └─────────────────────────────────────────────────────────────────────┘
+
+
+Key Concepts
+------------
+
+Beam Prediction from Sensing Parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sensing echoes provide estimates of the target's angular position (AoA/AoD) and range. These parameters can be
+directly mapped to a subset of candidate beams, bypassing the need for full beam sweeping. The mapping is:
+
+- **AoA/AoD → Beam index**: The angular estimate from sensing narrows the beam search to a small angular window.
+- **Range → Timing advance**: The range estimate helps predict the appropriate timing advance for the UE.
+- **Doppler → Beam tracking rate**: Velocity information helps decide how frequently beam re-alignment is needed.
+
+
+Beam Tracking using Sensing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For mobile UEs, beam tracking is critical to maintain alignment as the UE moves. Conventional beam tracking
+uses periodic CSI-RS measurements and beam reports, which consume significant overhead. Sensing-assisted beam
+tracking exploits the continuous availability of radar echoes to predict the UE's trajectory and proactively
+update the serving beam.
+
+.. code-block:: text
+
+     Sensing-Assisted Beam Tracking
+    ┌──────────────────────────────────────────────────────────────────┐
+    │                                                                  │
+    │   Time t₀          Time t₁          Time t₂          Time t₃    │
+    │   ┌──────┐         ┌──────┐         ┌──────┐         ┌──────┐   │
+    │   │Sense │         │Sense │         │Sense │         │Sense │   │
+    │   │Echo  │────────▶│Echo  │────────▶│Echo  │────────▶│Echo  │   │
+    │   └──┬───┘         └──┬───┘         └──┬───┘         └──┬───┘   │
+    │      │                │                │                │       │
+    │      ▼                ▼                ▼                ▼       │
+    │   AoA=30°          AoA=32°          AoA=34°          AoA=36°    │
+    │   Beam #5          Beam #5          Beam #6          Beam #6    │
+    │                                   (switch!)                     │
+    │                                                                  │
+    │   ──────────── Trajectory Prediction ──────────────▶            │
+    │                                                                  │
+    └──────────────────────────────────────────────────────────────────┘
+
+
+Hierarchical Beam Search Reduction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In massive MIMO systems with large antenna arrays, the beam codebook can contain hundreds of beams. A
+hierarchical beam search first uses wide beams, then narrows down. Sensing can assist by:
+
+1. **Skipping the wide-beam stage** entirely if sensing AoA resolution is sufficient.
+2. **Starting from an intermediate codebook level** based on the angular uncertainty of the sensing estimate.
+3. **Eliminating angular sectors** where no sensing targets are detected.
+
+
+Benefits
+--------
+
+.. list-table:: Benefits of Sensing-Assisted Beamforming
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Benefit
+     - Description
+   * - Reduced beam alignment latency
+     - Sensing narrows the search space from N beams to a small subset, cutting initial access time.
+   * - Lower CSI-RS overhead
+     - Fewer CSI-RS resources needed when sensing pre-selects candidate beams.
+   * - Improved beam tracking
+     - Continuous sensing echoes enable proactive beam updates without waiting for UE reports.
+   * - Robustness to blockage
+     - Sensing can detect blockage events (sudden drop in echo power) faster than link-level monitoring.
+   * - Multi-user beam management
+     - Sensing can simultaneously track multiple targets, aiding multi-user MIMO beam scheduling.
+
+
+Challenges
+----------
+
+- **Sensing-communication beam mismatch**: The sensing beam pattern and communication beam pattern may not
+  be identical, especially if separate antenna panels or subarrays are used.
+- **Angular resolution limits**: Sensing angular resolution depends on the array aperture and bandwidth. For
+  small arrays or narrow bandwidth, the angular estimate may not be precise enough to select a single beam.
+- **NLOS environments**: In rich scattering environments, sensing echoes may arrive from reflected paths that
+  do not correspond to the direct path used for communication.
+- **Latency of sensing processing**: The sensing signal processing pipeline (matched filtering, angle
+  estimation, CFAR detection) must be fast enough to provide beam updates within the coherence time.
+
+
+3GPP Relevance
+--------------
+
+In 3GPP Rel-19 ISAC study item (SI), sensing-assisted beam management is one of the identified use cases
+under the category of "sensing-assisted communication." The study considers how sensing measurements at the
+gNB can be used to reduce beam management overhead, particularly for FR2 (mmWave) deployments where beam
+alignment is most challenging. The key question under study is whether existing beam management procedures
+(P1/P2/P3) can be enhanced with sensing side-information or whether new procedures are needed.

@@ -1,2 +1,37 @@
 Reference Signal Design for ISAC
 ==================================
+
+The design of reference signals (RS) has many caveats attached to it at this moment in time. One philosophy 
+for the design of RS is to have a common RS for both communication and sensing, which can be used for channel 
+estimation for both communication and sensing. This philosophy has one big advantage and one big disadvantage. 
+And the advantage and disadvantage are so dividing that it's almost impossible to digest both of them from a 
+purist and practitioner point of view.
+
+I will start with the disadvantage because it is more academic and less interesting. The disadvantage is that 
+the design of a common RS for both communication and sensing is very difficult, because the requirements for 
+communication and sensing are very different. For communication, the RS should be designed to acquire channel 
+estimates that are good enough to provide the best communication performance within the limits of the designed 
+codebooks, with the minimum CSI-RS overhead possible. If improvement in the quality of channel estimates does 
+not lead to improvement in communication performance for the given codebook-based feedback schemes, then the 
+overhead induced by this additional improvement in the quality of channel estimates is not justified. Typically, 
+the CSI is acquired at the subband level in the frequency domain, which is at least 4 RB wide and at most 32 RB 
+wide. On the other hand, for sensing, the CSI across time is typically acquired at the TDD configuration level, 
+which is a minimum of 4 slots. The CSI-RS can be as wide as 4 symbols in time for 32-port sounding. If looked at 
+analytically, the CSI-RS overhead in 5G was roughly 1% to 3%. But the CSI-RS is far from optimal for sensing due 
+to both its time and frequency granularity. For sensing, the RS should be designed to have good range and velocity 
+resolution, which means that it should have good autocorrelation properties and high PAPR. Therefore, it is very 
+difficult to design a common RS that can satisfy both requirements.
+
+On the other hand, the advantage is very interesting. If we agree to live with a common sub-optimal RS for communication 
+and sensing, then the integration of the RS into the air interface is much easier, and if something fits organically 
+into the air interface, the adoption of that feature is much faster. It makes it difficult for the vendors to sell 
+it as an add-on feature, but it makes it much easier for the industry to adopt it. Hence, ISAC can become a mainstream 
+feature in the air interface and not just a niche feature for specific use cases. This way ISAC will not suffer the same 
+fate as positioning where a new reference signal was design to deliver accurate positioning information, but PRS was not 
+very well intergrated into the TDD confirmation and air interface, hence was not widely adopted by the industry.
+
+The other challenge with a common RS design is the logistics. The RS design for Sensing is being looked under the ISAC 
+study item (10.8.2) where as the same for communication is being looked at under the CSI-RS enhancement study item (10.4). 
+As per my understanding once the RS for MIMO is finalized, the ISAC RS design will be send as a recommendation to the CSI-RS 
+enhancement study item, and the CSI-RS enhancement study item will decide how to adopt it. Furthermore, very nuanced changes
+tailer the RS for accurate sensing will be made in upcoming 3GPP releases.

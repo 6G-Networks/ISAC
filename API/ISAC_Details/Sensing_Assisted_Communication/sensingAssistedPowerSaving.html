@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sensing Assisted Power Saving &mdash; 6G-ISAC 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/6G_ISAC.css?v=5aa4b4e6" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=7026087e"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ISAC Tutorials" href="../../Tutorials/tutorials.html" />
+    <link rel="prev" title="Sensing Assisted Power Control for ISAC" href="sensingAssistedPowerControl.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            6G-ISAC
+              <img src="../../../_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Learning_Resources/learningResource.html">Learning Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Learning_Resources/learningResource.html#pre-requisites-must-have">Pre-requisites: Must have</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Learning_Resources/learningResource.html#pre-requisites-optional">Pre-requisites: Optional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Learning_Resources/learningResource.html#coding-skills">Coding Skills</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ISAC_in_3GPP/isac3GPP.html">ISAC in 3GPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ISAC_in_3GPP/isac3GPP.html#g-new-radio-tracks">5G-New Radio Tracks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ISAC_in_3GPP/isac3GPP.html#g-track">6G Track</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ISAC_details.html">Integrated Sensing and Communications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Channel_Model/isacChannelModel.html">ISAC Channel Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_System_Design/isacSystemDesign.html">ISAC System Design Aspects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RS_Design/referenceSignalDesign.html">Reference Signal Design for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Waveform/isacWaveform.html">ISAC Waveform Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Beamforming/isacBeamforming.html">Beamforming for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Clutter_Cancellation/isacClutterCancellation.html">Clutter Cancellation for Accurate Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Target_Detection/isacTargetDetection.html">Algorithms for Sensing Targets</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="sensingAssistedCommunication.html">Sensing Assisted Communication for ISAC</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#motivation">Motivation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#system-model">System Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#signal-model">Signal Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#sensing-echo-model">Sensing Echo Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#sensing-to-communication-information-flow">Sensing-to-Communication Information Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#taxonomy-of-sensing-assisted-communication">Taxonomy of Sensing-Assisted Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#performance-bounds-and-fundamental-limits">Performance Bounds and Fundamental Limits</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#cramer-rao-bound-for-sensing-parameters">Cramér-Rao Bound for Sensing Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#communication-rate-gain-from-sensing-side-information">Communication Rate Gain from Sensing Side-Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#overhead-reduction-analysis">Overhead Reduction Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#sensing-assisted-communication-protocol-architecture">Sensing-Assisted Communication Protocol Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#timescale-hierarchy">Timescale Hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#sensing-quality-requirements-for-communication-enhancement">Sensing Quality Requirements for Communication Enhancement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#gpp-context-and-standardization">3GPP Context and Standardization</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="sensingAssistedCommunication.html#open-research-directions">Open Research Directions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedBeamforming.html">Sensing Assisted Beamforming for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#challenges">Challenges</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#gpp-relevance">3GPP Relevance</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedChannelEstimation.html">Sensing Assisted Channel Estimation for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCSIAcquisition.html">Sensing Assisted CSI Acquisition for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedResourceAllocation.html">Sensing Assisted Resource Allocation for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedMobilityManagement.html">Sensing Assisted Mobility Management for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedInterferenceManagement.html">Sensing Assisted Interference Management for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedLocalization.html">Sensing Assisted Localization for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedLocalization.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedLocalization.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedLocalization.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedLocalization.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedPowerControl.html">Sensing Assisted Power Control for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerControl.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerControl.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerControl.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerControl.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Sensing Assisted Power Saving</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#challenges">Challenges</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorials/tutorials.html">ISAC Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Channel_Model_Tutorials/isacChannelModel_tutorial.html">Tutorial on Channel Model for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/RS_Design_Tutorials/referenceSignalDesign_tutorial.html">Tutorial on Reference Signal Design for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Waveform_Tutorials/isacWaveform_tutorial.html">Tutorial on Waveform Design for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Beamforming_Tutorials/isacBeamforming_tutorial.html">Tutorial on Beamforming for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Clutter_Cancellation_Tutorials/isacClutterCancellation_tutorial.html">Tutorial on Clutter Cancellation for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Target_Detection_Tutorials/isacTargetDetection_tutorial.html">Tutorial on Target Detection for ISAC</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">6G-ISAC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../ISAC_details.html">Integrated Sensing and Communications</a></li>
+          <li class="breadcrumb-item"><a href="sensingAssistedCommunication.html">Sensing Assisted Communication for ISAC</a></li>
+      <li class="breadcrumb-item active">Sensing Assisted Power Saving</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sensing-assisted-power-saving">
+<h1>Sensing Assisted Power Saving<a class="headerlink" href="#sensing-assisted-power-saving" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Power saving is a critical concern for both UE battery life and network energy consumption. In 5G NR, UE power
+saving mechanisms include DRX (Discontinuous Reception), BWP (Bandwidth Part) adaptation, PDCCH monitoring
+reduction, and cross-slot scheduling. On the network side, cell DTX, antenna muting, and carrier shutdown reduce
+gNB energy consumption during low-traffic periods.</p>
+<p>Sensing-assisted power saving leverages environmental and situational awareness from sensing to make <strong>smarter
+decisions about when to activate or deactivate</strong> communication components, reducing energy waste without
+sacrificing performance when it matters.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Sensing-Assisted Power Saving: Conceptual Flow
+┌──────────────────────────────────────────────────────────────────────┐
+│                                                                      │
+│   ┌──────────────┐    ┌──────────────────┐    ┌──────────────────┐   │
+│   │   Sensing    │    │   Activity       │    │   Power Saving   │   │
+│   │   Subsystem  │───▶│   Assessment     │───▶│   Decisions      │   │
+│   │              │    │                  │    │                  │   │
+│   └──────────────┘    │  ● UE detected?  │    │  ● Activate DRX │   │
+│                       │  ● UE moving?    │    │  ● Mute antennas│   │
+│                       │  ● UE approaching?│   │  ● Reduce BW    │   │
+│                       │  ● Area empty?   │    │  ● Wake-up      │   │
+│                       └──────────────────┘    └──────────────────┘   │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="key-concepts">
+<h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading"></a></h2>
+<section id="sensing-aware-drx-adaptation">
+<h3>Sensing-Aware DRX Adaptation<a class="headerlink" href="#sensing-aware-drx-adaptation" title="Link to this heading"></a></h3>
+<p>DRX (Discontinuous Reception) allows the UE to sleep during periods of inactivity. Conventionally, DRX
+parameters (on-duration timer, inactivity timer, cycle length) are semi-statically configured. Sensing can
+dynamically adapt DRX by detecting UE activity:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> DRX Adaptation Based on Sensing
+┌──────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│   Scenario 1: Sensing detects UE is stationary                   │
+│   → Extend DRX cycle (longer sleep, save power)                  │
+│                                                                  │
+│   ┌───┐   ┌───┐                        ┌───┐                     │
+│   │ ON│   │OFF│  ........long sleep.... │ ON│                     │
+│   └───┘   └───┘                        └───┘                     │
+│                                                                  │
+│   Scenario 2: Sensing detects UE is moving fast                  │
+│   → Shorten DRX cycle (frequent wake-ups for HO prep)            │
+│                                                                  │
+│   ┌───┐┌───┐┌───┐┌───┐┌───┐┌───┐┌───┐┌───┐                     │
+│   │ ON││OFF││ ON││OFF││ ON││OFF││ ON││OFF│                     │
+│   └───┘└───┘└───┘└───┘└───┘└───┘└───┘└───┘                     │
+│                                                                  │
+│   Scenario 3: Sensing detects no UEs in area                     │
+│   → gNB enters cell DTX / deep sleep                             │
+│                                                                  │
+│   ┌──────────────────────────────────────────┐                   │
+│   │              gNB DEEP SLEEP              │                   │
+│   └──────────────────────────────────────────┘                   │
+│                                                                  │
+└──────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="network-energy-saving-via-sensing">
+<h3>Network Energy Saving via Sensing<a class="headerlink" href="#network-energy-saving-via-sensing" title="Link to this heading"></a></h3>
+<p>On the gNB side, sensing enables aggressive energy saving by detecting the absence of UEs or traffic:</p>
+<ul class="simple">
+<li><p><strong>Antenna muting</strong>: When sensing detects no targets in a particular angular sector, the corresponding
+antenna elements or panels can be powered down.</p></li>
+<li><p><strong>Carrier shutdown</strong>: If sensing confirms no active UEs in the cell, secondary carriers can be deactivated.</p></li>
+<li><p><strong>Lean carrier operation</strong>: Sensing-triggered lean operation reduces reference signal transmission
+(SSB, CSI-RS) when no UEs are detected, saving transmit power.</p></li>
+<li><p><strong>Sensing-triggered wake-up</strong>: When sensing detects an approaching UE or vehicle, the gNB proactively
+wakes up from sleep mode before the UE initiates RACH, reducing access latency.</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Network Energy Saving State Machine
+┌──────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│                    ┌──────────────────┐                           │
+│    Sensing:        │                  │    Sensing:               │
+│    No UE ─────────▶│   Deep Sleep     │◀── all UEs left          │
+│    detected        │   (minimal TX)   │                          │
+│                    │                  │                           │
+│                    └────────┬─────────┘                           │
+│                             │                                    │
+│                Sensing:     │ UE approaching                     │
+│                             ▼                                    │
+│                    ┌──────────────────┐                           │
+│                    │                  │                           │
+│                    │  Light Sleep     │                           │
+│                    │  (SSB only)      │                           │
+│                    │                  │                           │
+│                    └────────┬─────────┘                           │
+│                             │                                    │
+│                UE enters    │ coverage                           │
+│                             ▼                                    │
+│                    ┌──────────────────┐                           │
+│                    │                  │                           │
+│                    │  Active          │                           │
+│                    │  (Full operation)│                           │
+│                    │                  │                           │
+│                    └──────────────────┘                           │
+│                                                                  │
+└──────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="ue-wake-up-signal-enhancement">
+<h3>UE Wake-Up Signal Enhancement<a class="headerlink" href="#ue-wake-up-signal-enhancement" title="Link to this heading"></a></h3>
+<p>3GPP Rel-16 introduced wake-up signals (WUS) for paging occasion optimization. Sensing can enhance WUS
+triggering by:</p>
+<ol class="arabic simple">
+<li><p><strong>Proximity-based WUS</strong>: Sensing detects that a target (potential UE) is approaching the cell, triggering
+WUS transmission only when the UE is likely within range.</p></li>
+<li><p><strong>Directional WUS</strong>: WUS is transmitted only in the beam direction where sensing detects activity, saving
+power on idle beams.</p></li>
+<li><p><strong>Eliminating unnecessary WUS</strong>: If sensing confirms no targets are present, WUS can be skipped entirely
+for that paging occasion.</p></li>
+</ol>
+</section>
+<section id="pdcch-monitoring-reduction">
+<h3>PDCCH Monitoring Reduction<a class="headerlink" href="#pdcch-monitoring-reduction" title="Link to this heading"></a></h3>
+<p>Sensing can inform whether the UE needs to actively monitor PDCCH:</p>
+<ul class="simple">
+<li><p><strong>Stationary UE</strong>: If sensing confirms the UE is stationary with stable channel conditions, PDCCH
+monitoring can be reduced (fewer PDCCH monitoring occasions per DRX cycle).</p></li>
+<li><p><strong>Predictable mobility</strong>: If the UE is on a predictable trajectory (e.g., highway), PDCCH monitoring
+can be scheduled to coincide with expected beam switches rather than being continuous.</p></li>
+</ul>
+</section>
+</section>
+<section id="benefits">
+<h2>Benefits<a class="headerlink" href="#benefits" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-number">Table 12 </span><span class="caption-text">Benefits of Sensing-Assisted Power Saving</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Benefit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Extended UE battery life</p></td>
+<td><p>Sensing-optimized DRX and PDCCH monitoring reduce UE power consumption.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reduced network energy</p></td>
+<td><p>Sensing-triggered sleep and antenna muting cut gNB energy usage during idle periods.</p></td>
+</tr>
+<tr class="row-even"><td><p>Faster wake-up</p></td>
+<td><p>Proactive wake-up from sensing avoids cold-start delays when UEs arrive.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Green network operation</p></td>
+<td><p>Intelligent sleep aligns with sustainability goals for 6G networks.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="challenges">
+<h2>Challenges<a class="headerlink" href="#challenges" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Sensing power consumption</strong>: The sensing subsystem itself consumes power. The net energy saving must
+account for the sensing overhead; sensing should be “lighter” than continuous communication monitoring.</p></li>
+<li><p><strong>False alarm rate</strong>: False sensing detections (ghost targets) could unnecessarily wake up the gNB,
+negating power savings. Low false-alarm sensing algorithms are needed.</p></li>
+<li><p><strong>Missed detection risk</strong>: If sensing fails to detect an approaching UE, the gNB may remain asleep,
+causing access delay or failure.</p></li>
+<li><p><strong>Standardization gap</strong>: No current 3GPP mechanism links sensing measurements to DRX/DTX configuration.
+New RRC/MAC signaling would be needed to enable sensing-driven power saving.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sensingAssistedPowerControl.html" class="btn btn-neutral float-left" title="Sensing Assisted Power Control for ISAC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../Tutorials/tutorials.html" class="btn btn-neutral float-right" title="ISAC Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Vikram Singh &lt;vikram.singh.anttal@gmail.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

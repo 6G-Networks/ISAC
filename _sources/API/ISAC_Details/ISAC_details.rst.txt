@@ -14,5 +14,6 @@ Integrated Sensing and Communications
    ISAC_Beamforming/isacBeamforming.rst
    ISAC_Clutter_Cancellation/isacClutterCancellation.rst
    ISAC_Target_Detection/isacTargetDetection.rst
+   Sensing_Assisted_Communication/sensingAssistedCommunication.rst
 
 

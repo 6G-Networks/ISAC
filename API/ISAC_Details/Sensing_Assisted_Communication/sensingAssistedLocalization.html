@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sensing Assisted Localization for ISAC &mdash; 6G-ISAC 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/6G_ISAC.css?v=5aa4b4e6" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=7026087e"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Sensing Assisted Power Control for ISAC" href="sensingAssistedPowerControl.html" />
+    <link rel="prev" title="Sensing Assisted Interference Management for ISAC" href="sensingAssistedInterferenceManagement.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            6G-ISAC
+              <img src="../../../_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Learning_Resources/learningResource.html">Learning Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Learning_Resources/learningResource.html#pre-requisites-must-have">Pre-requisites: Must have</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Learning_Resources/learningResource.html#pre-requisites-optional">Pre-requisites: Optional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Learning_Resources/learningResource.html#coding-skills">Coding Skills</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ISAC_in_3GPP/isac3GPP.html">ISAC in 3GPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ISAC_in_3GPP/isac3GPP.html#g-new-radio-tracks">5G-New Radio Tracks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ISAC_in_3GPP/isac3GPP.html#g-track">6G Track</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ISAC_details.html">Integrated Sensing and Communications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Channel_Model/isacChannelModel.html">ISAC Channel Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_System_Design/isacSystemDesign.html">ISAC System Design Aspects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RS_Design/referenceSignalDesign.html">Reference Signal Design for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Waveform/isacWaveform.html">ISAC Waveform Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Beamforming/isacBeamforming.html">Beamforming for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Clutter_Cancellation/isacClutterCancellation.html">Clutter Cancellation for Accurate Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Target_Detection/isacTargetDetection.html">Algorithms for Sensing Targets</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="sensingAssistedCommunication.html">Sensing Assisted Communication for ISAC</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#motivation">Motivation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#system-model">System Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#signal-model">Signal Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#sensing-echo-model">Sensing Echo Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#sensing-to-communication-information-flow">Sensing-to-Communication Information Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#taxonomy-of-sensing-assisted-communication">Taxonomy of Sensing-Assisted Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#performance-bounds-and-fundamental-limits">Performance Bounds and Fundamental Limits</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#cramer-rao-bound-for-sensing-parameters">Cramér-Rao Bound for Sensing Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#communication-rate-gain-from-sensing-side-information">Communication Rate Gain from Sensing Side-Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#overhead-reduction-analysis">Overhead Reduction Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#sensing-assisted-communication-protocol-architecture">Sensing-Assisted Communication Protocol Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#timescale-hierarchy">Timescale Hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#sensing-quality-requirements-for-communication-enhancement">Sensing Quality Requirements for Communication Enhancement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#gpp-context-and-standardization">3GPP Context and Standardization</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="sensingAssistedCommunication.html#open-research-directions">Open Research Directions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedBeamforming.html">Sensing Assisted Beamforming for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#challenges">Challenges</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#gpp-relevance">3GPP Relevance</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedChannelEstimation.html">Sensing Assisted Channel Estimation for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCSIAcquisition.html">Sensing Assisted CSI Acquisition for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedResourceAllocation.html">Sensing Assisted Resource Allocation for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedMobilityManagement.html">Sensing Assisted Mobility Management for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedInterferenceManagement.html">Sensing Assisted Interference Management for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Sensing Assisted Localization for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedPowerControl.html">Sensing Assisted Power Control for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerControl.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerControl.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerControl.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerControl.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedPowerSaving.html">Sensing Assisted Power Saving</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerSaving.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerSaving.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerSaving.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerSaving.html#challenges">Challenges</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorials/tutorials.html">ISAC Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Channel_Model_Tutorials/isacChannelModel_tutorial.html">Tutorial on Channel Model for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/RS_Design_Tutorials/referenceSignalDesign_tutorial.html">Tutorial on Reference Signal Design for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Waveform_Tutorials/isacWaveform_tutorial.html">Tutorial on Waveform Design for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Beamforming_Tutorials/isacBeamforming_tutorial.html">Tutorial on Beamforming for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Clutter_Cancellation_Tutorials/isacClutterCancellation_tutorial.html">Tutorial on Clutter Cancellation for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Target_Detection_Tutorials/isacTargetDetection_tutorial.html">Tutorial on Target Detection for ISAC</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">6G-ISAC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../ISAC_details.html">Integrated Sensing and Communications</a></li>
+          <li class="breadcrumb-item"><a href="sensingAssistedCommunication.html">Sensing Assisted Communication for ISAC</a></li>
+      <li class="breadcrumb-item active">Sensing Assisted Localization for ISAC</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sensing-assisted-localization-for-isac">
+<h1>Sensing Assisted Localization for ISAC<a class="headerlink" href="#sensing-assisted-localization-for-isac" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Localization in cellular networks has evolved from Cell-ID and OTDOA in LTE to multi-RTT, DL-AoD, UL-AoA,
+and NR-PRS-based methods in 5G NR. These methods rely on dedicated positioning reference signals (PRS) and
+UE measurement reporting, achieving sub-meter accuracy under favorable conditions. However, PRS overhead,
+NLOS bias, and multipath errors remain significant challenges.</p>
+<p>Sensing-assisted localization augments or replaces PRS-based methods by using <strong>radar-like sensing</strong> at the gNB
+to directly estimate UE (or target) positions. This approach does not require UE cooperation or dedicated
+PRS resources, and naturally handles NLOS environments by exploiting multipath rather than treating it as error.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Localization Approaches Comparison
+┌──────────────────────────────────────────────────────────────────────┐
+│                                                                      │
+│  PRS-Based (Conventional):                                           │
+│  ┌──────┐  PRS   ┌──────┐  Measure  ┌──────┐  Report  ┌──────────┐  │
+│  │ gNB  │───────▶│  UE  │──────────▶│  UE  │────────▶│ Location │  │
+│  │      │        │      │  (ToA,AoA) │      │         │ Server   │  │
+│  └──────┘        └──────┘           └──────┘         └──────────┘  │
+│                                                                      │
+│  Sensing-Based:                                                      │
+│  ┌──────┐  Sense  ┌───────────┐  Extract  ┌──────────────────────┐  │
+│  │ gNB  │────────▶│  Echo     │──────────▶│ Position Estimate    │  │
+│  │      │  echo   │  Process  │  (R,θ,v)  │ (No UE cooperation) │  │
+│  └──────┘         └───────────┘           └──────────────────────┘  │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="key-concepts">
+<h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading"></a></h2>
+<section id="monostatic-range-angle-localization">
+<h3>Monostatic Range-Angle Localization<a class="headerlink" href="#monostatic-range-angle-localization" title="Link to this heading"></a></h3>
+<p>In monostatic sensing, the gNB transmits a sensing signal and receives the echo reflected from the target.
+The target’s position is estimated from:</p>
+<ul class="simple">
+<li><p><strong>Range</strong> <span class="math notranslate nohighlight">\(R = \\frac{c \\cdot \\tau}{2}\)</span>, where <span class="math notranslate nohighlight">\(\\tau\)</span> is the round-trip delay and <span class="math notranslate nohighlight">\(c\)</span> is
+the speed of light.</p></li>
+<li><p><strong>Azimuth angle</strong> <span class="math notranslate nohighlight">\(\\phi\)</span> from AoA estimation using the antenna array.</p></li>
+<li><p><strong>Elevation angle</strong> <span class="math notranslate nohighlight">\(\\theta\)</span> (for 3D localization) using a 2D planar array.</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Monostatic Range-Angle Localization
+┌──────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│                        Target (UE/Object)                        │
+│                             ●                                    │
+│                           ╱   ╲                                  │
+│                     R   ╱       ╲  R                             │
+│                 (range)╱         ╲(range)                        │
+│                       ╱    θ      ╲                              │
+│                      ╱  (angle)    ╲                             │
+│                     ╱               ╲                            │
+│                ● gNB (Tx + Rx)                                   │
+│                                                                  │
+│   Position = (R·cos(θ), R·sin(θ))                                │
+│                                                                  │
+└──────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="bistatic-and-multi-static-localization">
+<h3>Bistatic and Multi-Static Localization<a class="headerlink" href="#bistatic-and-multi-static-localization" title="Link to this heading"></a></h3>
+<p>When multiple gNBs cooperate for sensing, the localization accuracy improves through geometric diversity:</p>
+<ul class="simple">
+<li><p><strong>Bistatic</strong>: One gNB transmits, another receives the echo. The target lies on an <strong>ellipse</strong> with the
+two gNBs as foci.</p></li>
+<li><p><strong>Multi-static</strong>: Multiple transmitter-receiver pairs. Each pair defines an ellipse; the intersection
+gives the target position.</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Multi-Static Localization Geometry
+┌──────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│        gNB₁ (Tx)            Target ●              gNB₂ (Rx)     │
+│           ●─ ─ ─ ─ ─ ─ ─ ─ ╱    ╲─ ─ ─ ─ ─ ─ ─ ─●            │
+│            ╲              ╱        ╲              ╱              │
+│             ╲  Ellipse 1╱          ╲ Ellipse 2 ╱               │
+│              ╲        ╱              ╲        ╱                 │
+│               ╲     ╱                 ╲     ╱                  │
+│                ╲  ╱                    ╲  ╱                    │
+│                 ╲╱  Intersection        ╲╱                     │
+│                  = Target position                               │
+│                                                                  │
+│        gNB₃ (Tx/Rx)                                              │
+│           ●─ ─ ─ ─ ─ Ellipse 3 ─ ─ ─ ─                         │
+│                                                                  │
+└──────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="nlos-localization-via-multipath-exploitation">
+<h3>NLOS Localization via Multipath Exploitation<a class="headerlink" href="#nlos-localization-via-multipath-exploitation" title="Link to this heading"></a></h3>
+<p>Unlike PRS-based methods that suffer from NLOS bias, sensing can exploit multipath reflections for localization:</p>
+<ol class="arabic simple">
+<li><p>The gNB detects multiple echo paths with different delays and angles.</p></li>
+<li><p>Each path corresponds to a reflection from a known or mappable surface (wall, building).</p></li>
+<li><p>Using the geometry of the reflections, the target position can be estimated even when the direct (LOS)
+path is blocked.</p></li>
+</ol>
+<p>This technique requires a pre-built or continuously updated <strong>environment map</strong> from sensing data.</p>
+</section>
+<section id="sensing-derived-location-for-communication-enhancement">
+<h3>Sensing-Derived Location for Communication Enhancement<a class="headerlink" href="#sensing-derived-location-for-communication-enhancement" title="Link to this heading"></a></h3>
+<p>Once the UE’s position is estimated via sensing, this location information improves communication in several ways:</p>
+<ul class="simple">
+<li><p><strong>Location-based beamforming</strong>: Direct beam steering towards the estimated position.</p></li>
+<li><p><strong>Location-based scheduling</strong>: Grouping co-located UEs for MU-MIMO spatial multiplexing.</p></li>
+<li><p><strong>Location-based handover</strong>: Triggering handover based on position rather than signal strength.</p></li>
+<li><p><strong>Location-based power control</strong>: Adjusting transmit power based on path loss predicted from distance.</p></li>
+</ul>
+</section>
+</section>
+<section id="benefits">
+<h2>Benefits<a class="headerlink" href="#benefits" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-number">Table 10 </span><span class="caption-text">Benefits of Sensing-Assisted Localization</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Benefit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>No dedicated PRS overhead</p></td>
+<td><p>Localization from sensing echoes avoids allocating PRS resources.</p></td>
+</tr>
+<tr class="row-odd"><td><p>No UE cooperation needed</p></td>
+<td><p>The gNB can localize targets without UE measurement reporting.</p></td>
+</tr>
+<tr class="row-even"><td><p>NLOS robustness</p></td>
+<td><p>Multipath exploitation enables localization even without LOS.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Continuous tracking</p></td>
+<td><p>Sensing provides continuous position updates without periodic reporting.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="challenges">
+<h2>Challenges<a class="headerlink" href="#challenges" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Range and angle resolution</strong>: Localization accuracy depends on bandwidth (range resolution =
+<span class="math notranslate nohighlight">\(c / (2B)\)</span>) and array aperture (angular resolution). Narrow bandwidth or small arrays limit accuracy.</p></li>
+<li><p><strong>Target association</strong>: In multi-target environments, associating sensing-detected positions with specific UEs
+requires additional information (e.g., timing advance correlation).</p></li>
+<li><p><strong>3D localization</strong>: Elevation angle estimation requires 2D planar antenna arrays with sufficient vertical
+aperture, which may not be available at all gNBs.</p></li>
+<li><p><strong>Environment map maintenance</strong>: Multipath-based NLOS localization requires an up-to-date map of the
+surrounding reflectors, adding computational and storage overhead.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sensingAssistedInterferenceManagement.html" class="btn btn-neutral float-left" title="Sensing Assisted Interference Management for ISAC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sensingAssistedPowerControl.html" class="btn btn-neutral float-right" title="Sensing Assisted Power Control for ISAC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Vikram Singh &lt;vikram.singh.anttal@gmail.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

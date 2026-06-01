@@ -1,0 +1,154 @@
+Sensing Assisted Localization for ISAC
+======================================
+
+Introduction
+------------
+
+Localization in cellular networks has evolved from Cell-ID and OTDOA in LTE to multi-RTT, DL-AoD, UL-AoA,
+and NR-PRS-based methods in 5G NR. These methods rely on dedicated positioning reference signals (PRS) and
+UE measurement reporting, achieving sub-meter accuracy under favorable conditions. However, PRS overhead,
+NLOS bias, and multipath errors remain significant challenges.
+
+Sensing-assisted localization augments or replaces PRS-based methods by using **radar-like sensing** at the gNB
+to directly estimate UE (or target) positions. This approach does not require UE cooperation or dedicated
+PRS resources, and naturally handles NLOS environments by exploiting multipath rather than treating it as error.
+
+.. code-block:: text
+
+     Localization Approaches Comparison
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │                                                                      │
+    │  PRS-Based (Conventional):                                           │
+    │  ┌──────┐  PRS   ┌──────┐  Measure  ┌──────┐  Report  ┌──────────┐  │
+    │  │ gNB  │───────▶│  UE  │──────────▶│  UE  │────────▶│ Location │  │
+    │  │      │        │      │  (ToA,AoA) │      │         │ Server   │  │
+    │  └──────┘        └──────┘           └──────┘         └──────────┘  │
+    │                                                                      │
+    │  Sensing-Based:                                                      │
+    │  ┌──────┐  Sense  ┌───────────┐  Extract  ┌──────────────────────┐  │
+    │  │ gNB  │────────▶│  Echo     │──────────▶│ Position Estimate    │  │
+    │  │      │  echo   │  Process  │  (R,θ,v)  │ (No UE cooperation) │  │
+    │  └──────┘         └───────────┘           └──────────────────────┘  │
+    │                                                                      │
+    └──────────────────────────────────────────────────────────────────────┘
+
+
+Key Concepts
+------------
+
+Monostatic Range-Angle Localization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In monostatic sensing, the gNB transmits a sensing signal and receives the echo reflected from the target.
+The target's position is estimated from:
+
+- **Range** :math:`R = \\frac{c \\cdot \\tau}{2}`, where :math:`\\tau` is the round-trip delay and :math:`c` is
+  the speed of light.
+- **Azimuth angle** :math:`\\phi` from AoA estimation using the antenna array.
+- **Elevation angle** :math:`\\theta` (for 3D localization) using a 2D planar array.
+
+.. code-block:: text
+
+     Monostatic Range-Angle Localization
+    ┌──────────────────────────────────────────────────────────────────┐
+    │                                                                  │
+    │                        Target (UE/Object)                        │
+    │                             ●                                    │
+    │                           ╱   ╲                                  │
+    │                     R   ╱       ╲  R                             │
+    │                 (range)╱         ╲(range)                        │
+    │                       ╱    θ      ╲                              │
+    │                      ╱  (angle)    ╲                             │
+    │                     ╱               ╲                            │
+    │                ● gNB (Tx + Rx)                                   │
+    │                                                                  │
+    │   Position = (R·cos(θ), R·sin(θ))                                │
+    │                                                                  │
+    └──────────────────────────────────────────────────────────────────┘
+
+
+Bistatic and Multi-Static Localization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When multiple gNBs cooperate for sensing, the localization accuracy improves through geometric diversity:
+
+- **Bistatic**: One gNB transmits, another receives the echo. The target lies on an **ellipse** with the
+  two gNBs as foci.
+- **Multi-static**: Multiple transmitter-receiver pairs. Each pair defines an ellipse; the intersection
+  gives the target position.
+
+.. code-block:: text
+
+     Multi-Static Localization Geometry
+    ┌──────────────────────────────────────────────────────────────────┐
+    │                                                                  │
+    │        gNB₁ (Tx)            Target ●              gNB₂ (Rx)     │
+    │           ●─ ─ ─ ─ ─ ─ ─ ─ ╱    ╲─ ─ ─ ─ ─ ─ ─ ─●            │
+    │            ╲              ╱        ╲              ╱              │
+    │             ╲  Ellipse 1╱          ╲ Ellipse 2 ╱               │
+    │              ╲        ╱              ╲        ╱                 │
+    │               ╲     ╱                 ╲     ╱                  │
+    │                ╲  ╱                    ╲  ╱                    │
+    │                 ╲╱  Intersection        ╲╱                     │
+    │                  = Target position                               │
+    │                                                                  │
+    │        gNB₃ (Tx/Rx)                                              │
+    │           ●─ ─ ─ ─ ─ Ellipse 3 ─ ─ ─ ─                         │
+    │                                                                  │
+    └──────────────────────────────────────────────────────────────────┘
+
+
+NLOS Localization via Multipath Exploitation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unlike PRS-based methods that suffer from NLOS bias, sensing can exploit multipath reflections for localization:
+
+1. The gNB detects multiple echo paths with different delays and angles.
+2. Each path corresponds to a reflection from a known or mappable surface (wall, building).
+3. Using the geometry of the reflections, the target position can be estimated even when the direct (LOS)
+   path is blocked.
+
+This technique requires a pre-built or continuously updated **environment map** from sensing data.
+
+
+Sensing-Derived Location for Communication Enhancement
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Once the UE's position is estimated via sensing, this location information improves communication in several ways:
+
+- **Location-based beamforming**: Direct beam steering towards the estimated position.
+- **Location-based scheduling**: Grouping co-located UEs for MU-MIMO spatial multiplexing.
+- **Location-based handover**: Triggering handover based on position rather than signal strength.
+- **Location-based power control**: Adjusting transmit power based on path loss predicted from distance.
+
+
+Benefits
+--------
+
+.. list-table:: Benefits of Sensing-Assisted Localization
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Benefit
+     - Description
+   * - No dedicated PRS overhead
+     - Localization from sensing echoes avoids allocating PRS resources.
+   * - No UE cooperation needed
+     - The gNB can localize targets without UE measurement reporting.
+   * - NLOS robustness
+     - Multipath exploitation enables localization even without LOS.
+   * - Continuous tracking
+     - Sensing provides continuous position updates without periodic reporting.
+
+
+Challenges
+----------
+
+- **Range and angle resolution**: Localization accuracy depends on bandwidth (range resolution =
+  :math:`c / (2B)`) and array aperture (angular resolution). Narrow bandwidth or small arrays limit accuracy.
+- **Target association**: In multi-target environments, associating sensing-detected positions with specific UEs
+  requires additional information (e.g., timing advance correlation).
+- **3D localization**: Elevation angle estimation requires 2D planar antenna arrays with sufficient vertical
+  aperture, which may not be available at all gNBs.
+- **Environment map maintenance**: Multipath-based NLOS localization requires an up-to-date map of the
+  surrounding reflectors, adding computational and storage overhead.

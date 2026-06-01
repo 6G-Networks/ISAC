@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sensing Assisted Power Control for ISAC &mdash; 6G-ISAC 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/6G_ISAC.css?v=5aa4b4e6" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=7026087e"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Sensing Assisted Power Saving" href="sensingAssistedPowerSaving.html" />
+    <link rel="prev" title="Sensing Assisted Localization for ISAC" href="sensingAssistedLocalization.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            6G-ISAC
+              <img src="../../../_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Learning_Resources/learningResource.html">Learning Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Learning_Resources/learningResource.html#pre-requisites-must-have">Pre-requisites: Must have</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Learning_Resources/learningResource.html#pre-requisites-optional">Pre-requisites: Optional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Learning_Resources/learningResource.html#coding-skills">Coding Skills</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ISAC_in_3GPP/isac3GPP.html">ISAC in 3GPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ISAC_in_3GPP/isac3GPP.html#g-new-radio-tracks">5G-New Radio Tracks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ISAC_in_3GPP/isac3GPP.html#g-track">6G Track</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ISAC_details.html">Integrated Sensing and Communications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Channel_Model/isacChannelModel.html">ISAC Channel Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_System_Design/isacSystemDesign.html">ISAC System Design Aspects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RS_Design/referenceSignalDesign.html">Reference Signal Design for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Waveform/isacWaveform.html">ISAC Waveform Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Beamforming/isacBeamforming.html">Beamforming for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Clutter_Cancellation/isacClutterCancellation.html">Clutter Cancellation for Accurate Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Target_Detection/isacTargetDetection.html">Algorithms for Sensing Targets</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="sensingAssistedCommunication.html">Sensing Assisted Communication for ISAC</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#motivation">Motivation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#system-model">System Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#signal-model">Signal Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#sensing-echo-model">Sensing Echo Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#sensing-to-communication-information-flow">Sensing-to-Communication Information Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#taxonomy-of-sensing-assisted-communication">Taxonomy of Sensing-Assisted Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#performance-bounds-and-fundamental-limits">Performance Bounds and Fundamental Limits</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#cramer-rao-bound-for-sensing-parameters">Cramér-Rao Bound for Sensing Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#communication-rate-gain-from-sensing-side-information">Communication Rate Gain from Sensing Side-Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#overhead-reduction-analysis">Overhead Reduction Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#sensing-assisted-communication-protocol-architecture">Sensing-Assisted Communication Protocol Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCommunication.html#timescale-hierarchy">Timescale Hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#sensing-quality-requirements-for-communication-enhancement">Sensing Quality Requirements for Communication Enhancement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensingAssistedCommunication.html#gpp-context-and-standardization">3GPP Context and Standardization</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="sensingAssistedCommunication.html#open-research-directions">Open Research Directions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedBeamforming.html">Sensing Assisted Beamforming for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#challenges">Challenges</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#gpp-relevance">3GPP Relevance</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedChannelEstimation.html">Sensing Assisted Channel Estimation for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCSIAcquisition.html">Sensing Assisted CSI Acquisition for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedResourceAllocation.html">Sensing Assisted Resource Allocation for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedMobilityManagement.html">Sensing Assisted Mobility Management for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedInterferenceManagement.html">Sensing Assisted Interference Management for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedLocalization.html">Sensing Assisted Localization for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedLocalization.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedLocalization.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedLocalization.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedLocalization.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Sensing Assisted Power Control for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedPowerSaving.html">Sensing Assisted Power Saving</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerSaving.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerSaving.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerSaving.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerSaving.html#challenges">Challenges</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorials/tutorials.html">ISAC Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Channel_Model_Tutorials/isacChannelModel_tutorial.html">Tutorial on Channel Model for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/RS_Design_Tutorials/referenceSignalDesign_tutorial.html">Tutorial on Reference Signal Design for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Waveform_Tutorials/isacWaveform_tutorial.html">Tutorial on Waveform Design for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Beamforming_Tutorials/isacBeamforming_tutorial.html">Tutorial on Beamforming for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Clutter_Cancellation_Tutorials/isacClutterCancellation_tutorial.html">Tutorial on Clutter Cancellation for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Target_Detection_Tutorials/isacTargetDetection_tutorial.html">Tutorial on Target Detection for ISAC</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">6G-ISAC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../ISAC_details.html">Integrated Sensing and Communications</a></li>
+          <li class="breadcrumb-item"><a href="sensingAssistedCommunication.html">Sensing Assisted Communication for ISAC</a></li>
+      <li class="breadcrumb-item active">Sensing Assisted Power Control for ISAC</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sensing-assisted-power-control-for-isac">
+<h1>Sensing Assisted Power Control for ISAC<a class="headerlink" href="#sensing-assisted-power-control-for-isac" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Power control in cellular systems adjusts the transmit power of the gNB (downlink) and UE (uplink) to manage
+interference, satisfy QoS targets, and maximize energy efficiency. In 5G NR, downlink power control is managed
+by the gNB scheduler, while uplink power control uses open-loop (path-loss based) and closed-loop (TPC commands)
+mechanisms.</p>
+<p>Conventional power control relies on UE measurements (RSRP, path loss estimates) and CQI/SINR feedback. These
+measurements are periodic and subject to reporting delays. Sensing-assisted power control uses <strong>real-time
+environmental information from sensing</strong> — such as target distances, angular positions, blockage detection, and
+interference source locations — to make faster and more accurate power control decisions.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Sensing-Assisted Power Control Architecture
+┌──────────────────────────────────────────────────────────────────────┐
+│                                                                      │
+│   ┌───────────────┐    ┌────────────────────┐    ┌────────────────┐  │
+│   │   Sensing     │    │   Environment       │    │   Power        │  │
+│   │   Echoes      │───▶│   Awareness         │───▶│   Control      │  │
+│   │               │    │                      │    │   Engine       │  │
+│   └───────────────┘    │  ● Distance to UE   │    │                │  │
+│                        │  ● Blockage status   │    │  ● DL Tx power│  │
+│   ┌───────────────┐    │  ● Interferer locs   │    │  ● UL TPC     │  │
+│   │   UE Reports  │───▶│  ● Reflector map     │    │  ● Per-beam   │  │
+│   │   (CQI, RSRP) │    │                      │    │    power      │  │
+│   └───────────────┘    └────────────────────┘    └────────────────┘  │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="key-concepts">
+<h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading"></a></h2>
+<section id="distance-based-path-loss-estimation">
+<h3>Distance-Based Path Loss Estimation<a class="headerlink" href="#distance-based-path-loss-estimation" title="Link to this heading"></a></h3>
+<p>Sensing provides a direct range estimate to the target. Combined with a path loss model, this gives an
+instantaneous path loss estimate without waiting for UE RSRP reports:</p>
+<div class="math notranslate nohighlight">
+\[PL(d) = PL(d_0) + 10 \cdot n \cdot \log_{10}\left(\frac{d}{d_0}\right) + X_\sigma\]</div>
+<p>where <span class="math notranslate nohighlight">\(d\)</span> is the sensing-derived distance, <span class="math notranslate nohighlight">\(n\)</span> is the path loss exponent, and <span class="math notranslate nohighlight">\(X_\sigma\)</span>
+is shadow fading. The sensing-derived distance bypasses the need for UE-reported RSRP to estimate path loss
+for open-loop power control.</p>
+</section>
+<section id="blockage-aware-power-adaptation">
+<h3>Blockage-Aware Power Adaptation<a class="headerlink" href="#blockage-aware-power-adaptation" title="Link to this heading"></a></h3>
+<p>Sensing can detect blockage events — sudden appearance of an obstacle between the gNB and UE — before they
+fully impact the communication link:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Blockage Detection and Power Adaptation
+┌──────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│   Time t₀: No blockage                                          │
+│   ┌──────┐ ════════════════════════════════════ ┌──────┐         │
+│   │ gNB  │  LOS path (normal power)             │  UE  │         │
+│   └──────┘                                      └──────┘         │
+│                                                                  │
+│   Time t₁: Sensing detects approaching blocker                   │
+│   ┌──────┐ ═══════ ▓▓▓(blocker)══════════════ ┌──────┐          │
+│   │ gNB  │  Echo from blocker detected          │  UE  │          │
+│   └──────┘  → Increase power proactively        └──────┘          │
+│                                                                  │
+│   Time t₂: Without sensing (reactive)                            │
+│   ┌──────┐ ═══════ ▓▓▓══X (link drop!) ═════ ┌──────┐          │
+│   │ gNB  │  CQI drops → power up (too late!)   │  UE  │          │
+│   └──────┘                                      └──────┘          │
+│                                                                  │
+└──────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="interference-aware-power-setting">
+<h3>Interference-Aware Power Setting<a class="headerlink" href="#interference-aware-power-setting" title="Link to this heading"></a></h3>
+<p>When sensing identifies the location and direction of interference sources, the gNB can:</p>
+<ul class="simple">
+<li><p><strong>Reduce power towards interferer directions</strong> to minimize interference caused to neighboring cells.</p></li>
+<li><p><strong>Increase power towards the UE</strong> when sensing confirms no interference risk in that direction.</p></li>
+<li><p><strong>Per-beam power control</strong>: In multi-beam systems, each beam’s power can be independently set based on
+the sensing-derived interference map.</p></li>
+</ul>
+</section>
+<section id="uplink-power-control-enhancement">
+<h3>Uplink Power Control Enhancement<a class="headerlink" href="#uplink-power-control-enhancement" title="Link to this heading"></a></h3>
+<p>For uplink, sensing assists in:</p>
+<ul class="simple">
+<li><p><strong>Path loss estimation without RSRP</strong>: The gNB estimates the UE’s path loss from the sensing-derived
+range, reducing the dependency on DL reference signal measurements.</p></li>
+<li><p><strong>Fractional power control optimization</strong>: The fractional power control parameter <span class="math notranslate nohighlight">\(\\alpha\)</span> can be
+adapted based on sensing-derived inter-cell interference geometry.</p></li>
+<li><p><strong>Timing advance from range</strong>: Sensing-derived range directly maps to timing advance, eliminating the
+need for RACH-based TA estimation.</p></li>
+</ul>
+</section>
+</section>
+<section id="benefits">
+<h2>Benefits<a class="headerlink" href="#benefits" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-number">Table 11 </span><span class="caption-text">Benefits of Sensing-Assisted Power Control</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Benefit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Proactive power adaptation</p></td>
+<td><p>Blockage and path changes detected before communication is affected.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Faster convergence</p></td>
+<td><p>Sensing-derived path loss avoids the slow convergence of closed-loop power control.</p></td>
+</tr>
+<tr class="row-even"><td><p>Reduced interference</p></td>
+<td><p>Interference-aware per-beam power control reduces inter-cell interference.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Energy efficiency</p></td>
+<td><p>Accurate path loss knowledge avoids over-provisioning transmit power.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="challenges">
+<h2>Challenges<a class="headerlink" href="#challenges" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Path loss model accuracy</strong>: Sensing provides distance but the path loss depends on the propagation
+environment (LOS/NLOS, frequency, clutter). The mapping from distance to path loss requires a well-
+calibrated model.</p></li>
+<li><p><strong>Blockage detection latency</strong>: The sensing processing pipeline must be fast enough to detect blockage
+and trigger power adaptation before the communication link degrades.</p></li>
+<li><p><strong>UE identification</strong>: Associating a sensing-detected target with a specific UE for per-UE power
+control requires additional context (e.g., beam correspondence, timing advance matching).</p></li>
+<li><p><strong>Regulatory constraints</strong>: Increasing power proactively based on sensing predictions must still comply
+with regulatory EIRP limits and SAR constraints.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sensingAssistedLocalization.html" class="btn btn-neutral float-left" title="Sensing Assisted Localization for ISAC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sensingAssistedPowerSaving.html" class="btn btn-neutral float-right" title="Sensing Assisted Power Saving" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Vikram Singh &lt;vikram.singh.anttal@gmail.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

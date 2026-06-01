@@ -1,0 +1,153 @@
+Sensing Assisted Mobility Management for ISAC
+=============================================
+
+Introduction
+------------
+
+Mobility management in cellular networks encompasses handover (HO) decision-making, cell (re)selection,
+conditional handover (CHO), and dual-active protocol stack (DAPS) procedures. In 5G NR, these procedures rely
+on UE measurement reports (RSRP, RSRQ, SINR) of the serving and neighboring cells, configured via measurement
+events (A1–A6, B1–B2). The UE periodically or event-triggered reports measurements, and the network decides when
+and to which cell a handover should occur.
+
+Sensing-assisted mobility management augments this process by using radar-like sensing at the gNB to **track
+UE positions, velocities, and trajectories** in real time. This additional information enables the network to
+make **proactive and predictive** handover decisions rather than reactive ones.
+
+.. code-block:: text
+
+     Conventional vs. Sensing-Assisted Handover Decision
+    ┌───────────────────────────────────────────────────────────────────────┐
+    │                                                                       │
+    │  Conventional (Reactive):                                             │
+    │                                                                       │
+    │  UE moves ──▶ RSRP drops ──▶ Event A3 ──▶ Meas Report ──▶ HO Cmd    │
+    │               (too late?)     triggered     (delay!)       (late!)    │
+    │                                                                       │
+    │  Sensing-Assisted (Proactive):                                        │
+    │                                                                       │
+    │  Sensing ──▶ Track UE ──▶ Predict ──▶ Pre-configure ──▶ Seamless     │
+    │  echoes     position     trajectory   target cell       HO           │
+    │             & velocity               (early!)                         │
+    │                                                                       │
+    └───────────────────────────────────────────────────────────────────────┘
+
+
+Key Concepts
+------------
+
+UE Trajectory Prediction
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sensing provides continuous position and velocity estimates of UEs (or UE-associated objects like vehicles).
+Using Kalman filtering or similar prediction algorithms, the gNB can:
+
+1. Predict when the UE will cross the cell boundary.
+2. Estimate which neighboring cell the UE is heading towards.
+3. Determine the optimal handover preparation time.
+
+.. code-block:: text
+
+     Trajectory-Based Handover Prediction
+    ┌───────────────────────────────────────────────────────────────────┐
+    │                                                                   │
+    │          Cell A                    │            Cell B             │
+    │                                   │                               │
+    │      gNB_A ●                      │  (cell boundary)    ● gNB_B  │
+    │                                   │                               │
+    │           UE trajectory:          │                               │
+    │        ●───●───●───●───●──────▶───┼────▶                         │
+    │        t₀  t₁  t₂  t₃  t₄        │  t₅ (predicted crossing)     │
+    │                                   │                               │
+    │     Sensing tracks positions      │  HO prep starts at t₃        │
+    │     at t₀..t₄                     │  (2 steps ahead!)            │
+    │                                   │                               │
+    └───────────────────────────────────────────────────────────────────┘
+
+
+Handover Failure Reduction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Handover failures occur due to:
+
+- **Too-late handover**: UE moves out of serving cell coverage before HO completes.
+- **Too-early handover**: UE is handed over to a cell it quickly leaves.
+- **Ping-pong**: UE oscillates between two cells.
+
+Sensing-assisted mobility management addresses these by:
+
+- **Velocity-aware hysteresis**: Adjusting measurement event thresholds based on UE speed.
+- **Direction-aware cell selection**: Choosing the target cell aligned with the UE's direction of travel.
+- **Predictive CHO configuration**: Pre-configuring conditional handover with sensing-predicted candidate cells.
+
+
+Mobility State Estimation Enhancement
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In LTE/NR, the UE performs mobility state estimation (MSE) by counting handover events. Sensing provides a
+direct and more accurate velocity estimate:
+
+.. list-table:: Mobility State Detection Comparison
+   :header-rows: 1
+   :widths: 30 35 35
+
+   * - Metric
+     - Conventional MSE
+     - Sensing-Assisted MSE
+   * - Input
+     - HO event count
+     - Doppler-based velocity
+   * - Accuracy
+     - Coarse (3 states)
+     - Fine-grained (continuous)
+   * - Latency
+     - Multiple HO events needed
+     - Instantaneous from echo
+   * - Reliability
+     - Cell-size dependent
+     - Independent of cell layout
+
+
+Connected-Mode Mobility Optimization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Beyond handover decisions, sensing assists other mobility procedures:
+
+- **L1/L2 inter-cell mobility**: Sensing can accelerate lower-layer cell switching by pre-identifying the
+  target cell's beam, reducing the L1/L2 handover interruption time.
+- **Beam failure recovery**: Sensing detects blockage events (e.g., a vehicle passing between the gNB and UE)
+  and triggers beam failure recovery proactively.
+- **Fast RLF detection**: Sensing can predict radio link failure when a fast-moving UE is heading into a
+  coverage hole identified in the sensing-derived environment map.
+
+
+Benefits
+--------
+
+.. list-table:: Benefits of Sensing-Assisted Mobility Management
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Benefit
+     - Description
+   * - Reduced HO failure rate
+     - Predictive decisions prevent too-late and too-early handovers.
+   * - Lower HO interruption time
+     - Early preparation of target cell resources shortens the handover gap.
+   * - Reduced ping-pong
+     - Direction-aware cell selection avoids unnecessary handovers.
+   * - Improved high-speed UE support
+     - Velocity-aware parameter tuning adapts to high-mobility scenarios.
+
+
+Challenges
+----------
+
+- **UE identification**: Sensing detects targets but may not directly identify which target corresponds to
+  which UE. Data association between sensing targets and RRC-connected UEs is needed.
+- **NLOS mobility**: In urban environments, UEs may not be directly visible to the gNB's sensing subsystem
+  due to blockage, limiting trajectory prediction accuracy.
+- **Privacy concerns**: Tracking UE positions via sensing raises user privacy considerations that may require
+  anonymization or consent mechanisms.
+- **Multi-cell coordination**: Sensing-assisted handover may require sensing information exchange between
+  neighboring gNBs, adding Xn interface signaling overhead.

@@ -1,0 +1,138 @@
+Sensing Assisted Channel Estimation for ISAC
+============================================
+
+Introduction
+------------
+
+Channel estimation is fundamental to any wireless communication system. In OFDM-based 5G NR and beyond, channel
+estimation relies on reference signals (CSI-RS, DMRS) transmitted at known time-frequency positions. The UE
+estimates the channel at these pilot locations and interpolates across the resource grid. However, the quality
+of channel estimation is limited by the pilot density, SNR, and the channel's delay-Doppler characteristics.
+
+Sensing-assisted channel estimation exploits the fact that radar sensing and communication channels share the
+same physical propagation environment. The sensing subsystem can extract **physical channel parameters** — such as
+path delays, Doppler shifts, angles of arrival/departure, and path gains — from echo signals. These parameters
+can be used to construct a **parametric channel model** that complements or replaces pilot-based estimation.
+
+.. code-block:: text
+
+     Conventional vs. Sensing-Assisted Channel Estimation
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │                                                                     │
+    │   Conventional:                                                     │
+    │   ┌─────────┐    ┌───────────────┐    ┌────────────────┐            │
+    │   │ CSI-RS / │───▶│ LS/MMSE       │───▶│ Interpolated   │            │
+    │   │ DMRS     │    │ Estimation    │    │ Channel Matrix │            │
+    │   └─────────┘    └───────────────┘    └────────────────┘            │
+    │                                                                     │
+    │   Sensing-Assisted:                                                 │
+    │   ┌─────────┐    ┌───────────────┐    ┌────────────────┐            │
+    │   │ Sensing  │───▶│ Parameter     │───▶│ Parametric     │            │
+    │   │ Echo     │    │ Extraction    │    │ Channel (τ,ν,θ)│            │
+    │   └─────────┘    └───────┬───────┘    └───────┬────────┘            │
+    │                          │                    │                     │
+    │   ┌─────────┐    ┌───────▼───────┐    ┌───────▼────────┐            │
+    │   │ CSI-RS / │───▶│ Aided/Hybrid  │───▶│ Enhanced       │            │
+    │   │ DMRS     │    │ Estimation    │    │ Channel Matrix │            │
+    │   └─────────┘    └───────────────┘    └────────────────┘            │
+    │                                                                     │
+    └─────────────────────────────────────────────────────────────────────┘
+
+
+Key Concepts
+------------
+
+Parametric Channel Construction from Sensing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The wireless channel between a transmitter and receiver can be described as a sum of multipath components
+(MPCs), each characterized by:
+
+- **Delay** :math:`\\tau_l`: propagation delay of the *l*-th path
+- **Doppler shift** :math:`\\nu_l`: Doppler frequency due to relative motion
+- **Angle of departure** :math:`\\theta_{\\text{AoD},l}` and **angle of arrival** :math:`\\theta_{\\text{AoA},l}`
+- **Complex gain** :math:`\\alpha_l`: amplitude and phase of the path
+
+Sensing signal processing (e.g., 2D-FFT, MUSIC, ESPRIT) can estimate :math:`(\\tau_l, \\nu_l, \\theta_l)` for the
+dominant paths. Given these parameters, a parametric channel can be constructed as:
+
+.. math::
+
+   \\mathbf{H}(f, t) = \\sum_{l=1}^{L} \\alpha_l \\, \\mathbf{a}_{\\text{Rx}}(\\theta_{\\text{AoA},l})
+   \\, \\mathbf{a}_{\\text{Tx}}^H(\\theta_{\\text{AoD},l})
+   \\, e^{-j2\\pi f \\tau_l} \\, e^{j2\\pi \\nu_l t}
+
+where :math:`\\mathbf{a}_{\\text{Tx}}` and :math:`\\mathbf{a}_{\\text{Rx}}` are the transmit and receive array
+steering vectors.
+
+
+Hybrid Estimation: Combining Sensing and Pilots
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Rather than replacing pilot-based estimation entirely, sensing information can be used as a **prior** to improve
+estimation accuracy:
+
+1. **Sparse channel estimation**: Sensing identifies the delay-Doppler support of the channel, enabling
+   compressed sensing techniques with fewer pilots.
+2. **Pilot density reduction**: If the parametric channel from sensing is sufficiently accurate, the pilot
+   density can be reduced, freeing resources for data transmission.
+3. **Extrapolation in time**: Sensing-derived Doppler information enables prediction of the channel into the
+   future, reducing feedback latency effects.
+
+.. code-block:: text
+
+     Hybrid Estimation Pipeline
+    ┌───────────────────────────────────────────────────────────────────┐
+    │                                                                   │
+    │   Sensing Path:                                                   │
+    │   ┌────────┐   ┌──────────┐   ┌─────────────┐                    │
+    │   │ Echo   │──▶│ Delay-   │──▶│ Parametric  │──┐                 │
+    │   │ Signal │   │ Doppler  │   │ Channel     │  │                 │
+    │   └────────┘   │ Analysis │   │ H_sensing   │  │                 │
+    │                └──────────┘   └─────────────┘  │                 │
+    │                                                │  ┌────────────┐ │
+    │                                                ├─▶│  Fusion /  │ │
+    │                                                │  │  Weighted  │ │
+    │   Pilot Path:                                  │  │  Combine   │ │
+    │   ┌────────┐   ┌──────────┐   ┌─────────────┐ │  └─────┬──────┘ │
+    │   │ CSI-RS │──▶│ LS/MMSE  │──▶│ Pilot-based │─┘        │        │
+    │   │ Pilots │   │ Estimator│   │ H_pilot     │           ▼        │
+    │   └────────┘   └──────────┘   └─────────────┘   ┌────────────┐   │
+    │                                                  │ H_combined │   │
+    │                                                  │ (Enhanced) │   │
+    │                                                  └────────────┘   │
+    │                                                                   │
+    └───────────────────────────────────────────────────────────────────┘
+
+
+Benefits
+--------
+
+.. list-table:: Benefits of Sensing-Assisted Channel Estimation
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Benefit
+     - Description
+   * - Reduced pilot overhead
+     - Sensing provides prior knowledge of the channel support, enabling sparser pilot grids.
+   * - Improved accuracy in high mobility
+     - Sensing-derived Doppler enables better tracking of fast-varying channels.
+   * - Channel prediction
+     - The parametric model enables extrapolation beyond the measurement window.
+   * - Robustness at low SNR
+     - Sensing priors regularize the estimation problem, improving performance at low pilot SNR.
+
+
+Challenges
+----------
+
+- **Sensing-communication channel mismatch**: The monostatic sensing channel (gNB → target → gNB) differs
+  from the communication channel (gNB → UE). Mapping between the two requires assumptions about the scattering
+  environment.
+- **Parameter association**: Associating sensing-detected paths with communication channel paths is non-trivial,
+  especially in dense multipath environments.
+- **Computational complexity**: Joint delay-Doppler-angle estimation using super-resolution algorithms (MUSIC,
+  ESPRIT) is computationally expensive.
+- **Calibration**: Accurate parametric channel construction requires well-calibrated antenna arrays and timing
+  synchronization between the sensing and communication subsystems.

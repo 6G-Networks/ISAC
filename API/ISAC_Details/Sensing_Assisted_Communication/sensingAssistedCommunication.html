@@ -1,0 +1,792 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sensing Assisted Communication for ISAC &mdash; 6G-ISAC 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/6G_ISAC.css?v=5aa4b4e6" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=7026087e"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Sensing Assisted Beamforming for ISAC" href="sensingAssistedBeamforming.html" />
+    <link rel="prev" title="Algorithms for Sensing Targets" href="../ISAC_Target_Detection/isacTargetDetection.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            6G-ISAC
+              <img src="../../../_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Learning_Resources/learningResource.html">Learning Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Learning_Resources/learningResource.html#pre-requisites-must-have">Pre-requisites: Must have</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Learning_Resources/learningResource.html#pre-requisites-optional">Pre-requisites: Optional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Learning_Resources/learningResource.html#coding-skills">Coding Skills</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ISAC_in_3GPP/isac3GPP.html">ISAC in 3GPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ISAC_in_3GPP/isac3GPP.html#g-new-radio-tracks">5G-New Radio Tracks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ISAC_in_3GPP/isac3GPP.html#g-track">6G Track</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ISAC_details.html">Integrated Sensing and Communications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Channel_Model/isacChannelModel.html">ISAC Channel Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_System_Design/isacSystemDesign.html">ISAC System Design Aspects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RS_Design/referenceSignalDesign.html">Reference Signal Design for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Waveform/isacWaveform.html">ISAC Waveform Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Beamforming/isacBeamforming.html">Beamforming for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Clutter_Cancellation/isacClutterCancellation.html">Clutter Cancellation for Accurate Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ISAC_Target_Detection/isacTargetDetection.html">Algorithms for Sensing Targets</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sensing Assisted Communication for ISAC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-model">System Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#signal-model">Signal Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sensing-echo-model">Sensing Echo Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sensing-to-communication-information-flow">Sensing-to-Communication Information Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#taxonomy-of-sensing-assisted-communication">Taxonomy of Sensing-Assisted Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-bounds-and-fundamental-limits">Performance Bounds and Fundamental Limits</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cramer-rao-bound-for-sensing-parameters">Cramér-Rao Bound for Sensing Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#communication-rate-gain-from-sensing-side-information">Communication Rate Gain from Sensing Side-Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#overhead-reduction-analysis">Overhead Reduction Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sensing-assisted-communication-protocol-architecture">Sensing-Assisted Communication Protocol Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#timescale-hierarchy">Timescale Hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sensing-quality-requirements-for-communication-enhancement">Sensing Quality Requirements for Communication Enhancement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gpp-context-and-standardization">3GPP Context and Standardization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#open-research-directions">Open Research Directions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedBeamforming.html">Sensing Assisted Beamforming for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#challenges">Challenges</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedBeamforming.html#gpp-relevance">3GPP Relevance</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedChannelEstimation.html">Sensing Assisted Channel Estimation for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedChannelEstimation.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedCSIAcquisition.html">Sensing Assisted CSI Acquisition for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedResourceAllocation.html">Sensing Assisted Resource Allocation for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedResourceAllocation.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedMobilityManagement.html">Sensing Assisted Mobility Management for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedMobilityManagement.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedInterferenceManagement.html">Sensing Assisted Interference Management for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedLocalization.html">Sensing Assisted Localization for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedLocalization.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedLocalization.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedLocalization.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedLocalization.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedPowerControl.html">Sensing Assisted Power Control for ISAC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerControl.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerControl.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerControl.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerControl.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensingAssistedPowerSaving.html">Sensing Assisted Power Saving</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerSaving.html#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerSaving.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerSaving.html#benefits">Benefits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensingAssistedPowerSaving.html#challenges">Challenges</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorials/tutorials.html">ISAC Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Channel_Model_Tutorials/isacChannelModel_tutorial.html">Tutorial on Channel Model for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/RS_Design_Tutorials/referenceSignalDesign_tutorial.html">Tutorial on Reference Signal Design for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Waveform_Tutorials/isacWaveform_tutorial.html">Tutorial on Waveform Design for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Beamforming_Tutorials/isacBeamforming_tutorial.html">Tutorial on Beamforming for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Clutter_Cancellation_Tutorials/isacClutterCancellation_tutorial.html">Tutorial on Clutter Cancellation for ISAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/Target_Detection_Tutorials/isacTargetDetection_tutorial.html">Tutorial on Target Detection for ISAC</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">6G-ISAC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../ISAC_details.html">Integrated Sensing and Communications</a></li>
+      <li class="breadcrumb-item active">Sensing Assisted Communication for ISAC</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sensing-assisted-communication-for-isac">
+<h1>Sensing Assisted Communication for ISAC<a class="headerlink" href="#sensing-assisted-communication-for-isac" title="Link to this heading"></a></h1>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h2>
+<p>The central promise of Integrated Sensing and Communication (ISAC) is not merely the coexistence of radar-like
+sensing and data communication on a shared spectrum, but the <strong>mutual enhancement</strong> of one functionality by the
+other. Sensing-assisted communication (SAC) is the paradigm in which information extracted by the sensing
+subsystem — target positions, velocities, angles, environmental geometry — is fed back into the communication
+subsystem to improve its performance in terms of throughput, latency, reliability, overhead, and energy
+efficiency.</p>
+<p>In conventional 5G NR, the communication subsystem operates in a largely self-contained loop: the gNB transmits
+reference signals, the UE measures the channel, compresses the measurement into a codebook-based report, and feeds
+it back to the gNB which then decides on precoding, scheduling, power control, and mobility actions. Every step in
+this loop costs overhead (reference signal resources, UE processing, uplink feedback capacity, decision latency).
+Sensing-assisted communication short-circuits parts of this loop by providing the gNB with <strong>direct, real-time
+physical-layer knowledge</strong> about the propagation environment and the targets within it.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Conventional Communication Loop vs. Sensing-Assisted Short-Circuit
+┌─────────────────────────────────────────────────────────────────────────┐
+│                                                                         │
+│  Conventional loop (high overhead, reactive):                           │
+│                                                                         │
+│  ┌──────┐  CSI-RS   ┌──────┐  Measure  ┌──────┐  Feedback   ┌──────┐   │
+│  │ gNB  │──────────▶│  UE  │──────────▶│  UE  │────────────▶│ gNB  │   │
+│  │      │           │      │           │Encode│             │Decide│   │
+│  └──┬───┘           └──────┘           └──────┘             └──┬───┘   │
+│     │                                                          │       │
+│     │◀─────────────── Latency Δt ────────────────────────────▶│       │
+│     │                                                          │       │
+│  Sensing-assisted short-circuit (low overhead, proactive):      │       │
+│                                                                 │       │
+│  ┌──────┐  Tx + Echo  ┌──────────────┐  Sensing info  ┌───────▼─────┐ │
+│  │ gNB  │────────────▶│  Sensing     │───────────────▶│ Communication│ │
+│  │      │◀────────────│  Processing  │                │ Decision     │ │
+│  └──────┘  (self-Rx)  └──────────────┘                │ Engine       │ │
+│                                                        └─────────────┘ │
+│     No UE cooperation needed for sensing path                          │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="system-model">
+<h2>System Model<a class="headerlink" href="#system-model" title="Link to this heading"></a></h2>
+<p>Consider a monostatic ISAC base station (gNB) equipped with a uniform planar array (UPA) of
+<span class="math notranslate nohighlight">\(N_t = N_h \times N_v\)</span> transmit antennas and <span class="math notranslate nohighlight">\(N_r\)</span> receive antennas (or shared Tx/Rx via a
+circulator). The gNB serves <span class="math notranslate nohighlight">\(K\)</span> communication users while simultaneously sensing <span class="math notranslate nohighlight">\(L\)</span> targets in the
+environment.</p>
+<section id="signal-model">
+<h3>Signal Model<a class="headerlink" href="#signal-model" title="Link to this heading"></a></h3>
+<p>At OFDM symbol <span class="math notranslate nohighlight">\(m\)</span> and subcarrier <span class="math notranslate nohighlight">\(n\)</span>, the gNB transmits:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x}[m,n] = \mathbf{W}_c[m,n]\,\mathbf{s}_c[m,n] + \mathbf{W}_s[m,n]\,\mathbf{s}_s[m,n]\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{W}_c \in \mathbb{C}^{N_t \times K}\)</span> is the communication precoding matrix</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{s}_c \in \mathbb{C}^{K \times 1}\)</span> is the vector of data symbols for <span class="math notranslate nohighlight">\(K\)</span> users</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{W}_s \in \mathbb{C}^{N_t \times 1}\)</span> is the sensing beamforming vector</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{s}_s \in \mathbb{C}\)</span> is the sensing waveform symbol</p></li>
+</ul>
+<p>In a dual-function ISAC waveform, <span class="math notranslate nohighlight">\(\mathbf{W}_s\)</span> and <span class="math notranslate nohighlight">\(\mathbf{s}_s\)</span> may be absorbed into the
+communication signal itself (i.e., the data signal doubles as the sensing probe), in which case:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x}[m,n] = \mathbf{W}[m,n]\,\mathbf{s}[m,n]\]</div>
+<p>and the gNB uses its knowledge of <span class="math notranslate nohighlight">\(\mathbf{s}\)</span> (since it generated the signal) to perform matched
+filtering on the received echo.</p>
+</section>
+<section id="sensing-echo-model">
+<h3>Sensing Echo Model<a class="headerlink" href="#sensing-echo-model" title="Link to this heading"></a></h3>
+<p>The echo received at the gNB from <span class="math notranslate nohighlight">\(L\)</span> point targets is:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{y}_s[m,n] = \sum_{l=1}^{L} \alpha_l \,
+\mathbf{a}_r(\theta_l, \phi_l) \, \mathbf{a}_t^H(\theta_l, \phi_l) \,
+\mathbf{x}[m,n] \,
+e^{-j2\pi n \Delta f \tau_l} \, e^{j2\pi m T_s \nu_l}
++ \mathbf{z}[m,n]\]</div>
+<p>where for the <span class="math notranslate nohighlight">\(l\)</span>-th target:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 25.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\alpha_l\)</span></p></td>
+<td><p>Complex reflectivity</p></td>
+<td><p>Radar cross-section and propagation attenuation</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\tau_l\)</span></p></td>
+<td><p>Round-trip delay</p></td>
+<td><p><span class="math notranslate nohighlight">\(= 2R_l / c\)</span>, where <span class="math notranslate nohighlight">\(R_l\)</span> is target range</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\nu_l\)</span></p></td>
+<td><p>Doppler shift</p></td>
+<td><p><span class="math notranslate nohighlight">\(= 2v_l f_c / c\)</span>, where <span class="math notranslate nohighlight">\(v_l\)</span> is radial velocity</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\theta_l, \phi_l\)</span></p></td>
+<td><p>Azimuth, elevation</p></td>
+<td><p>Angular position of the target</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{a}_t, \mathbf{a}_r\)</span></p></td>
+<td><p>Steering vectors</p></td>
+<td><p>Transmit and receive array response vectors</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\Delta f\)</span></p></td>
+<td><p>Subcarrier spacing</p></td>
+<td><p>OFDM subcarrier spacing</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(T_s\)</span></p></td>
+<td><p>OFDM symbol duration</p></td>
+<td><p>Including cyclic prefix</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{z}\)</span></p></td>
+<td><p>Noise</p></td>
+<td><p>Additive white Gaussian noise</p></td>
+</tr>
+</tbody>
+</table>
+<p>From the echo <span class="math notranslate nohighlight">\(\mathbf{y}_s\)</span>, the sensing subsystem extracts the parameter tuple
+<span class="math notranslate nohighlight">\(\{\alpha_l, \tau_l, \nu_l, \theta_l, \phi_l\}_{l=1}^{L}\)</span> using matched filtering, 2D-DFT, MUSIC,
+ESPRIT, or other super-resolution algorithms. These parameters are then transformed into <strong>actionable
+communication-side information</strong>.</p>
+</section>
+</section>
+<section id="sensing-to-communication-information-flow">
+<h2>Sensing-to-Communication Information Flow<a class="headerlink" href="#sensing-to-communication-information-flow" title="Link to this heading"></a></h2>
+<p>The extracted sensing parameters are not used directly by the communication subsystem. An intermediate
+<strong>parameter-to-action mapping</strong> layer translates raw sensing outputs into communication control inputs.
+The mapping is specific to each communication function:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Sensing Parameter to Communication Action Mapping
+┌──────────────────────────────────────────────────────────────────────────┐
+│                                                                          │
+│   Sensing Parameter         Communication Action                         │
+│   ─────────────────         ──────────────────────                        │
+│                                                                          │
+│   AoA / AoD (θ, φ)  ──────▶ Beam selection / Precoder design             │
+│                       ──────▶ Spatial interference nulling                │
+│                       ──────▶ MU-MIMO user pairing                        │
+│                                                                          │
+│   Range (R = cτ/2)   ──────▶ Path loss estimation → Power control        │
+│                       ──────▶ Timing advance prediction                   │
+│                       ──────▶ Handover preparation trigger                │
+│                                                                          │
+│   Doppler (ν)        ──────▶ Channel aging compensation                  │
+│                       ──────▶ Velocity-aware MCS / DRX adaptation         │
+│                       ──────▶ Mobility state estimation                   │
+│                                                                          │
+│   Reflectivity (α)   ──────▶ Target detection / presence awareness       │
+│                       ──────▶ Blockage prediction                         │
+│                       ──────▶ Wake-up / sleep decisions                   │
+│                                                                          │
+│   Environment Map    ──────▶ Location-aware scheduling                   │
+│   (aggregate)         ──────▶ Interference map → Freq. planning           │
+│                       ──────▶ NLOS localization via multipath             │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="taxonomy-of-sensing-assisted-communication">
+<h2>Taxonomy of Sensing-Assisted Communication<a class="headerlink" href="#taxonomy-of-sensing-assisted-communication" title="Link to this heading"></a></h2>
+<p>Sensing-assisted communication spans multiple layers of the protocol stack and addresses distinct communication
+functions. The taxonomy below organizes the SAC topics by the communication subsystem they enhance:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Taxonomy of Sensing-Assisted Communication
+┌──────────────────────────────────────────────────────────────────────────┐
+│                                                                          │
+│                   Sensing-Assisted Communication                         │
+│                              │                                           │
+│          ┌───────────────────┼───────────────────┐                       │
+│          │                   │                   │                       │
+│     PHY Layer           MAC / RRM            RRC / Higher                │
+│          │                   │                   │                       │
+│   ┌──────┴──────┐    ┌──────┴──────┐    ┌───────┴───────┐               │
+│   │Beamforming  │    │Resource     │    │Mobility       │               │
+│   │Channel Est. │    │ Allocation  │    │ Management    │               │
+│   │CSI Acquis.  │    │Power Control│    │Localization   │               │
+│   │Interference │    │Power Saving │    │               │               │
+│   │ Management  │    │             │    │               │               │
+│   └─────────────┘    └─────────────┘    └───────────────┘               │
+│                                                                          │
+│   PHY-layer topics rely on fine-grained sensing parameters (AoA,         │
+│   delay, Doppler) at symbol/slot timescale.                              │
+│                                                                          │
+│   MAC/RRM topics use aggregated sensing info (environment map,           │
+│   presence/absence, velocity class) at scheduling timescale.             │
+│                                                                          │
+│   RRC/Higher topics use trajectory-level sensing (position history,      │
+│   predicted path) at second-level timescale.                             │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="performance-bounds-and-fundamental-limits">
+<h2>Performance Bounds and Fundamental Limits<a class="headerlink" href="#performance-bounds-and-fundamental-limits" title="Link to this heading"></a></h2>
+<p>Understanding the potential gains from sensing-assisted communication requires analyzing the information-theoretic
+and estimation-theoretic limits.</p>
+<section id="cramer-rao-bound-for-sensing-parameters">
+<h3>Cramér-Rao Bound for Sensing Parameters<a class="headerlink" href="#cramer-rao-bound-for-sensing-parameters" title="Link to this heading"></a></h3>
+<p>The accuracy of sensing parameter estimation is bounded by the Cramér-Rao Lower Bound (CRLB). For a single target
+with parameter vector <span class="math notranslate nohighlight">\(\boldsymbol{\eta} = [\tau, \nu, \theta]^T\)</span>, the Fisher Information Matrix (FIM) is:</p>
+<div class="math notranslate nohighlight">
+\[[\mathbf{J}(\boldsymbol{\eta})]_{ij} = \frac{2}{\sigma^2} \,
+\text{Re}\left\{
+\sum_{m,n} \frac{\partial \boldsymbol{\mu}^H[m,n]}{\partial \eta_i}
+\frac{\partial \boldsymbol{\mu}[m,n]}{\partial \eta_j}
+\right\}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\mu}[m,n]\)</span> is the noise-free echo signal and <span class="math notranslate nohighlight">\(\sigma^2\)</span> is the noise variance.
+The CRLB for each parameter is:</p>
+<div class="math notranslate nohighlight">
+\[\text{var}(\hat{\eta}_i) \geq [\mathbf{J}^{-1}(\boldsymbol{\eta})]_{ii}\]</div>
+<p>The key dependencies are:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">CRLB Scaling Laws</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 35.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>CRLB scales as</p></th>
+<th class="head"><p>Implication for SAC</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Range <span class="math notranslate nohighlight">\(R\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\propto 1 / (B^2 \cdot \text{SNR})\)</span></p></td>
+<td><p>Wider bandwidth → better range → better path loss / TA estimation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Velocity <span class="math notranslate nohighlight">\(v\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\propto 1 / (T_{\text{obs}}^2 \cdot \text{SNR})\)</span></p></td>
+<td><p>Longer observation → better Doppler → better mobility / CSI prediction</p></td>
+</tr>
+<tr class="row-even"><td><p>Angle <span class="math notranslate nohighlight">\(\theta\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\propto 1 / (N_t^2 \cdot \text{SNR})\)</span></p></td>
+<td><p>More antennas → better AoA → better beamforming / localization</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="communication-rate-gain-from-sensing-side-information">
+<h3>Communication Rate Gain from Sensing Side-Information<a class="headerlink" href="#communication-rate-gain-from-sensing-side-information" title="Link to this heading"></a></h3>
+<p>When sensing provides side-information <span class="math notranslate nohighlight">\(\mathbf{S}\)</span> about the channel <span class="math notranslate nohighlight">\(\mathbf{H}\)</span>, the achievable
+rate with imperfect CSI can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[R = \log_2 \det \left( \mathbf{I} + \frac{P}{N_0} \hat{\mathbf{H}} \hat{\mathbf{H}}^H \right)
+- \text{rate loss from estimation error}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{\mathbf{H}}\)</span> is the channel estimate. Sensing reduces the estimation error variance
+<span class="math notranslate nohighlight">\(\sigma_e^2\)</span>, which reduces the rate loss term. Specifically:</p>
+<ul class="simple">
+<li><p><strong>Without sensing</strong>: <span class="math notranslate nohighlight">\(\sigma_e^2 = \sigma_e^2(\text{pilot-only})\)</span></p></li>
+<li><p><strong>With sensing prior</strong>: <span class="math notranslate nohighlight">\(\sigma_e^2 = \sigma_e^2(\text{pilot} + \text{sensing})
+\leq \sigma_e^2(\text{pilot-only})\)</span></p></li>
+</ul>
+<p>The rate gain <span class="math notranslate nohighlight">\(\Delta R = R_{\text{with sensing}} - R_{\text{without}}\)</span> is most significant when:</p>
+<ol class="arabic simple">
+<li><p>Pilot density is low (overhead-constrained regime).</p></li>
+<li><p>Channel varies rapidly (high mobility / high Doppler).</p></li>
+<li><p>The number of antennas is large (massive MIMO — codebook feedback is a bottleneck).</p></li>
+</ol>
+</section>
+<section id="overhead-reduction-analysis">
+<h3>Overhead Reduction Analysis<a class="headerlink" href="#overhead-reduction-analysis" title="Link to this heading"></a></h3>
+<p>Define the effective spectral efficiency as:</p>
+<div class="math notranslate nohighlight">
+\[\eta_{\text{eff}} = (1 - \rho_{\text{pilot}} - \rho_{\text{fb}}) \cdot R\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho_{\text{pilot}}\)</span> is the fraction of resources used for pilots and <span class="math notranslate nohighlight">\(\rho_{\text{fb}}\)</span> is the
+fraction used for feedback. Sensing-assisted communication reduces both:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Overhead Reduction from Sensing Assistance
+┌──────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│   Without Sensing:                                               │
+│   ┌────────────┬───────────┬────────────────────────────────┐    │
+│   │  Pilots    │ Feedback  │         Data                   │    │
+│   │  (ρ_pilot) │ (ρ_fb)   │    R × (1 - ρ_pilot - ρ_fb)   │    │
+│   └────────────┴───────────┴────────────────────────────────┘    │
+│   ├─── 15-20% overhead ───┤                                     │
+│                                                                  │
+│   With Sensing:                                                  │
+│   ┌──────┬─────┬────────────────────────────────────────────┐    │
+│   │Pilot │ FB  │              Data                          │    │
+│   │(less)│(less│    R&#39; × (1 - ρ&#39;_pilot - ρ&#39;_fb)            │    │
+│   └──────┴─────┴────────────────────────────────────────────┘    │
+│   ├─ 5-8% ─┤                                                    │
+│                                                                  │
+│   Net gain: higher η_eff even if R&#39; ≈ R, because overhead       │
+│   reduction dominates.                                           │
+│                                                                  │
+└──────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sensing-assisted-communication-protocol-architecture">
+<h2>Sensing-Assisted Communication Protocol Architecture<a class="headerlink" href="#sensing-assisted-communication-protocol-architecture" title="Link to this heading"></a></h2>
+<p>Integrating sensing assistance into the 5G/6G protocol stack requires new interfaces and information elements.
+The architecture below shows where sensing information is injected into the communication protocol:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Protocol Stack Integration
+┌──────────────────────────────────────────────────────────────────────────┐
+│                                                                          │
+│   ┌─────────────────────────────────────────────────────────────────┐    │
+│   │                      Application Layer                          │    │
+│   │   Location services, environment awareness, V2X applications    │    │
+│   └────────────────────────────┬────────────────────────────────────┘    │
+│                                │                                        │
+│   ┌────────────────────────────▼────────────────────────────────────┐    │
+│   │                       RRC Layer                                 │    │
+│   │   ● Sensing-triggered measurement config (events, reporting)    │    │
+│   │   ● Trajectory-based HO preparation                            │    │
+│   │   ● Sensing-aware DRX / power saving config                    │    │
+│   └────────────────────────────┬────────────────────────────────────┘    │
+│                                │                                        │
+│   ┌────────────────────────────▼────────────────────────────────────┐    │
+│   │                      MAC / Scheduler                            │    │
+│   │   ● Sensing-informed resource allocation                        │    │
+│   │   ● Joint sensing-comm scheduling                               │    │
+│   │   ● Velocity-aware MCS / HARQ adaptation                        │    │
+│   │   ● Interference-aware frequency assignment                     │    │
+│   └────────────────────────────┬────────────────────────────────────┘    │
+│                                │                                        │
+│   ┌────────────────────────────▼────────────────────────────────────┐    │
+│   │                       PHY Layer                                 │    │
+│   │   ● Sensing-assisted beam management (P1/P2/P3)                 │    │
+│   │   ● Sensing-aided channel estimation (parametric + pilot)        │    │
+│   │   ● Sensing-derived precoding                                   │    │
+│   │   ● Sensing-based interference nulling                          │    │
+│   └────────────────────────────┬────────────────────────────────────┘    │
+│                                │                                        │
+│   ┌────────────────────────────▼────────────────────────────────────┐    │
+│   │                   Sensing Processing Engine                     │    │
+│   │   ● Echo signal processing (matched filter, 2D-DFT)            │    │
+│   │   ● Parameter extraction (τ, ν, θ, α)                          │    │
+│   │   ● Target detection (CFAR)                                    │    │
+│   │   ● Tracking and prediction (Kalman filter)                     │    │
+│   │   ● Environment mapping                                        │    │
+│   └─────────────────────────────────────────────────────────────────┘    │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+<section id="timescale-hierarchy">
+<h3>Timescale Hierarchy<a class="headerlink" href="#timescale-hierarchy" title="Link to this heading"></a></h3>
+<p>Different SAC functions operate at different timescales, which determines the freshness and granularity of
+sensing information required:</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">SAC Functions by Timescale</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Timescale</p></th>
+<th class="head"><p>Duration</p></th>
+<th class="head"><p>SAC Function</p></th>
+<th class="head"><p>Sensing Input</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Symbol / Slot</p></td>
+<td><p>0.0625–1 ms</p></td>
+<td><p>Beamforming, precoding, interference nulling</p></td>
+<td><p>AoA, AoD, Doppler (per-echo)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Scheduling interval</p></td>
+<td><p>1–10 ms</p></td>
+<td><p>Resource allocation, power control, MCS</p></td>
+<td><p>Range, velocity, interference map</p></td>
+</tr>
+<tr class="row-even"><td><p>Measurement period</p></td>
+<td><p>10–100 ms</p></td>
+<td><p>CSI acquisition, beam tracking</p></td>
+<td><p>Tracked target state (filtered)</p></td>
+</tr>
+<tr class="row-odd"><td><p>RRC timescale</p></td>
+<td><p>100 ms – seconds</p></td>
+<td><p>Mobility management, DRX adaptation</p></td>
+<td><p>Trajectory prediction, presence map</p></td>
+</tr>
+<tr class="row-even"><td><p>Network planning</p></td>
+<td><p>Minutes – hours</p></td>
+<td><p>Carrier/cell sleep, antenna muting</p></td>
+<td><p>Aggregated occupancy statistics</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="sensing-quality-requirements-for-communication-enhancement">
+<h2>Sensing Quality Requirements for Communication Enhancement<a class="headerlink" href="#sensing-quality-requirements-for-communication-enhancement" title="Link to this heading"></a></h2>
+<p>Not all communication functions benefit equally from sensing, and each has different <strong>minimum sensing accuracy
+thresholds</strong> below which the assistance becomes unreliable or counterproductive:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Sensing Accuracy Requirements by SAC Function
+┌─────────────────────────────────────────────────────────────────────────┐
+│                                                                         │
+│   SAC Function              Angle       Range       Velocity            │
+│   ────────────              ─────       ─────       ────────            │
+│   Beamforming (FR2)         &lt; 1°        ──          ──                  │
+│   Beamforming (FR1)         &lt; 5°        ──          ──                  │
+│   Channel estimation        &lt; 2°        &lt; 1 m       &lt; 0.5 m/s          │
+│   CSI prediction            ──          ──          &lt; 0.3 m/s          │
+│   Localization              &lt; 3°        &lt; 0.5 m     ──                  │
+│   Power control             ──          &lt; 5 m       ──                  │
+│   Mobility management       &lt; 10°       &lt; 10 m      &lt; 2 m/s            │
+│   Power saving              ──          &lt; 50 m      ──  (detect/miss)  │
+│                                                                         │
+│   &quot;──&quot; = not critical for this function                                 │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+<p>These thresholds determine the <strong>minimum bandwidth</strong>, <strong>array size</strong>, and <strong>observation time</strong> required for the
+sensing subsystem to meaningfully assist each communication function.</p>
+</section>
+<section id="gpp-context-and-standardization">
+<h2>3GPP Context and Standardization<a class="headerlink" href="#gpp-context-and-standardization" title="Link to this heading"></a></h2>
+<p>Sensing-assisted communication is one of the three identified use-case categories in the 3GPP Rel-19 ISAC study
+item (RP-234069, WI 10.8.2), alongside communication-assisted sensing and joint design. The study item examines:</p>
+<ol class="arabic simple">
+<li><p><strong>Channel model for ISAC</strong>: Extensions to 3GPP TR 38.901 for sensing-relevant parameters (RCS, clutter,
+bistatic geometry).</p></li>
+<li><p><strong>Sensing procedures</strong>: How sensing measurements are triggered, configured, and reported.</p></li>
+<li><p><strong>Sensing-communication interplay</strong>: How sensing results feed into existing communication procedures (beam
+management, CSI framework, mobility, power control).</p></li>
+</ol>
+<p>The key architectural questions under study include:</p>
+<ul class="simple">
+<li><p>Whether sensing results are exposed as a <strong>new information element</strong> in existing interfaces (F1, E1, Xn,
+NG) or require new dedicated interfaces.</p></li>
+<li><p>Whether sensing-assisted communication operates <strong>within the existing UE-transparent framework</strong> (no UE
+changes) or requires <strong>UE-side awareness</strong> of sensing.</p></li>
+<li><p>How to handle <strong>multi-gNB sensing cooperation</strong> for SAC functions that benefit from geometric diversity
+(localization, multi-static detection).</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> 3GPP Functional Architecture for Sensing-Assisted Communication
+┌──────────────────────────────────────────────────────────────────────────┐
+│                                                                          │
+│   ┌──────────┐     Xn (sensing info)     ┌──────────┐                   │
+│   │  gNB 1   │◄────────────────────────▶│  gNB 2   │                   │
+│   │          │                           │          │                   │
+│   │ ┌──────┐ │                           │ ┌──────┐ │                   │
+│   │ │Sense │ │                           │ │Sense │ │                   │
+│   │ │Proc. │ │                           │ │Proc. │ │                   │
+│   │ └──┬───┘ │                           │ └──┬───┘ │                   │
+│   │    │     │                           │    │     │                   │
+│   │ ┌──▼───┐ │     NG-C/NG-U             │ ┌──▼───┐ │                   │
+│   │ │Comm  │ │◄────────────────┐         │ │Comm  │ │                   │
+│   │ │Stack │ │                 │         │ │Stack │ │                   │
+│   │ └──────┘ │                 │         │ └──────┘ │                   │
+│   └──────────┘                 │         └──────────┘                   │
+│                                │                                        │
+│                         ┌──────▼──────┐                                 │
+│                         │   5GC / AMF  │                                │
+│                         │   Sensing    │                                │
+│                         │   Function   │                                │
+│                         │   (new NF?)  │                                │
+│                         └─────────────┘                                 │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="open-research-directions">
+<h2>Open Research Directions<a class="headerlink" href="#open-research-directions" title="Link to this heading"></a></h2>
+<p>Several fundamental research questions remain open in sensing-assisted communication:</p>
+<ol class="arabic simple">
+<li><p><strong>Optimal sensing-communication trade-off</strong>: Given finite resources (bandwidth, power, time), how should
+the system balance sensing quality against communication throughput? The Pareto frontier of this trade-off
+is still poorly understood for practical waveforms and channel models.</p></li>
+<li><p><strong>Learning-based SAC</strong>: Can deep learning replace the explicit parameter-to-action mapping? End-to-end
+learning from raw sensing echoes to communication decisions (beam, precoder, schedule) may outperform
+model-based approaches in complex environments.</p></li>
+<li><p><strong>Sensing under mobility</strong>: When both the gNB and targets are mobile (e.g., V2X sidelink ISAC), the
+sensing-communication channel coupling becomes more complex, and new signal processing frameworks are needed.</p></li>
+<li><p><strong>Privacy and security</strong>: Sensing reveals physical information about users and the environment. How should
+this information be protected? Can sensing-assisted communication operate with anonymized or aggregated
+sensing data without losing its benefits?</p></li>
+<li><p><strong>Multi-operator ISAC</strong>: When multiple operators share spectrum (e.g., in unlicensed or shared bands),
+sensing echoes from one operator’s signal may be exploited (or interfered with) by another. Cooperative
+and adversarial multi-operator SAC is an emerging topic.</p></li>
+</ol>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Detailed Topics:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sensingAssistedBeamforming.html">Sensing Assisted Beamforming for ISAC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedBeamforming.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedBeamforming.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedBeamforming.html#benefits">Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedBeamforming.html#challenges">Challenges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedBeamforming.html#gpp-relevance">3GPP Relevance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sensingAssistedChannelEstimation.html">Sensing Assisted Channel Estimation for ISAC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedChannelEstimation.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedChannelEstimation.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedChannelEstimation.html#benefits">Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedChannelEstimation.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sensingAssistedCSIAcquisition.html">Sensing Assisted CSI Acquisition for ISAC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#benefits">Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedCSIAcquisition.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sensingAssistedResourceAllocation.html">Sensing Assisted Resource Allocation for ISAC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedResourceAllocation.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedResourceAllocation.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedResourceAllocation.html#benefits">Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedResourceAllocation.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sensingAssistedMobilityManagement.html">Sensing Assisted Mobility Management for ISAC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedMobilityManagement.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedMobilityManagement.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedMobilityManagement.html#benefits">Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedMobilityManagement.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sensingAssistedInterferenceManagement.html">Sensing Assisted Interference Management for ISAC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#benefits">Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedInterferenceManagement.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sensingAssistedLocalization.html">Sensing Assisted Localization for ISAC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedLocalization.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedLocalization.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedLocalization.html#benefits">Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedLocalization.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sensingAssistedPowerControl.html">Sensing Assisted Power Control for ISAC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedPowerControl.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedPowerControl.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedPowerControl.html#benefits">Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedPowerControl.html#challenges">Challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sensingAssistedPowerSaving.html">Sensing Assisted Power Saving</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedPowerSaving.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedPowerSaving.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedPowerSaving.html#benefits">Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensingAssistedPowerSaving.html#challenges">Challenges</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../ISAC_Target_Detection/isacTargetDetection.html" class="btn btn-neutral float-left" title="Algorithms for Sensing Targets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sensingAssistedBeamforming.html" class="btn btn-neutral float-right" title="Sensing Assisted Beamforming for ISAC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Vikram Singh &lt;vikram.singh.anttal@gmail.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+Sensing Assisted CSI Acquisition for ISAC
+=========================================
+
+Introduction
+------------
+
+Channel State Information (CSI) acquisition in 5G NR involves a well-defined pipeline: the gNB transmits CSI-RS,
+the UE measures the channel, compresses the information using a codebook (e.g., Type I or Type II), and feeds
+it back via UCI on PUCCH/PUSCH. This feedback loop introduces latency (typically several milliseconds) and overhead
+(CSI-RS resources + feedback bits), both of which limit system throughput — especially for FDD massive MIMO.
+
+Sensing-assisted CSI acquisition aims to **bypass or augment** parts of this feedback loop by deriving channel
+state information directly from sensing measurements at the gNB side. Since the gNB performs sensing in a
+monostatic or bistatic configuration, it can extract spatial and temporal channel characteristics without relying
+on UE feedback.
+
+.. code-block:: text
+
+     CSI Acquisition: Conventional vs. Sensing-Assisted
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │                                                                      │
+    │  Conventional CSI Acquisition:                                       │
+    │  ┌──────┐  CSI-RS  ┌──────┐  Measure  ┌──────┐  Feedback  ┌──────┐  │
+    │  │ gNB  │─────────▶│  UE  │──────────▶│  UE  │───────────▶│ gNB  │  │
+    │  │      │          │      │           │Encode│            │Decode│  │
+    │  └──────┘          └──────┘           └──────┘            └──┬───┘  │
+    │                                                              │      │
+    │                                               CSI (PMI/RI/CQI)      │
+    │                                                                      │
+    │  Sensing-Assisted CSI Acquisition:                                   │
+    │  ┌──────┐  Sense   ┌──────────────┐  Extract  ┌──────────────────┐  │
+    │  │ gNB  │─────────▶│ Echo Signal  │──────────▶│ Spatial Channel  │  │
+    │  │      │  Echo    │ Processing   │           │ Parameters       │  │
+    │  └──────┘          └──────────────┘           └────────┬─────────┘  │
+    │                                                        │            │
+    │                                                        ▼            │
+    │                                              ┌──────────────────┐   │
+    │                                              │  Predicted CSI   │   │
+    │                                              │  (No UE Feedback)│   │
+    │                                              └──────────────────┘   │
+    │                                                                      │
+    └──────────────────────────────────────────────────────────────────────┘
+
+
+Key Concepts
+------------
+
+Sensing-Derived Spatial Covariance
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The spatial covariance matrix of the downlink channel is a key input for precoding and rank adaptation. In FDD
+systems, the UE must measure and report this information. With sensing:
+
+- The gNB estimates the angular power spectrum from echo signals.
+- The dominant AoDs identified by sensing correspond to the dominant eigenvectors of the spatial covariance.
+- This information can be used to select or refine the precoding matrix without UE feedback.
+
+
+CSI Prediction and Extrapolation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+CSI becomes outdated between measurement and application due to processing and feedback delay. Sensing can
+mitigate this by:
+
+1. **Doppler-based prediction**: Sensing-estimated Doppler shifts enable prediction of the channel evolution
+   over the feedback delay interval.
+2. **Trajectory-based prediction**: If the UE's position and velocity are tracked via sensing, the gNB can
+   predict the future channel state geometrically.
+
+.. code-block:: text
+
+     CSI Prediction via Sensing
+    ┌──────────────────────────────────────────────────────────────────┐
+    │                                                                  │
+    │   CSI measured          Feedback delay           CSI applied     │
+    │   at time t₀            Δt (stale!)              at time t₁     │
+    │   ────┬──────────────────────────────────────────────┬────       │
+    │       │                                              │           │
+    │       │   Without sensing:  CSI(t₀) used at t₁       │           │
+    │       │   ────────────────▶ ✗ Mismatch              │           │
+    │       │                                              │           │
+    │       │   With sensing:     CSI(t₀) + Doppler info   │           │
+    │       │   ────────────────▶ CSI(t₁) predicted ✓     │           │
+    │       │                                              │           │
+    └──────────────────────────────────────────────────────────────────┘
+
+
+Reduced Feedback Overhead
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By providing channel knowledge at the gNB side, sensing reduces the UE's feedback burden:
+
+- **Reduced codebook search**: The UE can be instructed to search only a subset of the codebook if the gNB
+  provides a hint (e.g., a restricted beam set) based on sensing.
+- **Fewer CSI-RS ports**: If dominant spatial directions are known from sensing, fewer CSI-RS ports are
+  needed for the UE to estimate the residual channel.
+- **Longer CSI-RS periodicity**: With sensing filling the gaps, CSI-RS can be transmitted less frequently.
+
+
+Benefits
+--------
+
+.. list-table:: Benefits of Sensing-Assisted CSI Acquisition
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Benefit
+     - Description
+   * - Reduced feedback latency impact
+     - Sensing-based prediction compensates for CSI aging.
+   * - Lower uplink overhead
+     - Less frequent or smaller CSI reports needed from the UE.
+   * - FDD enablement for massive MIMO
+     - Partial CSI obtained at gNB without full downlink channel sounding.
+   * - Better MU-MIMO scheduling
+     - Sensing-derived spatial information enables more accurate user pairing.
+
+
+Challenges
+----------
+
+- **Monostatic-to-bistatic mapping**: The sensing echo represents the round-trip channel (gNB → scatterer → gNB),
+  which differs from the one-way communication channel (gNB → UE). Mapping between these requires knowledge of
+  the scatterer geometry.
+- **Limited path resolution**: Sensing may not resolve all multipath components, especially weak scattered paths
+  that contribute to the communication channel.
+- **Codebook compatibility**: Existing 3GPP codebook structures (Type I/II) may not be directly amenable to
+  sensing-derived CSI injection; new interfaces or codebook designs may be needed.

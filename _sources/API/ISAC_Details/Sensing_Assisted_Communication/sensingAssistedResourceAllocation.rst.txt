@@ -1,0 +1,133 @@
+Sensing Assisted Resource Allocation for ISAC
+=============================================
+
+Introduction
+------------
+
+Resource allocation in OFDM-based cellular systems involves distributing time-frequency resources (RBs), transmit
+power, spatial layers (MIMO ranks), and MCS across users to maximize system throughput, fairness, or other
+objectives. In conventional systems, the scheduler relies on CSI reports, buffer status reports, QoS requirements,
+and traffic patterns to make allocation decisions.
+
+In an ISAC system, the scheduler must additionally allocate resources for sensing operations while ensuring that
+communication performance is not degraded. Sensing-assisted resource allocation uses information derived from
+sensing — such as target locations, velocities, and environmental awareness — to make **smarter allocation
+decisions** for both communication and sensing.
+
+.. code-block:: text
+
+     Sensing-Assisted Resource Allocation Framework
+    ┌────────────────────────────────────────────────────────────────────────┐
+    │                                                                        │
+    │  ┌───────────────────────────────┐    ┌──────────────────────────────┐  │
+    │  │     Sensing Subsystem         │    │   Communication Subsystem   │  │
+    │  │  ┌──────────┐ ┌────────────┐  │    │  ┌──────────┐ ┌──────────┐ │  │
+    │  │  │ Target   │ │Environment │  │    │  │ CSI      │ │ QoS /    │ │  │
+    │  │  │ Detection│ │ Map        │  │    │  │ Reports  │ │ Traffic  │ │  │
+    │  │  └────┬─────┘ └─────┬──────┘  │    │  └────┬─────┘ └────┬─────┘ │  │
+    │  │       │             │         │    │       │            │       │  │
+    │  └───────┼─────────────┼─────────┘    └───────┼────────────┼───────┘  │
+    │          │             │                      │            │          │
+    │          ▼             ▼                      ▼            ▼          │
+    │  ┌───────────────────────────────────────────────────────────────┐    │
+    │  │                 Joint Resource Scheduler                      │    │
+    │  │  ┌────────────┐  ┌────────────┐  ┌────────────┐              │    │
+    │  │  │ Time-Freq  │  │   Power    │  │  Spatial   │              │    │
+    │  │  │ Allocation │  │ Allocation │  │ Allocation │              │    │
+    │  │  └────────────┘  └────────────┘  └────────────┘              │    │
+    │  └───────────────────────────────────────────────────────────────┘    │
+    │                                                                        │
+    └────────────────────────────────────────────────────────────────────────┘
+
+
+Key Concepts
+------------
+
+Joint Sensing-Communication Resource Partitioning
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ISAC systems must share spectrum between sensing and communication. Several strategies exist:
+
+.. code-block:: text
+
+     Resource Partitioning Strategies
+    ┌────────────────────────────────────────────────────┐
+    │                                                    │
+    │  Strategy 1: Time Division                         │
+    │  ┌──────┬──────┬──────┬──────┬──────┬──────┐       │
+    │  │ Comm │Sense │ Comm │ Comm │Sense │ Comm │       │
+    │  └──────┴──────┴──────┴──────┴──────┴──────┘       │
+    │       Slot 1   Slot 2   Slot 3   Slot 4            │
+    │                                                    │
+    │  Strategy 2: Frequency Division                    │
+    │  ┌──────────────────────────────────────┐          │
+    │  │  Comm RBs    │    Sensing RBs        │          │
+    │  └──────────────────────────────────────┘          │
+    │                                                    │
+    │  Strategy 3: Fully Shared (Dual-Function)          │
+    │  ┌──────────────────────────────────────┐          │
+    │  │     ISAC Waveform (Joint Design)     │          │
+    │  │   Comm + Sensing on same resources   │          │
+    │  └──────────────────────────────────────┘          │
+    │                                                    │
+    └────────────────────────────────────────────────────┘
+
+
+Sensing-Informed Scheduling
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sensing provides environmental awareness that can improve scheduling decisions:
+
+- **User proximity detection**: Sensing can detect UEs or objects near the cell edge, informing inter-cell
+  coordination or scheduling priority adjustments.
+- **Clutter-aware allocation**: Sensing identifies resource blocks heavily affected by clutter; the scheduler
+  can avoid allocating these RBs to interference-sensitive UEs.
+- **Velocity-aware MCS selection**: Sensing-derived velocity information helps the scheduler choose an
+  appropriate MCS that accounts for channel aging within the TTI.
+- **Spatial reuse**: Sensing-derived angular information enables the scheduler to spatially multiplex users
+  in non-overlapping angular regions.
+
+
+Dynamic Sensing Resource Adaptation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The sensing resource budget should adapt based on the sensing task requirements:
+
+- **Target tracking mode**: When targets are being tracked (already detected), fewer sensing resources
+  are needed compared to the initial detection phase.
+- **Event-triggered sensing**: Sensing resources can be allocated on-demand when triggered by communication
+  events (e.g., handover, beam failure) rather than periodically.
+- **QoS-aware trade-off**: The scheduler balances sensing accuracy requirements against communication QoS
+  constraints, allocating sensing resources only when communication headroom permits.
+
+
+Benefits
+--------
+
+.. list-table:: Benefits of Sensing-Assisted Resource Allocation
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Benefit
+     - Description
+   * - Improved spectral efficiency
+     - Environmental awareness leads to better-informed scheduling decisions.
+   * - Adaptive sensing overhead
+     - Sensing resources dynamically scaled based on actual sensing needs.
+   * - Interference-aware scheduling
+     - Clutter and interference maps derived from sensing improve frequency assignment.
+   * - Fairness in ISAC
+     - Balanced resource sharing prevents sensing from starving communication users.
+
+
+Challenges
+----------
+
+- **Optimization complexity**: Joint sensing-communication resource allocation is a multi-objective optimization
+  problem that is generally NP-hard.
+- **Real-time requirements**: Scheduling decisions must be made within sub-millisecond timescales, limiting the
+  complexity of optimization algorithms.
+- **Conflicting objectives**: Maximizing sensing performance (e.g., wide bandwidth, repeated measurements) often
+  conflicts with maximizing communication throughput.
+- **Standardization**: No existing 3GPP framework for joint sensing-communication scheduling; new MAC layer
+  procedures and signaling may be required.

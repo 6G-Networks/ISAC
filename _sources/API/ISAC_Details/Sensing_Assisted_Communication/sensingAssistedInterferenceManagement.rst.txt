@@ -1,0 +1,145 @@
+Sensing Assisted Interference Management for ISAC
+=================================================
+
+Introduction
+------------
+
+Interference management is a cornerstone of cellular network performance. In dense deployments, inter-cell
+interference (ICI), cross-link interference (CLI) in dynamic TDD, and intra-cell multi-user interference all
+limit system capacity. Conventional interference management relies on coordination schemes like ICIC/eICIC,
+CoMP, and IRC receivers, driven by UE measurement reports and network-side traffic predictions.
+
+Sensing-assisted interference management introduces a new dimension: the network can **directly observe the
+physical environment** through sensing, identifying interference sources, reflectors, and blockers. This
+environmental awareness enables more targeted and proactive interference mitigation strategies.
+
+.. code-block:: text
+
+     Sensing-Assisted Interference Management Overview
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │                                                                      │
+    │    ┌──────────────┐                         ┌──────────────────────┐  │
+    │    │   Sensing    │                         │   Interference       │  │
+    │    │   Subsystem  │                         │   Mitigation Engine  │  │
+    │    │              │                         │                      │  │
+    │    │  ● Target    │    Environment    ┌────▶│  ● Spatial nulling   │  │
+    │    │    detection │    awareness      │     │  ● RB avoidance     │  │
+    │    │  ● Clutter   │───────────────────┘     │  ● Power backoff    │  │
+    │    │    mapping   │                         │  ● Coordination     │  │
+    │    │  ● Interferer│                         │                      │  │
+    │    │    localization                         │                      │  │
+    │    └──────────────┘                         └──────────────────────┘  │
+    │                                                                      │
+    └──────────────────────────────────────────────────────────────────────┘
+
+
+Key Concepts
+------------
+
+Interferer Localization via Sensing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sensing can detect and localize sources of interference — including:
+
+- **Neighboring gNBs**: Estimating the angular direction of dominant interfering cells.
+- **Reflectors/scatterers**: Identifying objects that create strong reflected interference paths.
+- **Dynamic blockers**: Detecting moving objects (vehicles, people) that cause time-varying interference.
+
+Once the interferer direction is known, the serving gNB can place spatial nulls in those directions.
+
+.. code-block:: text
+
+     Spatial Interference Nulling Using Sensing
+    ┌──────────────────────────────────────────────────────────────────┐
+    │                                                                  │
+    │        Interfering gNB                                           │
+    │            ●                                                     │
+    │           ╱                                                      │
+    │          ╱  Interference                                         │
+    │         ╱   path (AoA = 45°)                                     │
+    │        ╱                                                         │
+    │   ● Serving gNB                          ● Served UE             │
+    │    ╲                                    ╱                        │
+    │     ╲ Beam pattern with null at 45°    ╱                         │
+    │      ╲                               ╱                           │
+    │       ╲═══════════════════════════▶ ╱  Signal beam               │
+    │                                                                  │
+    │   Sensing detects interferer at 45° → null placed at 45°         │
+    │                                                                  │
+    └──────────────────────────────────────────────────────────────────┘
+
+
+Cross-Link Interference in Dynamic TDD
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In dynamic TDD, when one cell transmits downlink while a neighbor transmits uplink on the same resources,
+cross-link interference (CLI) occurs. Sensing can help by:
+
+1. **Detecting CLI-affected resources**: Sensing identifies time-frequency slots with high clutter/interference.
+2. **gNB-to-gNB sensing**: Direct sensing between gNBs can characterize the CLI channel, enabling
+   pre-cancellation or avoidance.
+3. **Dynamic TDD pattern adaptation**: Sensing-derived interference maps inform TDD pattern selection across
+   coordinated cells.
+
+.. code-block:: text
+
+     Cross-Link Interference Detection via Sensing
+    ┌──────────────────────────────────────────────────────────────────┐
+    │                                                                  │
+    │   Cell A (DL)               Cell B (UL)                          │
+    │   ┌──────┐                  ┌──────┐                             │
+    │   │gNB A │ ═══DL signal═══▶ │gNB B │ ◀── UL from UE_B           │
+    │   │      │ ◀──CLI──────────│      │                             │
+    │   └──────┘  (interferes    └──────┘                             │
+    │             with DL RX                                           │
+    │             at UE_A)                                             │
+    │                                                                  │
+    │   Sensing at gNB A detects CLI from gNB B direction              │
+    │   → Scheduler avoids these RBs or applies IRC                    │
+    │                                                                  │
+    └──────────────────────────────────────────────────────────────────┘
+
+
+Environment-Aware Interference Coordination
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sensing builds an **interference environment map** that captures:
+
+- Static reflectors (buildings, walls) that create persistent interference paths.
+- Dynamic scatterers (vehicles) that cause time-varying interference.
+- Blockage zones where interference is naturally attenuated.
+
+This map enables the scheduler to perform location-specific frequency reuse, adapting the interference
+coordination pattern to the physical environment rather than using static frequency planning.
+
+
+Benefits
+--------
+
+.. list-table:: Benefits of Sensing-Assisted Interference Management
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Benefit
+     - Description
+   * - Proactive interference avoidance
+     - Sensing detects interference sources before they degrade communication.
+   * - Improved spatial nulling
+     - Direct interferer localization enables precise null placement.
+   * - Dynamic TDD optimization
+     - CLI can be predicted and mitigated based on sensing observations.
+   * - Environment-adaptive coordination
+     - Interference management adapts to the physical surroundings.
+
+
+Challenges
+----------
+
+- **Sensing-interference separation**: Distinguishing between sensing echoes and interference requires careful
+  signal processing, especially when both occupy the same time-frequency resources.
+- **Multi-cell sensing coordination**: Effective interference management may require sensing information exchange
+  between cells, increasing signaling overhead.
+- **Computational cost**: Real-time interference environment mapping and spatial null computation add processing
+  requirements at the gNB.
+- **Calibration sensitivity**: Spatial nulling accuracy depends on precise antenna array calibration; calibration
+  errors reduce null depth and interference suppression effectiveness.

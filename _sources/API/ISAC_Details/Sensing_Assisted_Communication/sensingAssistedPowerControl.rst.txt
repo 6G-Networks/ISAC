@@ -1,0 +1,137 @@
+Sensing Assisted Power Control for ISAC
+=======================================
+
+Introduction
+------------
+
+Power control in cellular systems adjusts the transmit power of the gNB (downlink) and UE (uplink) to manage
+interference, satisfy QoS targets, and maximize energy efficiency. In 5G NR, downlink power control is managed
+by the gNB scheduler, while uplink power control uses open-loop (path-loss based) and closed-loop (TPC commands)
+mechanisms.
+
+Conventional power control relies on UE measurements (RSRP, path loss estimates) and CQI/SINR feedback. These
+measurements are periodic and subject to reporting delays. Sensing-assisted power control uses **real-time
+environmental information from sensing** — such as target distances, angular positions, blockage detection, and
+interference source locations — to make faster and more accurate power control decisions.
+
+.. code-block:: text
+
+     Sensing-Assisted Power Control Architecture
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │                                                                      │
+    │   ┌───────────────┐    ┌────────────────────┐    ┌────────────────┐  │
+    │   │   Sensing     │    │   Environment       │    │   Power        │  │
+    │   │   Echoes      │───▶│   Awareness         │───▶│   Control      │  │
+    │   │               │    │                      │    │   Engine       │  │
+    │   └───────────────┘    │  ● Distance to UE   │    │                │  │
+    │                        │  ● Blockage status   │    │  ● DL Tx power│  │
+    │   ┌───────────────┐    │  ● Interferer locs   │    │  ● UL TPC     │  │
+    │   │   UE Reports  │───▶│  ● Reflector map     │    │  ● Per-beam   │  │
+    │   │   (CQI, RSRP) │    │                      │    │    power      │  │
+    │   └───────────────┘    └────────────────────┘    └────────────────┘  │
+    │                                                                      │
+    └──────────────────────────────────────────────────────────────────────┘
+
+
+Key Concepts
+------------
+
+Distance-Based Path Loss Estimation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sensing provides a direct range estimate to the target. Combined with a path loss model, this gives an
+instantaneous path loss estimate without waiting for UE RSRP reports:
+
+.. math::
+
+   PL(d) = PL(d_0) + 10 \cdot n \cdot \log_{10}\left(\frac{d}{d_0}\right) + X_\sigma
+
+where :math:`d` is the sensing-derived distance, :math:`n` is the path loss exponent, and :math:`X_\sigma`
+is shadow fading. The sensing-derived distance bypasses the need for UE-reported RSRP to estimate path loss
+for open-loop power control.
+
+
+Blockage-Aware Power Adaptation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sensing can detect blockage events — sudden appearance of an obstacle between the gNB and UE — before they
+fully impact the communication link:
+
+.. code-block:: text
+
+     Blockage Detection and Power Adaptation
+    ┌──────────────────────────────────────────────────────────────────┐
+    │                                                                  │
+    │   Time t₀: No blockage                                          │
+    │   ┌──────┐ ════════════════════════════════════ ┌──────┐         │
+    │   │ gNB  │  LOS path (normal power)             │  UE  │         │
+    │   └──────┘                                      └──────┘         │
+    │                                                                  │
+    │   Time t₁: Sensing detects approaching blocker                   │
+    │   ┌──────┐ ═══════ ▓▓▓(blocker)══════════════ ┌──────┐          │
+    │   │ gNB  │  Echo from blocker detected          │  UE  │          │
+    │   └──────┘  → Increase power proactively        └──────┘          │
+    │                                                                  │
+    │   Time t₂: Without sensing (reactive)                            │
+    │   ┌──────┐ ═══════ ▓▓▓══X (link drop!) ═════ ┌──────┐          │
+    │   │ gNB  │  CQI drops → power up (too late!)   │  UE  │          │
+    │   └──────┘                                      └──────┘          │
+    │                                                                  │
+    └──────────────────────────────────────────────────────────────────┘
+
+
+Interference-Aware Power Setting
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When sensing identifies the location and direction of interference sources, the gNB can:
+
+- **Reduce power towards interferer directions** to minimize interference caused to neighboring cells.
+- **Increase power towards the UE** when sensing confirms no interference risk in that direction.
+- **Per-beam power control**: In multi-beam systems, each beam's power can be independently set based on
+  the sensing-derived interference map.
+
+
+Uplink Power Control Enhancement
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For uplink, sensing assists in:
+
+- **Path loss estimation without RSRP**: The gNB estimates the UE's path loss from the sensing-derived
+  range, reducing the dependency on DL reference signal measurements.
+- **Fractional power control optimization**: The fractional power control parameter :math:`\\alpha` can be
+  adapted based on sensing-derived inter-cell interference geometry.
+- **Timing advance from range**: Sensing-derived range directly maps to timing advance, eliminating the
+  need for RACH-based TA estimation.
+
+
+Benefits
+--------
+
+.. list-table:: Benefits of Sensing-Assisted Power Control
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Benefit
+     - Description
+   * - Proactive power adaptation
+     - Blockage and path changes detected before communication is affected.
+   * - Faster convergence
+     - Sensing-derived path loss avoids the slow convergence of closed-loop power control.
+   * - Reduced interference
+     - Interference-aware per-beam power control reduces inter-cell interference.
+   * - Energy efficiency
+     - Accurate path loss knowledge avoids over-provisioning transmit power.
+
+
+Challenges
+----------
+
+- **Path loss model accuracy**: Sensing provides distance but the path loss depends on the propagation
+  environment (LOS/NLOS, frequency, clutter). The mapping from distance to path loss requires a well-
+  calibrated model.
+- **Blockage detection latency**: The sensing processing pipeline must be fast enough to detect blockage
+  and trigger power adaptation before the communication link degrades.
+- **UE identification**: Associating a sensing-detected target with a specific UE for per-UE power
+  control requires additional context (e.g., beam correspondence, timing advance matching).
+- **Regulatory constraints**: Increasing power proactively based on sensing predictions must still comply
+  with regulatory EIRP limits and SAR constraints.
