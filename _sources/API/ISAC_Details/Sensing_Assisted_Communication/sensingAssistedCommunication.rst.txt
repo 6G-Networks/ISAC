@@ -7,42 +7,35 @@ Motivation
 The central promise of Integrated Sensing and Communication (ISAC) is not merely the coexistence of radar-like
 sensing and data communication on a shared spectrum, but the **mutual enhancement** of one functionality by the
 other. Sensing-assisted communication (SAC) is the paradigm in which information extracted by the sensing
-subsystem — target positions, velocities, angles, environmental geometry — is fed back into the communication
+subsystem, such as target positions, velocities, angles, environmental geometry, is fed back into the communication
 subsystem to improve its performance in terms of throughput, latency, reliability, overhead, and energy
 efficiency.
 
-In conventional 5G NR, the communication subsystem operates in a largely self-contained loop: the gNB transmits
-reference signals, the UE measures the channel, compresses the measurement into a codebook-based report, and feeds
-it back to the gNB which then decides on precoding, scheduling, power control, and mobility actions. Every step in
-this loop costs overhead (reference signal resources, UE processing, uplink feedback capacity, decision latency).
-Sensing-assisted communication short-circuits parts of this loop by providing the gNB with **direct, real-time
-physical-layer knowledge** about the propagation environment and the targets within it.
+In conventional 5G NR, the communication subsystem operates in a largely self-contained loop: 
 
-.. code-block:: text
+1. the gNB transmits reference signals, 
+2. the UE measures the channel, compresses the measurement into a codebook-based report, and 
+3. feeds it back to the gNB
+4. gNB then decides on precoding, scheduling, power control, and mobility actions. 
 
-     Conventional Communication Loop vs. Sensing-Assisted Short-Circuit
-    ┌─────────────────────────────────────────────────────────────────────────┐
-    │                                                                         │
-    │  Conventional loop (high overhead, reactive):                           │
-    │                                                                         │
-    │  ┌──────┐  CSI-RS   ┌──────┐  Measure  ┌──────┐  Feedback   ┌──────┐   │
-    │  │ gNB  │──────────▶│  UE  │──────────▶│  UE  │────────────▶│ gNB  │   │
-    │  │      │           │      │           │Encode│             │Decide│   │
-    │  └──┬───┘           └──────┘           └──────┘             └──┬───┘   │
-    │     │                                                          │       │
-    │     │◀─────────────── Latency Δt ────────────────────────────▶│       │
-    │     │                                                          │       │
-    │  Sensing-assisted short-circuit (low overhead, proactive):      │       │
-    │                                                                 │       │
-    │  ┌──────┐  Tx + Echo  ┌──────────────┐  Sensing info  ┌───────▼─────┐ │
-    │  │ gNB  │────────────▶│  Sensing     │───────────────▶│ Communication│ │
-    │  │      │◀────────────│  Processing  │                │ Decision     │ │
-    │  └──────┘  (self-Rx)  └──────────────┘                │ Engine       │ │
-    │                                                        └─────────────┘ │
-    │     No UE cooperation needed for sensing path                          │
-    │                                                                         │
-    └─────────────────────────────────────────────────────────────────────────┘
+.. image:: images/Communication_Block_Diagram.png
+  :width: 560
+  :alt: Receiver reported based Communication Loop
+  :align: center
+|
 
+Every step in this loop costs overhead (reference signal resources, UE processing, uplink feedback capacity, decision latency).
+Sensing-assisted communication short-circuits parts of this loop by providing the gNB with **direct, real-time physical-layer 
+knowledge** about the propagation environment and the targets within it. This sensing information not only allows the gNB to 
+estimate the information required for communication at the moment but also gives it predictive insight into how the channel will 
+evolve, enabling proactive adaptation rather than reactive response.
+
+
+.. image:: images/SAC_Block_Diagram.png
+  :width: 700
+  :alt: Sensing Assisted Communication Block Diagram
+  :align: center
+|
 
 System Model
 ------------

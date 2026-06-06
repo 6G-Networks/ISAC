@@ -82,8 +82,8 @@ of 6G networks are detailed in the following table:
 +-------------------+--------------------------------+-------------------------------------------+    
 
 
-.. image:: _static/Why-6G.svg
-  :width: 800
+.. image:: _static/Why-6G.png
+  :width: 700
   :alt: Alternative text
 
 
