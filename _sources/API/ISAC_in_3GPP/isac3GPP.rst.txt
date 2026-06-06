@@ -10,10 +10,28 @@ of the documents. Please check the version of the document before referring to i
 5G-New Radio Tracks
 ---------------------
 
+The details of work carried out in 3GPP related to ISAC in 5G-New Radio are as follows:
+
 - Stage-1/SA1 (Service Requirements): `TR 22.837 Release-19  Study on Integrated Sensing and Communication <https://www.3gpp.org/ftp/Specs/archive/22_series/22.837/22837-j40.zip>`_
 - Stage-1/SA1: `3GPP TS 22.137 Release-19 Integrated Sensing and Communication <https://www.3gpp.org/ftp/Specs/archive/22_series/22.137/22137-j10.zip>`_.
 - ISAC Channel Model: `TR 3GPP 38.901 (version later than 19.3.0) <https://www.3gpp.org/ftp/Specs/archive/38_series/38.901/>`_.
 - RAN1/RAN2/RAN3: `3GPP TR 38.765: Study on Integrated Sensing and Communication (ISAC) for NR Release-20 <https://www.3gpp.org/ftp/Specs/archive/38_series/38.765/38765-100.zip>`_.
+
+
+ISAC Work in 5G-NR: Release-19
+*********************************
+
+The work related to ISAC in 5G-New Radio started in Release-19 with focus on primarily two aspects: 
+1. ISAC usecases and requirements in **SA-WG1**, and 
+2. ISAC channel modeling in **RAN-WG1**.
+
+ISAC Work in 5G-NR: Release-20
+*********************************
+
+The work related to ISAC in 5G-New Radio started in Release-19 with focus on primarily two aspects: 
+1. ISAC for gNB based Monostatic Sensing in **RAN-WG1**, 
+2. Radio Access Network Architecture for ISAC in **RAN-WG3**, and
+3. System Architecture for ISAC in **SA-WG2**.
 
 
 6G Track
