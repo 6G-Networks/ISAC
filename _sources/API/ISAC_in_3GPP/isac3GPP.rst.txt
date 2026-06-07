@@ -2,13 +2,164 @@
 ISAC in 3GPP
 ==============================================
 
+
+1. ISAC Standardization in 5G
+-----------------------------
+
+1.1 Use-case Identification of ISAC in 3GPP
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The standardization of Integrated Sensing and Communication (ISAC) within the
+3rd Generation Partnership Project (3GPP) was initiated in February 2022.
+The primary objective was to enable sensing functionalities using 5G New Radio (NR)
+infrastructure. Initial work in the Service and System Aspects (SA1) Working Group
+focused on identifying use cases and defining system requirements, covering both
+network-based and user equipment (UE)-based sensing.
+
+These early efforts established a foundation by outlining applications and
+requirements needed to extend 5G systems for ISAC services across multiple
+domains and industries.
+
+1.1.1 Object Detection and Tracking
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A fundamental ISAC capability enabling:
+
+- Intrusion detection in homes and industries
+- UAV detection and monitoring
+- Crowd tracking for public safety
+
+1.1.2 Transportation and Navigation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Applications include:
+
+- Collision avoidance for UAVs, vehicles, and AGVs
+- Trajectory tracking and navigation support
+- Parking and location-based services
+
+1.1.3 Environmental Monitoring
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Use cases include:
+
+- Flood and rainfall monitoring
+- Disaster management and rescue operations
+- Smart agriculture
+
+1.1.4 Human-Centric Sensing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Applications include:
+
+- Healthcare and vital signs monitoring
+- Activity recognition
+- Gesture recognition
+- Sports and fitness tracking
+
+1.1.5 Public Safety and Security (B2G Applications)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ISAC enables several government-focused applications, including:
+
+- UAV detection as an early warning system
+- Monitoring of critical infrastructure
+- Crowd management to prevent emergencies
+
+
+1.2 Channel Modeling and Technical Enhancements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In December 2023, a channel modeling study was initiated within the RAN1 Working
+Group to develop models suitable for sensing applications, particularly object
+detection and tracking.
+
+The study covered various targets such as UAVs, vehicles, humans, and hazardous
+materials across multiple sensing modes and frequency bands ranging from
+0.5 GHz to 52.6 GHz. Enhancements to existing 3GPP channel models included:
+
+- Radar Cross Section (RCS)
+- Mobility characteristics
+- Spatial consistency
+
+These improvements help accurately represent real-world sensing scenarios.
+
+1.3 ISAC Support in Existing 5G Systems
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Although ISAC is not inherently standardized in 5G, sensing functionalities can
+be supported through firmware or hardware adaptations. This is achieved by reusing
+existing 5G reference signals, including:
+
+- Demodulation Reference Signal (DMRS)
+- Sounding Reference Signal (SRS)
+- Channel State Information Reference Signal (CSI-RS)
+- Positioning Reference Signal (PRS)
+
+These signals can serve dual purposes for both communication and sensing. Several
+proof-of-concept implementations by academia and industry have demonstrated the
+feasibility of this approach.
+
+1.4 Evolution Toward 5G Advanced
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ISAC capabilities are expected to progress significantly in 5G Advanced
+(Release 20). Key anticipated developments include:
+
+- Base station (BS) monostatic sensing
+- Potential BS-to-BS bistatic sensing
+- Support for UAV detection using existing NR waveforms
+
+These advancements aim to enable practical sensing solutions, particularly for
+security and surveillance use cases.
+
+2. ISAC Standardization in 6G
+-----------------------------
+
+2.1 Formal Inclusion in 6G Standardization
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ISAC has been recognized as a fundamental component of future 6G systems.
+During the 3GPP 6G workshop in March 2025, ISAC was identified as a key enabler
+for advanced services such as extended reality (XR) and AI-driven applications.
+
+A major milestone occurred in June 2025 at the 3GPP RAN #108 meeting, where ISAC
+was officially included in the 6G study scope, establishing it as a "Day 1"
+feature of 6G.
+
+2.2 Vision and Core Capabilities in 6G
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In 6G, ISAC is expected to evolve into a core network functionality that tightly
+integrates communication and sensing. Key research directions include:
+
+- Development of sensing-optimized waveforms
+- Adaptive and flexible resource scheduling
+- Joint communication and sensing optimization
+- AI-driven sensing and data fusion mechanisms
+
+2.3 Advanced Sensing Architectures
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+6G is expected to introduce advanced sensing architectures such as:
+
+- Multi-base station coordination to reduce interference
+- Multi-static sensing involving multiple transmitters and receivers
+- Active participation of user equipment (UE) in sensing tasks
+
+These architectures will enhance sensing accuracy, coverage, and reliability.
+
+2.4 Expanded Use Cases and Applications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+6G ISAC is expected to support a wide range of advanced applications, including:
+
+- High-resolution environmental mapping
+- Fully autonomous transportation systems
+- Smart cities and infrastructure monitoring
+- Industrial automation
+- Immersive extended reality (XR) environments
+
+
+
+
+3. References and 3GPP Documents
+----------------------------------
+
 The following table provides the URL of the 3GPP documents related to ISAC and some useful 
 references for each ISAC feature. The table will be updated as and when new documents are 
 released by 3GPP and new references are added. The link are attached from the latest version
 of the documents. Please check the version of the document before referring to it.
 
-5G-New Radio Tracks
----------------------
+3.1 References: 5G
+~~~~~~~~~~~~~~~~~~~
 
 The details of work carried out in 3GPP related to ISAC in 5G-New Radio are as follows:
 
@@ -22,20 +173,25 @@ ISAC Work in 5G-NR: Release-19
 *********************************
 
 The work related to ISAC in 5G-New Radio started in Release-19 with focus on primarily two aspects: 
+
 1. ISAC usecases and requirements in **SA-WG1**, and 
 2. ISAC channel modeling in **RAN-WG1**.
 
 ISAC Work in 5G-NR: Release-20
 *********************************
 
-The work related to ISAC in 5G-New Radio started in Release-19 with focus on primarily two aspects: 
+The work related to ISAC in 5G-New Radio started in Release-1920 with focus on primarily two aspects: 
+
 1. ISAC for gNB based Monostatic Sensing in **RAN-WG1**, 
 2. Radio Access Network Architecture for ISAC in **RAN-WG3**, and
 3. System Architecture for ISAC in **SA-WG2**.
 
 
-6G Track
-------------
+3.2 References: 6G
+~~~~~~~~~~~~~~~~~~~
+
+ISAC Work in 6G: Release-20
+*********************************
 
 - Stage-2/SA2 (System Architecture): `3GPP TS 23.137, Integrated Sensing and Communication; Stage 2 Release 20 <https://www.3gpp.org/ftp/Specs/archive/23_series/23.137/23137-020.zip>`_.
 - Stage-2/SA2 (System Architecture): `3GPP TR 23.700-14, Study on Architecture Enhancement to Support Integrated Sensing and Communication Stage 2 / SA2 (System Architecture) <https://www.3gpp.org/ftp/Specs/archive/23_series/23.700-14/23700-14-k00.zip>`_.
