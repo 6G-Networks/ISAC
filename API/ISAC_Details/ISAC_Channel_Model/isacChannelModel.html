@@ -21,6 +21,8 @@
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../../../_static/copybutton.js?v=f281be69"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -91,7 +93,22 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../ISAC_details.html">Integrated Sensing and Communications</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ISAC Channel Model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ISAC Channel Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#channel-modelling-discussions-and-progress-in-3gpp">1. Channel Modelling Discussions and Progress in 3GPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gpp-isac-channel-model">2. 3GPP ISAC Channel Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#i-introduction-and-standardization-timeline">I. Introduction and Standardization Timeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ii-isac-deployment-scenarios-and-evaluation-parameters">II. ISAC Deployment Scenarios and Evaluation Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iii-mathematical-framework-and-channel-modeling-methodologies">III. Mathematical Framework and Channel Modeling Methodologies</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#core-channel-decomposition-and-power-normalization">Core Channel Decomposition and Power Normalization</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#target-channel-modeling-and-radar-cross-section-rcs-characterization">Target Channel Modeling and Radar Cross Section (RCS) Characterization</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#background-channel-modeling-and-specialized-features">Background Channel Modeling and Specialized Features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#references">3. References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../ISAC_System_Design/isacSystemDesign.html">ISAC System Design Aspects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../RS_Design/referenceSignalDesign.html">Reference Signal Design for ISAC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ISAC_Waveform/isacWaveform.html">ISAC Waveform Design</a></li>
@@ -227,6 +244,374 @@
              
   <section id="isac-channel-model">
 <h1>ISAC Channel Model<a class="headerlink" href="#isac-channel-model" title="Link to this heading"></a></h1>
+<section id="channel-modelling-discussions-and-progress-in-3gpp">
+<h2>1. Channel Modelling Discussions and Progress in 3GPP<a class="headerlink" href="#channel-modelling-discussions-and-progress-in-3gpp" title="Link to this heading"></a></h2>
+<p>The following table [5] provides a summary of the discussions and progress related to ISAC channel modeling in 3GPP:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" rowspan="2"><p>RAN1 Research</p></th>
+<th class="head" rowspan="2"><p># 116</p>
+<p>Feb 2024</p>
+</th>
+<th class="head" rowspan="2"><p>#116bis</p>
+<p>Apr 2024</p>
+</th>
+<th class="head" rowspan="2"><p># 117</p>
+<p>May 2024</p>
+</th>
+<th class="head" rowspan="2"><p># 118</p>
+<p>Aug 2024</p>
+</th>
+<th class="head" rowspan="2"><p>#118bis</p>
+<p>Oct 2024</p>
+</th>
+<th class="head" rowspan="2"><p># 119</p>
+<p>Nov 2024</p>
+</th>
+<th class="head" rowspan="2"><p># 120</p>
+<p>Feb 2025</p>
+</th>
+<th class="head" rowspan="2"><p>#120bis</p>
+<p>Apr 2025</p>
+</th>
+<th class="head" rowspan="2"><p># 121</p>
+<p>May 2025</p>
+</th>
+</tr>
+<tr class="row-even"></tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="4"><p>Deployment scenario</p>
+<p>and calibration</p>
+</td>
+<td rowspan="4"><p>Prioritised</p>
+<p>UAV, AGV,</p>
+<p>eVTOL</p>
+<p>scenarios</p>
+</td>
+<td rowspan="4"><p>Evaluation</p>
+<p>templates</p>
+<p>for sensing</p>
+<p>scenarios</p>
+</td>
+<td rowspan="4"><p>Evaluation</p>
+<p>parameters</p>
+<p>for UAV</p>
+<p>defined</p>
+</td>
+<td rowspan="4"><p>Evaluation</p>
+<p>parameters</p>
+<p>for UAV</p>
+<p>defined</p>
+</td>
+<td rowspan="4"><p>Evaluation</p>
+<p>tables</p>
+<p>for UAV</p>
+<p>use cases</p>
+</td>
+<td rowspan="4"><p>Evaluation</p>
+<p>tables</p>
+<p>updated</p>
+</td>
+<td rowspan="4"><p>Simulation</p>
+<p>assumptions</p>
+<p>for large</p>
+<p>scale cal.</p>
+</td>
+<td rowspan="4"><p>Calibration</p>
+<p>scenarios</p>
+<p>(UAV only)</p>
+</td>
+<td rowspan="4"><p>Calibration</p>
+<p>scenarios</p>
+<p>(e.g.,</p>
+<p>consistency)</p>
+</td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="4"><p>Channel framework</p></td>
+<td rowspan="4"><p>H-ISAC =</p>
+<p>H-target +</p>
+<p>H-Background</p>
+</td>
+<td rowspan="4"></td>
+<td rowspan="4"></td>
+<td rowspan="4"></td>
+<td rowspan="4"></td>
+<td rowspan="4"><p>Models</p>
+<p>incl.</p>
+<p>target &amp;</p>
+<p>background</p>
+</td>
+<td rowspan="4"><p>Discussion</p>
+<p>on ex. TRs</p>
+<p>for TRP</p>
+</td>
+<td rowspan="4"><p>Discussion</p>
+<p>on ex. TRs</p>
+<p>for prep</p>
+<p>cases</p>
+</td>
+<td rowspan="4"><p>Power</p>
+<p>normalisation</p>
+<p>approach</p>
+<p>discussed</p>
+</td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>Physical object</p>
+<p>model</p>
+</td>
+<td rowspan="2"></td>
+<td rowspan="2"><p>ST model</p>
+<p>defined</p>
+</td>
+<td rowspan="2"><p>RCS</p>
+<p>models</p>
+</td>
+<td rowspan="2"><p>RCS</p>
+<ul class="simple">
+<li><p>impacts</p></li>
+</ul>
+</td>
+<td rowspan="2"><p>RCS</p>
+<p>extensions</p>
+</td>
+<td rowspan="2"><p>Monostatic</p>
+<p>RCS</p>
+</td>
+<td rowspan="2"><p>A*B^2</p>
+<p>model</p>
+</td>
+<td rowspan="2"><p>Bistatic</p>
+<p>RCS</p>
+</td>
+<td rowspan="2"><p>Last WAs</p>
+<p>confirmed</p>
+</td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>Target channel</p></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"><p>Target</p>
+<p>channel</p>
+</td>
+<td rowspan="2"><p>DL models</p>
+<p>for channel</p>
+</td>
+<td rowspan="2"><p>Correlation</p>
+<p>coupling</p>
+</td>
+<td rowspan="2"><p>Power</p>
+<p>scaling</p>
+</td>
+<td rowspan="2"></td>
+<td rowspan="2"><p>Power</p>
+<p>threshold</p>
+</td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>Background channel</p></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"><p>Existing</p>
+<p>TRs start</p>
+</td>
+<td rowspan="2"><p>Threshold</p>
+<p>set for</p>
+</td>
+<td rowspan="2"><p>Drop N</p>
+<p>RPs</p>
+</td>
+<td rowspan="2"><p>Drop N +</p>
+<p>clustering</p>
+</td>
+<td rowspan="2"><p>μp=3 RPs</p>
+<p>from Gamma</p>
+</td>
+<td rowspan="2"><p>Values of</p>
+<p>UT/UST</p>
+</td>
+<td rowspan="2"></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>Spatial consistency</p></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"><p>Discussed</p></td>
+<td rowspan="2"></td>
+<td rowspan="2"><p>1x host</p>
+<p>UAV scen.</p>
+</td>
+<td rowspan="2"><p>Reuse TR</p>
+<p>model</p>
+</td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>EO</p></td>
+<td rowspan="2"></td>
+<td rowspan="2"><p>Preliminary</p>
+<p>discussion</p>
+</td>
+<td rowspan="2"><p>Consider</p>
+<p>spatial</p>
+</td>
+<td rowspan="2"><p>Existing</p>
+<p>TRs</p>
+</td>
+<td rowspan="2"><p>EO type-1</p>
+<p>defined</p>
+</td>
+<td rowspan="2"><p>EO type-2</p>
+<p>defined</p>
+</td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>Doppler</p></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"><p>Doppler</p>
+<p>equation</p>
+</td>
+<td rowspan="2"></td>
+<td rowspan="2"><p>Placeholder</p>
+<p>in draft</p>
+</td>
+<td rowspan="2"></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>Blockage</p></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"></td>
+<td rowspan="2"><p>Considered</p>
+<p>but limited</p>
+</td>
+<td rowspan="2"></td>
+<td rowspan="2"><p>Reuse TR</p>
+<p>ST-SK</p>
+</td>
+<td rowspan="2"></td>
+</tr>
+<tr class="row-even"></tr>
+</tbody>
+</table>
+</section>
+<section id="gpp-isac-channel-model">
+<h2>2. 3GPP ISAC Channel Model<a class="headerlink" href="#gpp-isac-channel-model" title="Link to this heading"></a></h2>
+<section id="i-introduction-and-standardization-timeline">
+<h3>I. Introduction and Standardization Timeline<a class="headerlink" href="#i-introduction-and-standardization-timeline" title="Link to this heading"></a></h3>
+<p>To mitigate the limitations of conventional communication-centric channel models in evaluating Integrated Sensing and Communication (ISAC) systems, the 3GPP Technical Specification Group (TSG) Radio Access Network (RAN) approved a dedicated Study Item (SI), titled <em>“Study on channel modelling for ISAC for NR,”</em> during the RAN #102 plenary meeting in December 2023 [50]. The primary technical mandate was assigned to RAN Working Group 1 (RAN1), which is responsible for physical layer specifications. The objective of this SI was to develop a standardized channel modeling framework capable of supporting link- and system-level evaluations for representative ISAC deployment scenarios and use cases. The scope was partitioned into two primary core work items:</p>
+<ol class="arabic simple">
+<li><p>ISAC deployment scenarios and calibration.</p></li>
+<li><p>ISAC channel modeling methodologies.</p></li>
+</ol>
+<p>Technical deliberations commenced at the RAN1 #116 meeting (February 2024) and concluded at the RAN1 #121 meeting (May 2025). The standardization process spanned nine formal sessions—including intermediate tracking sessions (#116, #116bis, #117, #118, #118bis, #119, #120, #120bis, and #121)—complemented by offline interactive sessions and dedicated email rapporteur discussions. The chronological progression and major milestones are illustrated in Fig. 3 [51]. This collective standardization effort culminated in the formal integration of the finalized ISAC channel model into the 3GPP TR 38.901 V19.0.0 release specification [23].</p>
+</section>
+<section id="ii-isac-deployment-scenarios-and-evaluation-parameters">
+<h3>II. ISAC Deployment Scenarios and Evaluation Parameters<a class="headerlink" href="#ii-isac-deployment-scenarios-and-evaluation-parameters" title="Link to this heading"></a></h3>
+<p>To establish a foundational baseline, the evaluation framework adopts established communication topologies and specifies baseline Sensing Targets (STs). Formally ratified at the RAN1 #116 meeting, these baseline targets include Unmanned Aerial Vehicles (UAVs), indoor and outdoor human targets, automotive vehicles (primarily for outdoor environments), Automated Guided Vehicles (AGVs) operating within indoor factory environments, and road/railway hazard obstructions as defined in 3GPP TR 22.837. Within these deployment scenarios, any arbitrary Transmit-Receive Point (TRP) or User Terminal (UT) spatial coordinate can be designated as a sensing transmitter (<span class="math notranslate nohighlight">\(\text{Tx}\)</span>) or sensing receiver (<span class="math notranslate nohighlight">\(\text{Rx}\)</span>), thereby natively supporting monostatic, bistatic, and multistatic sensing topologies.</p>
+<p>From the RAN1 #116bis through the RAN1 #119 meetings, the working group systematically finalized the evaluation parameter profiles for these standardized STs. The standardized parameter spaces are categorized into the following six core dimensions:</p>
+<ul class="simple">
+<li><p><strong>Applicable Communication Scenarios:</strong> Specification of the baseline propagation environments (e.g., Urban Micro-cellular (UMi), Urban Macro-cellular (UMa), Indoor Factory (InF), and Indoor Office (InO)).</p></li>
+<li><p><strong>Sensing Transceiver Properties:</strong> Architectural configurations of the sensing <span class="math notranslate nohighlight">\(\text{Tx}\)</span> and <span class="math notranslate nohighlight">\(\text{Rx}\)</span> nodes, including antenna array geometries, polarization characteristics, radiation patterns, and maximum equivalent isotropically radiated power (EIRP).</p></li>
+<li><p><strong>Sensing Target (ST) Kinematic and Physical Attributes:</strong> Specification of Line-of-Sight (LoS)/Non-Line-of-Sight (NLoS) propagation conditions relative to the cluttered background, structural dimensionality (2D or 3D mobility profiles and spatial distributions), instantaneous orientation vectors, and physical geometric dimensions (e.g., cross-sectional bounds and volumetric profiles).</p></li>
+<li><p><strong>Minimum 3D Geometric Displacements (Nodes to Target):</strong> Boundary conditions defining the minimum permissible 3D spatial separation between any <span class="math notranslate nohighlight">\(\text{Tx}/\text{Rx}\)</span> pair and the operational ST to ensure the validity of far-field propagation assumptions.</p></li>
+<li><p><strong>Minimum Inter-Target 3D Spatial Displacements:</strong> Proximity constraints establishing the minimum 3D distance between adjacent co-existing STs to prevent unmodeled near-field electromagnetic interactions.</p></li>
+<li><p><strong>Environmental Objects (EO) and Clutter Field Properties (Optional):</strong> Parameter vectors characterizing the density, material composition, spatial distribution, and mobility statistics of surrounding environmental macro-scatterers acting as static or dynamic clutter.</p></li>
+</ul>
+<p>The numerical quantification and continuous updates of these parameter spaces are structurally aligned with TR 38.901 [23]. To maintain backward compatibility and empirical accuracy, specific sub-scenarios integrate specialized parameter boundaries from supplementary 3GPP Technical Reports:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{Parameter Blending Source} = \begin{cases} \text{TR 36.777 [52]} &amp; \text{Aerial UT / UAV Deployments} \\ \text{TR 38.808 [53]} &amp; \text{Indoor Room Environments} \\ \text{TR 37.885 [54], TR 38.859 [55]} &amp; \text{Automotive Urban Grid and Highway Topologies} \end{cases}\end{split}\]</div>
+<p>These configured parameter matrices are directly applicable to Monte Carlo system-level simulations. For network calibration phases, system topologies must configure a pre-defined, deterministic percentage of sensing-capable TRPs and UTs to maintain statistical consistency across independent simulators.</p>
+</section>
+<section id="iii-mathematical-framework-and-channel-modeling-methodologies">
+<h3>III. Mathematical Framework and Channel Modeling Methodologies<a class="headerlink" href="#iii-mathematical-framework-and-channel-modeling-methodologies" title="Link to this heading"></a></h3>
+<section id="core-channel-decomposition-and-power-normalization">
+<h4>Core Channel Decomposition and Power Normalization<a class="headerlink" href="#core-channel-decomposition-and-power-normalization" title="Link to this heading"></a></h4>
+<p>In contrast to the purely communication-centric paradigms in 3GPP TR 38.901 V18.0.0, the ISAC channel modeling framework approved at the RAN1 #116 meeting decomposes the joint propagation environment. Let <span class="math notranslate nohighlight">\(\mathbf{H}_{\text{ISAC}}(t, \tau) \in \mathbb{C}^{N_{\text{Rx}} \times N_{\text{Tx}}}\)</span> represent the time-varying, delay-dependent Multiple-Input Multiple-Output (MIMO) channel matrix, expressed as:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{H}_{\text{ISAC}}(t, \tau) = \mathbf{H}_{\text{target}}(t, \tau) + \mathbf{H}_{\text{background}}(t, \tau)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{H}_{\text{target}}(t, \tau)\)</span> represents the target channel matrix containing all multipath components (MPCs) interacting with, scattering from, or diffracted by the designated ST(s). Conversely, <span class="math notranslate nohighlight">\(\mathbf{H}_{\text{background}}(t, \tau)\)</span> isolates all background environmental MPCs that propagate independently of the STs. This additive formulation natively accommodates multi-static sensing: a single sensing <span class="math notranslate nohighlight">\(\text{Tx}\)</span>-<span class="math notranslate nohighlight">\(\text{Rx}\)</span> pair can concurrently track multiple discrete STs via superposition within a shared spatial volume, and a single ST can be explicitly modeled within the distinct cross-channel matrices of multiple distributed <span class="math notranslate nohighlight">\(\text{Tx}\)</span>-<span class="math notranslate nohighlight">\(\text{Rx}\)</span> processing pairs.</p>
+<p>To prevent the artificial inflation of total radiated energy when stochastically instantiating independent target and background channel paths, a power normalization framework is required. The total channel power must comply with large-scale pathloss models through a conservation scaling factor <span class="math notranslate nohighlight">\(\eta\)</span>, bounded by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}\left[ \|\mathbf{H}_{\text{ISAC}}(t, \tau)\|_F^2 \right] = \eta \left( \mathbb{E}\left[ \|\mathbf{H}_{\text{target}}(t, \tau)\|_F^2 \right] + \mathbb{E}\left[ \|\mathbf{H}_{\text{background}}(t, \tau)\|_F^2 \right] \right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\|\cdot\|_F\)</span> denotes the Frobenius norm. While the exact allocation of the scaling scalar <span class="math notranslate nohighlight">\(\eta\)</span> was maintained via a technical placeholder during early sessions, its parameterization relies on empirical path-loss scaling bounds derived from the specific clutter environment.</p>
+</section>
+<section id="target-channel-modeling-and-radar-cross-section-rcs-characterization">
+<h4>Target Channel Modeling and Radar Cross Section (RCS) Characterization<a class="headerlink" href="#target-channel-modeling-and-radar-cross-section-rcs-characterization" title="Link to this heading"></a></h4>
+<p>During the RAN1 #116bis meeting, it was resolved that the physical structure of an ST is modeled discretely as either a single localized Scattering Point (SP) or an aggregation of multiple resolved spatial SPs, depending on the target’s physical dimensions and the operational signal bandwidth.</p>
+<p>To model the electromagnetic reflectivity of these SPs, the RAN1 #118bis meeting established a structured framework for the Radar Cross Section (RCS), denoted as <span class="math notranslate nohighlight">\(\sigma_{\text{RCS}}\)</span>. The standard defines <span class="math notranslate nohighlight">\(\sigma_{\text{RCS}}\)</span> using separable multiplicative factorization models to capture multi-dimensional scattering variations:</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{\text{RCS}} = A \cdot B \quad \text{or} \quad \sigma_{\text{RCS}} = A \cdot B_1 \cdot B_2\]</div>
+<p>where <span class="math notranslate nohighlight">\(A\)</span> represents the baseline, frequency-dependent nominal RCS value derived from the target’s physical geometry (e.g., via the physical optics approximation for a sphere, cylinder, or flat plate). The terms <span class="math notranslate nohighlight">\(B, B_1,\)</span> and <span class="math notranslate nohighlight">\(B_2\)</span> represent stochastic or deterministic scaling functions that account for aspect angle variations (azimuth/elevation dependence), polarization mismatch matrices, and statistical fluctuation models (e.g., Swerling case models capturing fast or slow fading characteristics). At the final RAN1 #121 meeting, this product-based framework was populated with empirical parameter tables establishing distinct monostatic and bistatic RCS profiles for all agreed ST categories.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Target Channel Cascaded Architecture:
+[Sensing Tx] ----(H_Tx-&gt;TAR)----&gt; [Sensing Target (RCS Matrix: G_ST)] ----(H_TAR-&gt;Rx)----&gt; [Sensing Rx]
+</pre></div>
+</div>
+<p>To accurately reflect the physical propagation mechanics of radar systems, the RAN1 #118 meeting approved a concatenated sub-channel architecture for the target component. The ST is treated as a virtual transponding node, allowing <span class="math notranslate nohighlight">\(\mathbf{H}_{\text{target}}(t, \tau)\)</span> to be modeled as the product of two cascading sub-channels:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{H}_{\text{target}}(t, \tau) = \mathbf{H}_{\text{TAR}\to\text{Rx}}(t) \cdot \mathbf{G}_{\text{ST}} \cdot \mathbf{H}_{\text{Tx}\to\text{TAR}}(t)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{H}_{\text{Tx}\to\text{TAR}}(t)\)</span> defines the forward propagation sub-channel from the sensing transmitter to the target coordinates, <span class="math notranslate nohighlight">\(\mathbf{G}_{\text{ST}}\)</span> is the complex target scattering matrix embedded with the <span class="math notranslate nohighlight">\(\sigma_{\text{RCS}}\)</span> characteristics, and <span class="math notranslate nohighlight">\(\mathbf{H}_{\text{TAR}\to\text{Rx}}(t)\)</span> defines the return propagation sub-channel from the target coordinates to the sensing receiver. Subsequent meetings established optimization protocols, spatial simplification thresholds, and power-gating thresholds to truncate legacy MPCs whose relative power falls below a defined threshold (e.g., <span class="math notranslate nohighlight">\(-25\text{ dB}\)</span> relative to the dominant peak component), ensuring computational efficiency during system-level evaluations.</p>
+</section>
+<section id="background-channel-modeling-and-specialized-features">
+<h4>Background Channel Modeling and Specialized Features<a class="headerlink" href="#background-channel-modeling-and-specialized-features" title="Link to this heading"></a></h4>
+<p>For the background channel matrix <span class="math notranslate nohighlight">\(\mathbf{H}_{\text{background}}(t, \tau)\)</span>, bistatic deployment modes directly reuse the existing stochastically generated cluster frameworks specified in communication standards (such as 3GPP TR 38.901). However, the monostatic background channel model—where the transmitter and receiver are co-located—requires distinct geometric considerations due to the correlation of forward and reverse propagation paths.</p>
+<p>To resolve this, the RAN1 #120bis meeting ratified the <strong>3-Reference-Point (3-RP) modeling methodology</strong>. This approach selects three distinct spatial reference anchor coordinates within the coverage sector to serve as boundary markers for generating monostatic clutter. By computing spatial correlations, path delays, and angular spreads relative to these three fixed spatial anchors, the model ensures accurate backscatter clutter statistics while tracking the self-interference profile of co-located transceivers.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>3-Reference-Point (3-RP) Monostatic Clutter Framework:
+           [Anchor RP 1]
+               /   \
+              /     \
+  [Monostatic Tx/Rx]--[Anchor RP 2]
+              \     /
+               \   /
+           [Anchor RP 3]
+(Clutter paths are stochastically generated relative to these three spatial anchors)
+</pre></div>
+</div>
+<p>Furthermore, the framework integrates supplementary propagation features discussed across multiple sessions:</p>
+<ul>
+<li><p><strong>Spatial Consistency:</strong> Ensures that as the ST or the transceiver nodes move continuously along a spatial trajectory, the associated channel parameters (e.g., angles of arrival/departure, cluster delays, and phase relationships) evolve deterministically rather than undergoing statistically independent re-instantiations.</p></li>
+<li><p><strong>Environmental Objects (EO) Interactions:</strong> Introduces time-varying shadow fading and diffraction profiles caused by dynamic obstructions masking the ST or sensing transceivers.</p></li>
+<li><p><strong>Doppler Shift Parameterization:</strong> Implements exact Doppler frequency vectors applied directly to individual MPCs based on the relative 3D velocity vectors of the <span class="math notranslate nohighlight">\(\text{Tx}\)</span>, <span class="math notranslate nohighlight">\(\text{Rx}\)</span>, and ST:</p>
+<div class="math notranslate nohighlight">
+\[\nu_m = \frac{1}{\lambda} \left( \mathbf{v}_{\text{Tx}} \cdot \mathbf{\hat{r}}_{\text{Tx},m} + \mathbf{v}_{\text{ST}} \cdot \mathbf{\hat{r}}_{\text{ST},m} + \mathbf{v}_{\text{Rx}} \cdot \mathbf{\hat{r}}_{\text{Rx},m} \right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is the carrier wavelength, <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> denotes the respective 3D velocity vectors, and <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span> denotes the unit spherical direction vectors of the <span class="math notranslate nohighlight">\(m\)</span>-th multipath component.</p>
+</li>
+<li><p><strong>Blockage Formulations:</strong> Integrates geometric knife-edge diffraction models and stochastic blockages to capture sudden attenuation drops when human or vehicular clutter intersects the sensing line-of-sight.</p></li>
+</ul>
+<p>The subsequent sections of this paper provide a comprehensive analysis of these newly standard-compliant ISAC channel features, develop a unified channel modeling methodology that extends the standard Geometry-Based Stochastic Model (GBSM) architecture to support target-clutter interactions, and introduce an open-source, standardization-compatible channel simulator alongside its verified calibration dataset.</p>
+</section>
+</section>
+</section>
+<section id="references">
+<h2>3. References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<p>The following references provide detailed information on the ISAC channel model and related aspects:</p>
+<ol class="arabic simple">
+<li><p>3GPP Technical Report on Channel Model: <a class="reference external" href="https://www.3gpp.org/ftp/Specs/archive/38_series/38.901/38901-j30.zip">Study on channel model for frequencies from 0.5 to 100 GHz</a>.</p></li>
+<li><p>ETSI Proposals on : <a class="reference external" href="https://www.etsi.org/deliver/etsi_gr/ISC/001_099/002/01.01.01_60/gr_ISC002v010101p.pdf">Integrated Sensing And Communications (ISAC); Channel Modelling, Measurements and Evaluation Methodology</a>.</p></li>
+<li><p>ETSI Proposals on : <a class="reference external" href="https://www.etsi.org/deliver/etsi_gr/ISC/001_099/001/01.01.01_60/gr_ISC001v010101p.pdf">Integrated Sensing And Communications (ISAC); Use Cases and Deployment Scenarios</a>.</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/html/2512.03506v1">A Comprehensive Survey of 3GPP Release 19 ISAC Channel Modeling</a>.</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/2505.10275">ISAC Channel Modelling – Perspectives from ETSI</a>.</p></li>
+</ol>
+</section>
 </section>
 
 

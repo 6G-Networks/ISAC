@@ -1,2 +1,191 @@
 ISAC Channel Model
 ==============================
+
+1. Channel Modelling Discussions and Progress in 3GPP
+------------------------------------------------------
+
+The following table [5] provides a summary of the discussions and progress related to ISAC channel modeling in 3GPP:
+
+
++----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
+| RAN1 Research        | # 116       | #116bis     | # 117      | # 118      | #118bis    | # 119      | # 120       | #120bis     | # 121        |
++                      +             +             +            +            +            +            +             +             +              +
+|                      | Feb 2024    | Apr 2024    | May 2024   | Aug 2024   | Oct 2024   | Nov 2024   | Feb 2025    | Apr 2025    | May 2025     |
++======================+=============+=============+============+============+============+============+=============+=============+==============+
+| Deployment scenario  | Prioritised | Evaluation  | Evaluation | Evaluation | Evaluation | Evaluation | Simulation  | Calibration | Calibration  |
++                      +             +             +            +            +            +            +             +             +              +
+| and calibration      | UAV, AGV,   | templates   | parameters | parameters | tables     | tables     | assumptions | scenarios   | scenarios    |
++                      +             +             +            +            +            +            +             +             +              +
+|                      | eVTOL       | for sensing | for UAV    | for UAV    | for UAV    | updated    | for large   | (UAV only)  | (e.g.,       |
++                      +             +             +            +            +            +            +             +             +              +
+|                      | scenarios   | scenarios   | defined    | defined    | use cases  |            | scale cal.  |             | consistency) |
++----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
+| Channel framework    | H-ISAC =    |             |            |            |            | Models     | Discussion  | Discussion  | Power        |
++                      +             +             +            +            +            +            +             +             +              +
+|                      | H-target +  |             |            |            |            | incl.      | on ex. TRs  | on ex. TRs  | normalisation|
++                      +             +             +            +            +            +            +             +             +              +
+|                      | H-Background|             |            |            |            | target &   | for TRP     | for prep    | approach     |
++                      +             +             +            +            +            +            +             +             +              +
+|                      |             |             |            |            |            | background |             | cases       | discussed    |
++----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
+| Physical object      |             | ST model    | RCS        | RCS        | RCS        | Monostatic | A*B^2       | Bistatic    | Last WAs     |
++                      +             +             +            +            +            +            +             +             +              +
+| model                |             | defined     | models     | + impacts  | extensions | RCS        | model       | RCS         | confirmed    |
++----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
+| Target channel       |             |             |            | Target     | DL models  | Correlation| Power       |             | Power        |
++                      +             +             +            +            +            +            +             +             +              +
+|                      |             |             |            | channel    | for channel| coupling   | scaling     |             | threshold    |
++----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
+| Background channel   |             |             | Existing   | Threshold  | Drop N     | Drop N +   | μp=3 RPs    | Values of   |              |
++                      +             +             +            +            +            +            +             +             +              +
+|                      |             |             | TRs start  | set for    | RPs        | clustering | from Gamma  | UT/UST      |              |
++----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
+| Spatial consistency  |             |             | Discussed  |            | 1x host    | Reuse TR   |             |             |              |
++                      +             +             +            +            +            +            +             +             +              +
+|                      |             |             |            |            | UAV scen.  | model      |             |             |              |
++----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
+| EO                   |             | Preliminary | Consider   | Existing   | EO type-1  | EO type-2  |             |             |              |
++                      +             +             +            +            +            +            +             +             +              +
+|                      |             | discussion  | spatial    | TRs        | defined    | defined    |             |             |              |
++----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
+| Doppler              |             |             |            |            |            | Doppler    |             | Placeholder |              |
++                      +             +             +            +            +            +            +             +             +              +
+|                      |             |             |            |            |            | equation   |             | in draft    |              |
++----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
+| Blockage             |             |             |            |            |            | Considered |             | Reuse TR    |              |
++                      +             +             +            +            +            +            +             +             +              +
+|                      |             |             |            |            |            | but limited|             | ST-SK       |              |
++----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
+
+  
+
+2. 3GPP ISAC Channel Model
+------------------------------
+
+I. Introduction and Standardization Timeline
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To mitigate the limitations of conventional communication-centric channel models in evaluating Integrated Sensing and Communication (ISAC) systems, the 3GPP Technical Specification Group (TSG) Radio Access Network (RAN) approved a dedicated Study Item (SI), titled *"Study on channel modelling for ISAC for NR,"* during the RAN #102 plenary meeting in December 2023 [50]. The primary technical mandate was assigned to RAN Working Group 1 (RAN1), which is responsible for physical layer specifications. The objective of this SI was to develop a standardized channel modeling framework capable of supporting link- and system-level evaluations for representative ISAC deployment scenarios and use cases. The scope was partitioned into two primary core work items:
+
+1. ISAC deployment scenarios and calibration.
+2. ISAC channel modeling methodologies.
+
+Technical deliberations commenced at the RAN1 #116 meeting (February 2024) and concluded at the RAN1 #121 meeting (May 2025). The standardization process spanned nine formal sessions—including intermediate tracking sessions (#116, #116bis, #117, #118, #118bis, #119, #120, #120bis, and #121)—complemented by offline interactive sessions and dedicated email rapporteur discussions. The chronological progression and major milestones are illustrated in Fig. 3 [51]. This collective standardization effort culminated in the formal integration of the finalized ISAC channel model into the 3GPP TR 38.901 V19.0.0 release specification [23].
+
+II. ISAC Deployment Scenarios and Evaluation Parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To establish a foundational baseline, the evaluation framework adopts established communication topologies and specifies baseline Sensing Targets (STs). Formally ratified at the RAN1 #116 meeting, these baseline targets include Unmanned Aerial Vehicles (UAVs), indoor and outdoor human targets, automotive vehicles (primarily for outdoor environments), Automated Guided Vehicles (AGVs) operating within indoor factory environments, and road/railway hazard obstructions as defined in 3GPP TR 22.837. Within these deployment scenarios, any arbitrary Transmit-Receive Point (TRP) or User Terminal (UT) spatial coordinate can be designated as a sensing transmitter (:math:`\text{Tx}`) or sensing receiver (:math:`\text{Rx}`), thereby natively supporting monostatic, bistatic, and multistatic sensing topologies.
+
+From the RAN1 #116bis through the RAN1 #119 meetings, the working group systematically finalized the evaluation parameter profiles for these standardized STs. The standardized parameter spaces are categorized into the following six core dimensions:
+
+* **Applicable Communication Scenarios:** Specification of the baseline propagation environments (e.g., Urban Micro-cellular (UMi), Urban Macro-cellular (UMa), Indoor Factory (InF), and Indoor Office (InO)).
+* **Sensing Transceiver Properties:** Architectural configurations of the sensing :math:`\text{Tx}` and :math:`\text{Rx}` nodes, including antenna array geometries, polarization characteristics, radiation patterns, and maximum equivalent isotropically radiated power (EIRP).
+* **Sensing Target (ST) Kinematic and Physical Attributes:** Specification of Line-of-Sight (LoS)/Non-Line-of-Sight (NLoS) propagation conditions relative to the cluttered background, structural dimensionality (2D or 3D mobility profiles and spatial distributions), instantaneous orientation vectors, and physical geometric dimensions (e.g., cross-sectional bounds and volumetric profiles).
+* **Minimum 3D Geometric Displacements (Nodes to Target):** Boundary conditions defining the minimum permissible 3D spatial separation between any :math:`\text{Tx}/\text{Rx}` pair and the operational ST to ensure the validity of far-field propagation assumptions.
+* **Minimum Inter-Target 3D Spatial Displacements:** Proximity constraints establishing the minimum 3D distance between adjacent co-existing STs to prevent unmodeled near-field electromagnetic interactions.
+* **Environmental Objects (EO) and Clutter Field Properties (Optional):** Parameter vectors characterizing the density, material composition, spatial distribution, and mobility statistics of surrounding environmental macro-scatterers acting as static or dynamic clutter.
+
+The numerical quantification and continuous updates of these parameter spaces are structurally aligned with TR 38.901 [23]. To maintain backward compatibility and empirical accuracy, specific sub-scenarios integrate specialized parameter boundaries from supplementary 3GPP Technical Reports:
+
+.. math::
+
+   \text{Parameter Blending Source} = \begin{cases} \text{TR 36.777 [52]} & \text{Aerial UT / UAV Deployments} \\ \text{TR 38.808 [53]} & \text{Indoor Room Environments} \\ \text{TR 37.885 [54], TR 38.859 [55]} & \text{Automotive Urban Grid and Highway Topologies} \end{cases}
+
+These configured parameter matrices are directly applicable to Monte Carlo system-level simulations. For network calibration phases, system topologies must configure a pre-defined, deterministic percentage of sensing-capable TRPs and UTs to maintain statistical consistency across independent simulators.
+
+III. Mathematical Framework and Channel Modeling Methodologies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Core Channel Decomposition and Power Normalization
+******************************************************************
+
+In contrast to the purely communication-centric paradigms in 3GPP TR 38.901 V18.0.0, the ISAC channel modeling framework approved at the RAN1 #116 meeting decomposes the joint propagation environment. Let :math:`\mathbf{H}_{\text{ISAC}}(t, \tau) \in \mathbb{C}^{N_{\text{Rx}} \times N_{\text{Tx}}}` represent the time-varying, delay-dependent Multiple-Input Multiple-Output (MIMO) channel matrix, expressed as:
+
+.. math::
+
+   \mathbf{H}_{\text{ISAC}}(t, \tau) = \mathbf{H}_{\text{target}}(t, \tau) + \mathbf{H}_{\text{background}}(t, \tau)
+
+where :math:`\mathbf{H}_{\text{target}}(t, \tau)` represents the target channel matrix containing all multipath components (MPCs) interacting with, scattering from, or diffracted by the designated ST(s). Conversely, :math:`\mathbf{H}_{\text{background}}(t, \tau)` isolates all background environmental MPCs that propagate independently of the STs. This additive formulation natively accommodates multi-static sensing: a single sensing :math:`\text{Tx}`-:math:`\text{Rx}` pair can concurrently track multiple discrete STs via superposition within a shared spatial volume, and a single ST can be explicitly modeled within the distinct cross-channel matrices of multiple distributed :math:`\text{Tx}`-:math:`\text{Rx}` processing pairs.
+
+To prevent the artificial inflation of total radiated energy when stochastically instantiating independent target and background channel paths, a power normalization framework is required. The total channel power must comply with large-scale pathloss models through a conservation scaling factor :math:`\eta`, bounded by:
+
+.. math::
+
+   \mathbb{E}\left[ \|\mathbf{H}_{\text{ISAC}}(t, \tau)\|_F^2 \right] = \eta \left( \mathbb{E}\left[ \|\mathbf{H}_{\text{target}}(t, \tau)\|_F^2 \right] + \mathbb{E}\left[ \|\mathbf{H}_{\text{background}}(t, \tau)\|_F^2 \right] \right)
+
+where :math:`\|\cdot\|_F` denotes the Frobenius norm. While the exact allocation of the scaling scalar :math:`\eta` was maintained via a technical placeholder during early sessions, its parameterization relies on empirical path-loss scaling bounds derived from the specific clutter environment.
+
+Target Channel Modeling and Radar Cross Section (RCS) Characterization
+***************************************************************************************************
+
+During the RAN1 #116bis meeting, it was resolved that the physical structure of an ST is modeled discretely as either a single localized Scattering Point (SP) or an aggregation of multiple resolved spatial SPs, depending on the target's physical dimensions and the operational signal bandwidth. 
+
+To model the electromagnetic reflectivity of these SPs, the RAN1 #118bis meeting established a structured framework for the Radar Cross Section (RCS), denoted as :math:`\sigma_{\text{RCS}}`. The standard defines :math:`\sigma_{\text{RCS}}` using separable multiplicative factorization models to capture multi-dimensional scattering variations:
+
+.. math::
+
+   \sigma_{\text{RCS}} = A \cdot B \quad \text{or} \quad \sigma_{\text{RCS}} = A \cdot B_1 \cdot B_2
+
+where :math:`A` represents the baseline, frequency-dependent nominal RCS value derived from the target's physical geometry (e.g., via the physical optics approximation for a sphere, cylinder, or flat plate). The terms :math:`B, B_1,` and :math:`B_2` represent stochastic or deterministic scaling functions that account for aspect angle variations (azimuth/elevation dependence), polarization mismatch matrices, and statistical fluctuation models (e.g., Swerling case models capturing fast or slow fading characteristics). At the final RAN1 #121 meeting, this product-based framework was populated with empirical parameter tables establishing distinct monostatic and bistatic RCS profiles for all agreed ST categories.
+
+.. code-block:: text
+
+   Target Channel Cascaded Architecture:
+   [Sensing Tx] ----(H_Tx->TAR)----> [Sensing Target (RCS Matrix: G_ST)] ----(H_TAR->Rx)----> [Sensing Rx]
+
+To accurately reflect the physical propagation mechanics of radar systems, the RAN1 #118 meeting approved a concatenated sub-channel architecture for the target component. The ST is treated as a virtual transponding node, allowing :math:`\mathbf{H}_{\text{target}}(t, \tau)` to be modeled as the product of two cascading sub-channels:
+
+.. math::
+
+   \mathbf{H}_{\text{target}}(t, \tau) = \mathbf{H}_{\text{TAR}\to\text{Rx}}(t) \cdot \mathbf{G}_{\text{ST}} \cdot \mathbf{H}_{\text{Tx}\to\text{TAR}}(t)
+
+where :math:`\mathbf{H}_{\text{Tx}\to\text{TAR}}(t)` defines the forward propagation sub-channel from the sensing transmitter to the target coordinates, :math:`\mathbf{G}_{\text{ST}}` is the complex target scattering matrix embedded with the :math:`\sigma_{\text{RCS}}` characteristics, and :math:`\mathbf{H}_{\text{TAR}\to\text{Rx}}(t)` defines the return propagation sub-channel from the target coordinates to the sensing receiver. Subsequent meetings established optimization protocols, spatial simplification thresholds, and power-gating thresholds to truncate legacy MPCs whose relative power falls below a defined threshold (e.g., :math:`-25\text{ dB}` relative to the dominant peak component), ensuring computational efficiency during system-level evaluations.
+
+Background Channel Modeling and Specialized Features
+******************************************************************
+
+For the background channel matrix :math:`\mathbf{H}_{\text{background}}(t, \tau)`, bistatic deployment modes directly reuse the existing stochastically generated cluster frameworks specified in communication standards (such as 3GPP TR 38.901). However, the monostatic background channel model—where the transmitter and receiver are co-located—requires distinct geometric considerations due to the correlation of forward and reverse propagation paths. 
+
+To resolve this, the RAN1 #120bis meeting ratified the **3-Reference-Point (3-RP) modeling methodology**. This approach selects three distinct spatial reference anchor coordinates within the coverage sector to serve as boundary markers for generating monostatic clutter. By computing spatial correlations, path delays, and angular spreads relative to these three fixed spatial anchors, the model ensures accurate backscatter clutter statistics while tracking the self-interference profile of co-located transceivers. 
+
+.. code-block:: text
+
+   3-Reference-Point (3-RP) Monostatic Clutter Framework:
+              [Anchor RP 1]
+                  /   \
+                 /     \
+     [Monostatic Tx/Rx]--[Anchor RP 2]
+                 \     /
+                  \   /
+              [Anchor RP 3]
+   (Clutter paths are stochastically generated relative to these three spatial anchors)
+
+Furthermore, the framework integrates supplementary propagation features discussed across multiple sessions:
+
+* **Spatial Consistency:** Ensures that as the ST or the transceiver nodes move continuously along a spatial trajectory, the associated channel parameters (e.g., angles of arrival/departure, cluster delays, and phase relationships) evolve deterministically rather than undergoing statistically independent re-instantiations.
+* **Environmental Objects (EO) Interactions:** Introduces time-varying shadow fading and diffraction profiles caused by dynamic obstructions masking the ST or sensing transceivers.
+* **Doppler Shift Parameterization:** Implements exact Doppler frequency vectors applied directly to individual MPCs based on the relative 3D velocity vectors of the :math:`\text{Tx}`, :math:`\text{Rx}`, and ST:
+
+  .. math::
+
+     \nu_m = \frac{1}{\lambda} \left( \mathbf{v}_{\text{Tx}} \cdot \mathbf{\hat{r}}_{\text{Tx},m} + \mathbf{v}_{\text{ST}} \cdot \mathbf{\hat{r}}_{\text{ST},m} + \mathbf{v}_{\text{Rx}} \cdot \mathbf{\hat{r}}_{\text{Rx},m} \right)
+
+  where :math:`\lambda` is the carrier wavelength, :math:`\mathbf{v}` denotes the respective 3D velocity vectors, and :math:`\mathbf{\hat{r}}` denotes the unit spherical direction vectors of the :math:`m`-th multipath component.
+* **Blockage Formulations:** Integrates geometric knife-edge diffraction models and stochastic blockages to capture sudden attenuation drops when human or vehicular clutter intersects the sensing line-of-sight.
+
+The subsequent sections of this paper provide a comprehensive analysis of these newly standard-compliant ISAC channel features, develop a unified channel modeling methodology that extends the standard Geometry-Based Stochastic Model (GBSM) architecture to support target-clutter interactions, and introduce an open-source, standardization-compatible channel simulator alongside its verified calibration dataset.
+
+
+
+3. References
+----------------------------------
+
+The following references provide detailed information on the ISAC channel model and related aspects:
+
+
+1. 3GPP Technical Report on Channel Model: `Study on channel model for frequencies from 0.5 to 100 GHz <https://www.3gpp.org/ftp/Specs/archive/38_series/38.901/38901-j30.zip>`_.
+2. ETSI Proposals on : `Integrated Sensing And Communications (ISAC); Channel Modelling, Measurements and Evaluation Methodology <https://www.etsi.org/deliver/etsi_gr/ISC/001_099/002/01.01.01_60/gr_ISC002v010101p.pdf>`_.
+3. ETSI Proposals on : `Integrated Sensing And Communications (ISAC); Use Cases and Deployment Scenarios <https://www.etsi.org/deliver/etsi_gr/ISC/001_099/001/01.01.01_60/gr_ISC001v010101p.pdf>`_.
+4. `A Comprehensive Survey of 3GPP Release 19 ISAC Channel Modeling <https://arxiv.org/html/2512.03506v1>`_.
+5. `ISAC Channel Modelling -- Perspectives from ETSI <https://arxiv.org/pdf/2505.10275>`_.
