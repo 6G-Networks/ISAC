@@ -2,22 +2,24 @@
 ISAC in 3GPP
 ==============================================
 
+.. image:: images/timeline.png
+  :width: 700
+  :alt: ISAC Timeline in 3GPP
 
 1. ISAC Standardization in 5G
------------------------------
+-------------------------------
+
+
 
 1.1 Use-case Identification of ISAC in 3GPP
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The standardization of Integrated Sensing and Communication (ISAC) within the
-3rd Generation Partnership Project (3GPP) was initiated in February 2022.
-The primary objective was to enable sensing functionalities using 5G New Radio (NR)
-infrastructure. Initial work in the Service and System Aspects (SA1) Working Group
-focused on identifying use cases and defining system requirements, covering both
-network-based and user equipment (UE)-based sensing.
+The standardization of Integrated Sensing and Communication (ISAC) within the 3rd Generation Partnership Project (3GPP) 
+was initiated in February 2022. The primary objective was to enable sensing functionalities using 5G New Radio (NR)
+infrastructure. Initial work in the Service and System Aspects (SA1) Working Group focused on identifying use cases and 
+defining system requirements, covering both network-based and user equipment (UE)-based sensing.
 
-These early efforts established a foundation by outlining applications and
-requirements needed to extend 5G systems for ISAC services across multiple
-domains and industries.
+These early efforts established a foundation by outlining applications and requirements needed to extend 5G systems for ISAC 
+services across multiple domains and industries.
 
 1.1.1 Object Detection and Tracking
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -163,28 +165,25 @@ of the documents. Please check the version of the document before referring to i
 
 The details of work carried out in 3GPP related to ISAC in 5G-New Radio are as follows:
 
-- Stage-1/SA1 (Service Requirements): `TR 22.837 Release-19  Study on Integrated Sensing and Communication <https://www.3gpp.org/ftp/Specs/archive/22_series/22.837/22837-j40.zip>`_
-- Stage-1/SA1: `3GPP TS 22.137 Release-19 Integrated Sensing and Communication <https://www.3gpp.org/ftp/Specs/archive/22_series/22.137/22137-j10.zip>`_.
-- ISAC Channel Model: `TR 3GPP 38.901 (version later than 19.3.0) <https://www.3gpp.org/ftp/Specs/archive/38_series/38.901/>`_.
-- RAN1/RAN2/RAN3: `3GPP TR 38.765: Study on Integrated Sensing and Communication (ISAC) for NR Release-20 <https://www.3gpp.org/ftp/Specs/archive/38_series/38.765/38765-100.zip>`_.
+
 
 
 ISAC Work in 5G-NR: Release-19
 *********************************
 
-The work related to ISAC in 5G-New Radio started in Release-19 with focus on primarily two aspects: 
+The work related to ISAC in 5G started in Release-19 with focus on primarily three aspects: 
 
-1. ISAC usecases and requirements in **SA-WG1**, and 
-2. ISAC channel modeling in **RAN-WG1**.
+1. Stage-1/SA1 (Service Requirements): `TR 22.837 Release-19  Study on Integrated Sensing and Communication <https://www.3gpp.org/ftp/Specs/archive/22_series/22.837/22837-j40.zip>`_
+2. Stage-1/SA1: `3GPP TS 22.137 Release-19 Integrated Sensing and Communication <https://www.3gpp.org/ftp/Specs/archive/22_series/22.137/22137-j10.zip>`_.
+3. ISAC Channel Model: `TR 3GPP 38.901 (version later than 19.3.0) <https://www.3gpp.org/ftp/Specs/archive/38_series/38.901/>`_.,
+
 
 ISAC Work in 5G-NR: Release-20
 *********************************
 
-The work related to ISAC in 5G-New Radio started in Release-1920 with focus on primarily two aspects: 
+The work related to ISAC in 5G-New Radio started in Release-20 with focus on: 
 
-1. ISAC for gNB based Monostatic Sensing in **RAN-WG1**, 
-2. Radio Access Network Architecture for ISAC in **RAN-WG3**, and
-3. System Architecture for ISAC in **SA-WG2**.
+4. RAN1/RAN2/RAN3: `3GPP TR 38.765: Study on Integrated Sensing and Communication (ISAC) for NR Release-20 <https://www.3gpp.org/ftp/Specs/archive/38_series/38.765/38765-100.zip>`_.
 
 
 3.2 References: 6G
@@ -193,6 +192,6 @@ The work related to ISAC in 5G-New Radio started in Release-1920 with focus on p
 ISAC Work in 6G: Release-20
 *********************************
 
-- Stage-2/SA2 (System Architecture): `3GPP TS 23.137, Integrated Sensing and Communication; Stage 2 Release 20 <https://www.3gpp.org/ftp/Specs/archive/23_series/23.137/23137-020.zip>`_.
-- Stage-2/SA2 (System Architecture): `3GPP TR 23.700-14, Study on Architecture Enhancement to Support Integrated Sensing and Communication Stage 2 / SA2 (System Architecture) <https://www.3gpp.org/ftp/Specs/archive/23_series/23.700-14/23700-14-k00.zip>`_.
-- Stage-1/SA1 (Service Requirements): `3GPP TR 22.870: Study on 6G Use Cases and Service Requirements Release-20 <https://www.3gpp.org/ftp/Specs/archive/22_series/22.870/22870-k00.zip>`_.
+5. Stage-2/SA2 (System Architecture): `3GPP TS 23.137, Integrated Sensing and Communication; Stage 2 Release 20 <https://www.3gpp.org/ftp/Specs/archive/23_series/23.137/23137-020.zip>`_.
+6. Stage-2/SA2 (System Architecture): `3GPP TR 23.700-14, Study on Architecture Enhancement to Support Integrated Sensing and Communication Stage 2 / SA2 (System Architecture) <https://www.3gpp.org/ftp/Specs/archive/23_series/23.700-14/23700-14-k00.zip>`_.
+7. Stage-1/SA1 (Service Requirements): `3GPP TR 22.870: Study on 6G Use Cases and Service Requirements Release-20 <https://www.3gpp.org/ftp/Specs/archive/22_series/22.870/22870-k00.zip>`_.
