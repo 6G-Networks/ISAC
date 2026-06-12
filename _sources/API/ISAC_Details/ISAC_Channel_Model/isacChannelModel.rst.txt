@@ -1,6 +1,14 @@
 ISAC Channel Model
 ==============================
 
+The very high level picture of the ISAC channel model is as follows:
+
+
+.. image:: images/Overall_Diagram2.png
+  :width: 700
+  :alt: ISAC Timeline in 3GPP
+
+
 1. Channel Modelling Discussions and Progress in 3GPP
 ------------------------------------------------------
 
@@ -12,41 +20,41 @@ The following table [5] provides a summary of the discussions and progress relat
 +                      +             +             +            +            +            +            +             +             +              +
 |                      | Feb 2024    | Apr 2024    | May 2024   | Aug 2024   | Oct 2024   | Nov 2024   | Feb 2025    | Apr 2025    | May 2025     |
 +======================+=============+=============+============+============+============+============+=============+=============+==============+
-| Deployment scenario  | Prioritised | Evaluation  | Evaluation | Evaluation | Evaluation | Evaluation | Simulation  | Calibration | Calibration  |
+| Deployment           | Prioritised | Evaluation  | Evaluation | Evaluation | Evaluation | Evaluation | Simulation  | Calibration | Calibration  |
 +                      +             +             +            +            +            +            +             +             +              +
-| and calibration      | UAV, AGV,   | templates   | parameters | parameters | tables     | tables     | assumptions | scenarios   | scenarios    |
+| scenario             | UAV, AGV,   | templates   | parameters | parameters | tables     | tables     | assumptions | scenarios   | scenarios    |
 +                      +             +             +            +            +            +            +             +             +              +
-|                      | eVTOL       | for sensing | for UAV    | for UAV    | for UAV    | updated    | for large   | (UAV only)  | (e.g.,       |
+| and                  | eVTOL       | for sensing | for UAV    | for UAV    | for UAV    | updated    | for large   | (UAV only)  | (e.g.,       |
 +                      +             +             +            +            +            +            +             +             +              +
-|                      | scenarios   | scenarios   | defined    | defined    | use cases  |            | scale cal.  |             | consistency) |
+| calibration          | scenarios   | scenarios   | defined    | defined    | use cases  |            | scale cal.  |             | consistency) |
 +----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
-| Channel framework    | H-ISAC =    |             |            |            |            | Models     | Discussion  | Discussion  | Power        |
+| Channel              | H-ISAC =    |             |            |            |            | Models     | Discussion  | Discussion  | Power        |
 +                      +             +             +            +            +            +            +             +             +              +
-|                      | H-target +  |             |            |            |            | incl.      | on ex. TRs  | on ex. TRs  | normalisation|
+| framework            | H-target +  |             |            |            |            | incl.      | on ex. TRs  | on ex. TRs  | normalisation|
 +                      +             +             +            +            +            +            +             +             +              +
 |                      | H-Background|             |            |            |            | target &   | for TRP     | for prep    | approach     |
 +                      +             +             +            +            +            +            +             +             +              +
 |                      |             |             |            |            |            | background |             | cases       | discussed    |
 +----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
-| Physical object      |             | ST model    | RCS        | RCS        | RCS        | Monostatic | A*B^2       | Bistatic    | Last WAs     |
+| Physical             |             | ST model    | RCS        | RCS  +     | RCS        | Monostatic | A*B^2       | Bistatic    | Last WAs     |
 +                      +             +             +            +            +            +            +             +             +              +
-| model                |             | defined     | models     | + impacts  | extensions | RCS        | model       | RCS         | confirmed    |
+| object model         |             | defined     | models     |   impacts  | extensions | RCS        | model       | RCS         | confirmed    |
 +----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
-| Target channel       |             |             |            | Target     | DL models  | Correlation| Power       |             | Power        |
+| Target               |             |             |            | Target     | DL models  | Correlation| Power       |             | Power        |
 +                      +             +             +            +            +            +            +             +             +              +
-|                      |             |             |            | channel    | for channel| coupling   | scaling     |             | threshold    |
+| channel              |             |             |            | channel    | for channel| coupling   | scaling     |             | threshold    |
 +----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
-| Background channel   |             |             | Existing   | Threshold  | Drop N     | Drop N +   | μp=3 RPs    | Values of   |              |
+| Background           |             |             | Existing   | Threshold  | Drop N     | Drop N +   | μp=3 RPs    | Values of   |              |
 +                      +             +             +            +            +            +            +             +             +              +
-|                      |             |             | TRs start  | set for    | RPs        | clustering | from Gamma  | UT/UST      |              |
+| channel              |             |             | TRs start  | set for    | RPs        | clustering | from Gamma  | UT/UST      |              |
 +----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
-| Spatial consistency  |             |             | Discussed  |            | 1x host    | Reuse TR   |             |             |              |
+| Spatial              |             |             | Discussed  |            | 1x host    | Reuse TR   |             |             |              |
 +                      +             +             +            +            +            +            +             +             +              +
-|                      |             |             |            |            | UAV scen.  | model      |             |             |              |
+| consistency          |             |             |            |            | UAV scen.  | model      |             |             |              |
 +----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
-| EO                   |             | Preliminary | Consider   | Existing   | EO type-1  | EO type-2  |             |             |              |
+| Environment          | Preliminary | Consider    | Existing   | EO type-1  | EO type-2  |            |             |             |              |
 +                      +             +             +            +            +            +            +             +             +              +
-|                      |             | discussion  | spatial    | TRs        | defined    | defined    |             |             |              |
+| Objects              |             | discussion  | spatial    | TRs        | defined    | defined    |             |             |              |
 +----------------------+-------------+-------------+------------+------------+------------+------------+-------------+-------------+--------------+
 | Doppler              |             |             |            |            |            | Doppler    |             | Placeholder |              |
 +                      +             +             +            +            +            +            +             +             +              +
