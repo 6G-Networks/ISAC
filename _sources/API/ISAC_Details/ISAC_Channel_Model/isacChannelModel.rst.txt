@@ -102,6 +102,32 @@ The numerical quantification and continuous updates of these parameter spaces ar
 
 These configured parameter matrices are directly applicable to Monte Carlo system-level simulations. For network calibration phases, system topologies must configure a pre-defined, deterministic percentage of sensing-capable TRPs and UTs to maintain statistical consistency across independent simulators.
 
+
+III. Modelling Physical Objects
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Its crucial to design mathematical models that accurately capture the effect of the physical objects in the wireless channel models. The exhaustive and exact modelling of physical objects
+is extremely complex and computationally prohibitive. Therefore, the standardization process has focused on developing simplified yet representative models that can capture the essential 
+characteristics of the physical objects while maintaining computational efficiency. The following two aspects allows to capture the effect of physical objects to fullfil the scope of the 
+work defined in Release-19 and Release-20 of 3GPP:
+
+- Radar Cross Section (RCS) Characterization
+- Polarization and Orientation Effects
+
+
+A. Radar Cross Section (RCS) Characterization
+***********************************************
+
+RCS models allows the characterization of the scattering properties of the physical objects in the wireless channel. The RCS is a measure of how much power is reflected back to the receiver 
+by an object when it is illuminated by a radar signal. The RCS can be influenced by various factors such as the size, shape, material properties, and orientation of the object. 3GPP designed 
+two RCS models for varied level of accurate and complexity. The glimpe of the RCS models are availble in the following figure:
+
+
+.. image:: images/rcs_models.png
+  :width: 700
+  :alt: ISAC Timeline in 3GPP
+
+
 III. Mathematical Framework and Channel Modeling Methodologies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -149,6 +175,10 @@ To accurately reflect the physical propagation mechanics of radar systems, the R
    \mathbf{H}_{\text{target}}(t, \tau) = \mathbf{H}_{\text{TAR}\to\text{Rx}}(t) \cdot \mathbf{G}_{\text{ST}} \cdot \mathbf{H}_{\text{Tx}\to\text{TAR}}(t)
 
 where :math:`\mathbf{H}_{\text{Tx}\to\text{TAR}}(t)` defines the forward propagation sub-channel from the sensing transmitter to the target coordinates, :math:`\mathbf{G}_{\text{ST}}` is the complex target scattering matrix embedded with the :math:`\sigma_{\text{RCS}}` characteristics, and :math:`\mathbf{H}_{\text{TAR}\to\text{Rx}}(t)` defines the return propagation sub-channel from the target coordinates to the sensing receiver. Subsequent meetings established optimization protocols, spatial simplification thresholds, and power-gating thresholds to truncate legacy MPCs whose relative power falls below a defined threshold (e.g., :math:`-25\text{ dB}` relative to the dominant peak component), ensuring computational efficiency during system-level evaluations.
+
+
+
+
 
 Background Channel Modeling and Specialized Features
 ******************************************************************

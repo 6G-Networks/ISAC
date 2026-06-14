@@ -98,6 +98,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#gpp-isac-channel-model">2. 3GPP ISAC Channel Model</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#i-introduction-and-standardization-timeline">I. Introduction and Standardization Timeline</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#ii-isac-deployment-scenarios-and-evaluation-parameters">II. ISAC Deployment Scenarios and Evaluation Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iii-modelling-physical-objects">III. Modelling Physical Objects</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#a-radar-cross-section-rcs-characterization">A. Radar Cross Section (RCS) Characterization</a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="#iii-mathematical-framework-and-channel-modeling-methodologies">III. Mathematical Framework and Channel Modeling Methodologies</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#core-channel-decomposition-and-power-normalization">Core Channel Decomposition and Power Normalization</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#target-channel-modeling-and-radar-cross-section-rcs-characterization">Target Channel Modeling and Radar Cross Section (RCS) Characterization</a></li>
@@ -554,6 +558,25 @@
 <div class="math notranslate nohighlight">
 \[\begin{split}\text{Parameter Blending Source} = \begin{cases} \text{TR 36.777 [52]} &amp; \text{Aerial UT / UAV Deployments} \\ \text{TR 38.808 [53]} &amp; \text{Indoor Room Environments} \\ \text{TR 37.885 [54], TR 38.859 [55]} &amp; \text{Automotive Urban Grid and Highway Topologies} \end{cases}\end{split}\]</div>
 <p>These configured parameter matrices are directly applicable to Monte Carlo system-level simulations. For network calibration phases, system topologies must configure a pre-defined, deterministic percentage of sensing-capable TRPs and UTs to maintain statistical consistency across independent simulators.</p>
+</section>
+<section id="iii-modelling-physical-objects">
+<h3>III. Modelling Physical Objects<a class="headerlink" href="#iii-modelling-physical-objects" title="Link to this heading"></a></h3>
+<p>Its crucial to design mathematical models that accurately capture the effect of the physical objects in the wireless channel models. The exhaustive and exact modelling of physical objects
+is extremely complex and computationally prohibitive. Therefore, the standardization process has focused on developing simplified yet representative models that can capture the essential
+characteristics of the physical objects while maintaining computational efficiency. The following two aspects allows to capture the effect of physical objects to fullfil the scope of the
+work defined in Release-19 and Release-20 of 3GPP:</p>
+<ul class="simple">
+<li><p>Radar Cross Section (RCS) Characterization</p></li>
+<li><p>Polarization and Orientation Effects</p></li>
+</ul>
+<section id="a-radar-cross-section-rcs-characterization">
+<h4>A. Radar Cross Section (RCS) Characterization<a class="headerlink" href="#a-radar-cross-section-rcs-characterization" title="Link to this heading"></a></h4>
+<p>RCS models allows the characterization of the scattering properties of the physical objects in the wireless channel. The RCS is a measure of how much power is reflected back to the receiver
+by an object when it is illuminated by a radar signal. The RCS can be influenced by various factors such as the size, shape, material properties, and orientation of the object. 3GPP designed
+two RCS models for varied level of accurate and complexity. The glimpe of the RCS models are availble in the following figure:</p>
+<a class="reference internal image-reference" href="../../../_images/rcs_models.png"><img alt="ISAC Timeline in 3GPP" src="../../../_images/rcs_models.png" style="width: 700px;" />
+</a>
+</section>
 </section>
 <section id="iii-mathematical-framework-and-channel-modeling-methodologies">
 <h3>III. Mathematical Framework and Channel Modeling Methodologies<a class="headerlink" href="#iii-mathematical-framework-and-channel-modeling-methodologies" title="Link to this heading"></a></h3>
