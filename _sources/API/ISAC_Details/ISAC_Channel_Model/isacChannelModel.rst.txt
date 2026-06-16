@@ -127,6 +127,71 @@ two RCS models for varied level of accurate and complexity. The glimpe of the RC
   :width: 700
   :alt: ISAC Timeline in 3GPP
 
+**Single Scattering Points based Model vs Multiple Scattering Points based Model**
+
+Table 7.9.2.1-2/3/4/5/6/7 provides the RCS model parameters for UAVs, humans, vehicles with a single SP, vehicles with multiple SPs, AGVs with a single SP, and AGVs with multiple SPs, respectively.
+Although parameters are provided for all scattering points (SPs) associated with each physical object, the single scattering point–based model treats all nearby SPs as a single SP and assumes that 
+the delays and angles are the same for all SPs. On the other hand, the multiple scattering point–based model treats the SPs as distinct points and assumes different delays and angles for each SP.
+
+**How to compute Bistatic Angle**
+
+The **bistatic angle (β)** is defined as the angle between the incident ray (from transmitter to target) and the scattered ray (from target to receiver). It is measured at the target within the plane 
+defined by the incident angles :math:`(\theta_i, \phi_i)` and scattering angles :math:`(\theta_s, \phi_s)`. The incident and scattered directions are represented as unit vectors in spherical coordinates.
+
+Incident direction cosine vector:
+
+.. math::
+
+   \hat{i} =
+   \begin{bmatrix}
+   \sin\theta_i \cos\phi_i \\
+   \sin\theta_i \sin\phi_i \\
+   \cos\theta_i
+   \end{bmatrix}
+
+Scattered direction cosine vector:
+
+.. math::
+
+   \hat{s} =
+   \begin{bmatrix}
+   \sin\theta_s \cos\phi_s \\
+   \sin\theta_s \sin\phi_s \\
+   \cos\theta_s
+   \end{bmatrix}
+
+
+The bistatic angle is computed using the dot product of the two unit vectors:
+
+.. math::
+
+   \cos\beta = \hat{i} \cdot \hat{s}
+
+.. math::
+
+   \beta = \cos^{-1}(\hat{i} \cdot \hat{s})
+
+Expanded form:
+
+.. math::
+
+   \cos\beta =
+   \sin\theta_i \sin\theta_s \cos(\phi_i - \phi_s)
+   + \cos\theta_i \cos\theta_s
+
+Interpretation the bistatic angle:
+
+- β = 0°   → Forward scattering (Tx and Rx aligned)
+- β = 180° → Backscattering (monostatic case)
+- 0° < β < 180° → General bistatic geometry
+
+Notes on using the bistatic angle in channel modeling:
+
+- In single-point scattering models, one bistatic angle is computed per object.
+- In multi-point models, each scattering point has its own bistatic angle.
+- The bistatic angle influences Radar Cross Section (RCS), scattering strength,
+  and angular diversity in the channel model.
+
 
 III. Mathematical Framework and Channel Modeling Methodologies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -134,7 +199,8 @@ III. Mathematical Framework and Channel Modeling Methodologies
 Core Channel Decomposition and Power Normalization
 ******************************************************************
 
-In contrast to the purely communication-centric paradigms in 3GPP TR 38.901 V18.0.0, the ISAC channel modeling framework approved at the RAN1 #116 meeting decomposes the joint propagation environment. Let :math:`\mathbf{H}_{\text{ISAC}}(t, \tau) \in \mathbb{C}^{N_{\text{Rx}} \times N_{\text{Tx}}}` represent the time-varying, delay-dependent Multiple-Input Multiple-Output (MIMO) channel matrix, expressed as:
+In contrast to the purely communication-centric paradigms in 3GPP TR 38.901 V18.0.0, the ISAC channel modeling framework approved at the RAN1 #116 meeting decomposes the joint propagation environment. 
+Let :math:`\mathbf{H}_{\text{ISAC}}(t, \tau) \in \mathbb{C}^{N_{\text{Rx}} \times N_{\text{Tx}}}` represent the time-varying, delay-dependent Multiple-Input Multiple-Output (MIMO) channel matrix, expressed as:
 
 .. math::
 

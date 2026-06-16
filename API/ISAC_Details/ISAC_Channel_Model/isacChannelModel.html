@@ -576,13 +576,60 @@ by an object when it is illuminated by a radar signal. The RCS can be influenced
 two RCS models for varied level of accurate and complexity. The glimpe of the RCS models are availble in the following figure:</p>
 <a class="reference internal image-reference" href="../../../_images/rcs_models.png"><img alt="ISAC Timeline in 3GPP" src="../../../_images/rcs_models.png" style="width: 700px;" />
 </a>
+<p><strong>Single Scattering Points based Model vs Multiple Scattering Points based Model</strong></p>
+<p>Table 7.9.2.1-2/3/4/5/6/7 provides the RCS model parameters for UAVs, humans, vehicles with a single SP, vehicles with multiple SPs, AGVs with a single SP, and AGVs with multiple SPs, respectively.
+Although parameters are provided for all scattering points (SPs) associated with each physical object, the single scattering point–based model treats all nearby SPs as a single SP and assumes that
+the delays and angles are the same for all SPs. On the other hand, the multiple scattering point–based model treats the SPs as distinct points and assumes different delays and angles for each SP.</p>
+<p><strong>How to compute Bistatic Angle</strong></p>
+<p>The <strong>bistatic angle (β)</strong> is defined as the angle between the incident ray (from transmitter to target) and the scattered ray (from target to receiver). It is measured at the target within the plane
+defined by the incident angles <span class="math notranslate nohighlight">\((\theta_i, \phi_i)\)</span> and scattering angles <span class="math notranslate nohighlight">\((\theta_s, \phi_s)\)</span>. The incident and scattered directions are represented as unit vectors in spherical coordinates.</p>
+<p>Incident direction cosine vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\hat{i} =
+\begin{bmatrix}
+\sin\theta_i \cos\phi_i \\
+\sin\theta_i \sin\phi_i \\
+\cos\theta_i
+\end{bmatrix}\end{split}\]</div>
+<p>Scattered direction cosine vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\hat{s} =
+\begin{bmatrix}
+\sin\theta_s \cos\phi_s \\
+\sin\theta_s \sin\phi_s \\
+\cos\theta_s
+\end{bmatrix}\end{split}\]</div>
+<p>The bistatic angle is computed using the dot product of the two unit vectors:</p>
+<div class="math notranslate nohighlight">
+\[\cos\beta = \hat{i} \cdot \hat{s}\]</div>
+<div class="math notranslate nohighlight">
+\[\beta = \cos^{-1}(\hat{i} \cdot \hat{s})\]</div>
+<p>Expanded form:</p>
+<div class="math notranslate nohighlight">
+\[\cos\beta =
+\sin\theta_i \sin\theta_s \cos(\phi_i - \phi_s)
++ \cos\theta_i \cos\theta_s\]</div>
+<p>Interpretation the bistatic angle:</p>
+<ul class="simple">
+<li><p>β = 0°   → Forward scattering (Tx and Rx aligned)</p></li>
+<li><p>β = 180° → Backscattering (monostatic case)</p></li>
+<li><p>0° &lt; β &lt; 180° → General bistatic geometry</p></li>
+</ul>
+<p>Notes on using the bistatic angle in channel modeling:</p>
+<ul class="simple">
+<li><p>In single-point scattering models, one bistatic angle is computed per object.</p></li>
+<li><p>In multi-point models, each scattering point has its own bistatic angle.</p></li>
+<li><p>The bistatic angle influences Radar Cross Section (RCS), scattering strength,
+and angular diversity in the channel model.</p></li>
+</ul>
 </section>
 </section>
 <section id="iii-mathematical-framework-and-channel-modeling-methodologies">
 <h3>III. Mathematical Framework and Channel Modeling Methodologies<a class="headerlink" href="#iii-mathematical-framework-and-channel-modeling-methodologies" title="Link to this heading"></a></h3>
 <section id="core-channel-decomposition-and-power-normalization">
 <h4>Core Channel Decomposition and Power Normalization<a class="headerlink" href="#core-channel-decomposition-and-power-normalization" title="Link to this heading"></a></h4>
-<p>In contrast to the purely communication-centric paradigms in 3GPP TR 38.901 V18.0.0, the ISAC channel modeling framework approved at the RAN1 #116 meeting decomposes the joint propagation environment. Let <span class="math notranslate nohighlight">\(\mathbf{H}_{\text{ISAC}}(t, \tau) \in \mathbb{C}^{N_{\text{Rx}} \times N_{\text{Tx}}}\)</span> represent the time-varying, delay-dependent Multiple-Input Multiple-Output (MIMO) channel matrix, expressed as:</p>
+<p>In contrast to the purely communication-centric paradigms in 3GPP TR 38.901 V18.0.0, the ISAC channel modeling framework approved at the RAN1 #116 meeting decomposes the joint propagation environment.
+Let <span class="math notranslate nohighlight">\(\mathbf{H}_{\text{ISAC}}(t, \tau) \in \mathbb{C}^{N_{\text{Rx}} \times N_{\text{Tx}}}\)</span> represent the time-varying, delay-dependent Multiple-Input Multiple-Output (MIMO) channel matrix, expressed as:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{H}_{\text{ISAC}}(t, \tau) = \mathbf{H}_{\text{target}}(t, \tau) + \mathbf{H}_{\text{background}}(t, \tau)\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{H}_{\text{target}}(t, \tau)\)</span> represents the target channel matrix containing all multipath components (MPCs) interacting with, scattering from, or diffracted by the designated ST(s). Conversely, <span class="math notranslate nohighlight">\(\mathbf{H}_{\text{background}}(t, \tau)\)</span> isolates all background environmental MPCs that propagate independently of the STs. This additive formulation natively accommodates multi-static sensing: a single sensing <span class="math notranslate nohighlight">\(\text{Tx}\)</span>-<span class="math notranslate nohighlight">\(\text{Rx}\)</span> pair can concurrently track multiple discrete STs via superposition within a shared spatial volume, and a single ST can be explicitly modeled within the distinct cross-channel matrices of multiple distributed <span class="math notranslate nohighlight">\(\text{Tx}\)</span>-<span class="math notranslate nohighlight">\(\text{Rx}\)</span> processing pairs.</p>
