@@ -145,8 +145,9 @@ defined by the incident angles :math:`(\theta_i, \phi_i)` and scattering angles 
 
 
 .. image:: images/Bistatic_Angle.png
-  :width: 700
+  :width: 500
   :alt: Bistatic Angle Definition
+  :align: center
 
 Incident direction cosine vector:
 
@@ -201,6 +202,80 @@ Notes on using the bistatic angle in channel modeling:
 - In multi-point models, each scattering point has its own bistatic angle.
 - The bistatic angle influences Radar Cross Section (RCS), scattering strength,
   and angular diversity in the channel model.
+
+
+B. Cross Polarization Matrix (CPM) of a Sensing Target
+***********************************************************
+
+The Cross Polarization Matrix (CPM) of a Sensing Target (ST) is a mathematical representation that captures the polarization characteristics of the electromagnetic waves scattered by the target. It is a 
+2x2 complex matrix that describes how the incident electric field components are transformed into the scattered electric field components, taking into account both co-polarized and cross-polarized scattering 
+effects. The cross-polarization matrix :math:`\mathbf{CPM}_{sp,i}` of a single-point scattering target (SPST) for a pair :math:`i` of incident and scattered angles is defined in the local coordinate system 
+(LCS) of the sensing target (ST). It is generally modeled using amplitude factors :math:`\alpha_{i,1}, \alpha_{i,2}, \beta_{i,1}, \beta_{i,2}` and initial random phases 
+:math:`\{\Phi_{sp,i}^{\theta\theta}, \Phi_{sp,i}^{\theta\phi}, \Phi_{sp,i}^{\phi\theta}, \Phi_{sp,i}^{\phi\phi}\}`. A generalized form of the CPM is given by:
+
+
+.. math::
+
+   \mathbf{CPM}_{sp,i} =
+   \begin{bmatrix}
+   \alpha_{i,1} e^{j\Phi_{sp,i}^{\theta\theta}} &
+   \beta_{i,1} e^{j\Phi_{sp,i}^{\theta\phi}} \\
+   \beta_{i,2} e^{j\Phi_{sp,i}^{\phi\theta}} &
+   \alpha_{i,2} e^{j\Phi_{sp,i}^{\phi\phi}}
+   \end{bmatrix}
+
+
+
+For UAV, human, vehicle, and AGV targets the coefficients and the phases can be modelled as follows:
+
+.. math::
+
+   \alpha_{i,1} = \alpha_{i,2} = 1
+
+.. math::
+
+   \beta_{i,1} = \beta_{i,2} = \sqrt{\kappa_{sp,i}^{-1}}
+
+Thus, the CPM becomes:
+
+.. math::
+
+   \mathbf{CPM}_{sp,i} =
+   \begin{bmatrix}
+   e^{j\Phi_{sp,i}^{\theta\theta}} &
+   \sqrt{\kappa_{sp,i}^{-1}} \, e^{j\Phi_{sp,i}^{\theta\phi}} \\
+   \sqrt{\kappa_{sp,i}^{-1}} \, e^{j\Phi_{sp,i}^{\phi\theta}} &
+   e^{j\Phi_{sp,i}^{\phi\phi}}
+   \end{bmatrix}
+
+where 
+
+- :math:`\kappa_{sp,i}` is the cross-polarization ratio (XPR) for the pair :math:`i` of incident and scattered angles.
+- :math:`\kappa_{sp,i}` has log-normal probability distribution  :math:`log_{10}(\kappa_{sp,i}) \sim \mathcal{N}(\mu_{XPR}, \sigma_{XPR}^2)`. The values of :math:`\mu_{XPR}` and :math:`\sigma_{XPR}` depend on the target type and are provided in the table below.
+- The phase terms  :math:`\{\Phi_{sp,i}^{\theta\theta}, \Phi_{sp,i}^{\theta\phi},   \Phi_{sp,i}^{\phi\theta}, \Phi_{sp,i}^{\phi\phi}\}`  are independently and uniformly distributed in the range :math:`(-\pi, \pi)`
+
+
+.. list-table:: Mean and standard deviation of XPR for the targets
+   :header-rows: 1
+   :width: 75%
+   :widths: 50 50 50
+   :align: center
+
+   * - Target
+     - :math:`\mu_{XPR}`
+     - :math:`\sigma_{XPR}`
+   * - UAV
+     - 13.75
+     - 7.07
+   * - Human
+     - 19.81
+     - 4.25
+   * - Vehicle
+     - 21.12
+     - 6.88
+   * - AGV
+     - 9.60
+     - 6.85
 
 
 III. Mathematical Framework and Channel Modeling Methodologies

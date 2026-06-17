@@ -100,6 +100,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#ii-isac-deployment-scenarios-and-evaluation-parameters">II. ISAC Deployment Scenarios and Evaluation Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#iii-modelling-physical-objects">III. Modelling Physical Objects</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#a-radar-cross-section-rcs-characterization">A. Radar Cross Section (RCS) Characterization</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#b-cross-polarization-matrix-cpm-of-a-sensing-target">B. Cross Polarization Matrix (CPM) of a Sensing Target</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#iii-mathematical-framework-and-channel-modeling-methodologies">III. Mathematical Framework and Channel Modeling Methodologies</a><ul>
@@ -586,7 +587,7 @@ shown in following figure.</p>
 <p><strong>How to compute Bistatic Angle</strong></p>
 <p>The <strong>bistatic angle (β)</strong> is defined as the angle between the incident ray (from transmitter to target) and the scattered ray (from target to receiver). It is measured at the target within the plane
 defined by the incident angles <span class="math notranslate nohighlight">\((\theta_i, \phi_i)\)</span> and scattering angles <span class="math notranslate nohighlight">\((\theta_s, \phi_s)\)</span>. The incident and scattered directions are represented as unit vectors in spherical coordinates.</p>
-<a class="reference internal image-reference" href="../../../_images/Bistatic_Angle.png"><img alt="Bistatic Angle Definition" src="../../../_images/Bistatic_Angle.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../../../_images/Bistatic_Angle.png"><img alt="Bistatic Angle Definition" class="align-center" src="../../../_images/Bistatic_Angle.png" style="width: 500px;" />
 </a>
 <p>Incident direction cosine vector:</p>
 <div class="math notranslate nohighlight">
@@ -627,6 +628,74 @@ defined by the incident angles <span class="math notranslate nohighlight">\((\th
 <li><p>The bistatic angle influences Radar Cross Section (RCS), scattering strength,
 and angular diversity in the channel model.</p></li>
 </ul>
+</section>
+<section id="b-cross-polarization-matrix-cpm-of-a-sensing-target">
+<h4>B. Cross Polarization Matrix (CPM) of a Sensing Target<a class="headerlink" href="#b-cross-polarization-matrix-cpm-of-a-sensing-target" title="Link to this heading"></a></h4>
+<p>The Cross Polarization Matrix (CPM) of a Sensing Target (ST) is a mathematical representation that captures the polarization characteristics of the electromagnetic waves scattered by the target. It is a
+2x2 complex matrix that describes how the incident electric field components are transformed into the scattered electric field components, taking into account both co-polarized and cross-polarized scattering
+effects. The cross-polarization matrix <span class="math notranslate nohighlight">\(\mathbf{CPM}_{sp,i}\)</span> of a single-point scattering target (SPST) for a pair <span class="math notranslate nohighlight">\(i\)</span> of incident and scattered angles is defined in the local coordinate system
+(LCS) of the sensing target (ST). It is generally modeled using amplitude factors <span class="math notranslate nohighlight">\(\alpha_{i,1}, \alpha_{i,2}, \beta_{i,1}, \beta_{i,2}\)</span> and initial random phases
+<span class="math notranslate nohighlight">\(\{\Phi_{sp,i}^{\theta\theta}, \Phi_{sp,i}^{\theta\phi}, \Phi_{sp,i}^{\phi\theta}, \Phi_{sp,i}^{\phi\phi}\}\)</span>. A generalized form of the CPM is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{CPM}_{sp,i} =
+\begin{bmatrix}
+\alpha_{i,1} e^{j\Phi_{sp,i}^{\theta\theta}} &amp;
+\beta_{i,1} e^{j\Phi_{sp,i}^{\theta\phi}} \\
+\beta_{i,2} e^{j\Phi_{sp,i}^{\phi\theta}} &amp;
+\alpha_{i,2} e^{j\Phi_{sp,i}^{\phi\phi}}
+\end{bmatrix}\end{split}\]</div>
+<p>For UAV, human, vehicle, and AGV targets the coefficients and the phases can be modelled as follows:</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{i,1} = \alpha_{i,2} = 1\]</div>
+<div class="math notranslate nohighlight">
+\[\beta_{i,1} = \beta_{i,2} = \sqrt{\kappa_{sp,i}^{-1}}\]</div>
+<p>Thus, the CPM becomes:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{CPM}_{sp,i} =
+\begin{bmatrix}
+e^{j\Phi_{sp,i}^{\theta\theta}} &amp;
+\sqrt{\kappa_{sp,i}^{-1}} \, e^{j\Phi_{sp,i}^{\theta\phi}} \\
+\sqrt{\kappa_{sp,i}^{-1}} \, e^{j\Phi_{sp,i}^{\phi\theta}} &amp;
+e^{j\Phi_{sp,i}^{\phi\phi}}
+\end{bmatrix}\end{split}\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\kappa_{sp,i}\)</span> is the cross-polarization ratio (XPR) for the pair <span class="math notranslate nohighlight">\(i\)</span> of incident and scattered angles.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\kappa_{sp,i}\)</span> has log-normal probability distribution  <span class="math notranslate nohighlight">\(log_{10}(\kappa_{sp,i}) \sim \mathcal{N}(\mu_{XPR}, \sigma_{XPR}^2)\)</span>. The values of <span class="math notranslate nohighlight">\(\mu_{XPR}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{XPR}\)</span> depend on the target type and are provided in the table below.</p></li>
+<li><p>The phase terms  <span class="math notranslate nohighlight">\(\{\Phi_{sp,i}^{\theta\theta}, \Phi_{sp,i}^{\theta\phi},   \Phi_{sp,i}^{\phi\theta}, \Phi_{sp,i}^{\phi\phi}\}\)</span>  are independently and uniformly distributed in the range <span class="math notranslate nohighlight">\((-\pi, \pi)\)</span></p></li>
+</ul>
+<table class="docutils align-center" id="id1" style="width: 75%">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Mean and standard deviation of XPR for the targets</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Target</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\mu_{XPR}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\sigma_{XPR}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>UAV</p></td>
+<td><p>13.75</p></td>
+<td><p>7.07</p></td>
+</tr>
+<tr class="row-odd"><td><p>Human</p></td>
+<td><p>19.81</p></td>
+<td><p>4.25</p></td>
+</tr>
+<tr class="row-even"><td><p>Vehicle</p></td>
+<td><p>21.12</p></td>
+<td><p>6.88</p></td>
+</tr>
+<tr class="row-odd"><td><p>AGV</p></td>
+<td><p>9.60</p></td>
+<td><p>6.85</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 <section id="iii-mathematical-framework-and-channel-modeling-methodologies">
