@@ -1,2 +1,37 @@
 ISAC System Design Aspects
 ==============================
+
+ISAC System design is influenced by the following aspects:
+
+- ISAC System Architecture
+- ISAC Use-cases and Applications
+How these aspects influence the design of ISAC system will be covered in the following sections. The details of ISAC system architecture, use-cases and applications, 
+and KPIs are covered in separate sections. 
+
+
+**ISAC System Architecture**
+
+The ISAC system architecture defines the overall structure of the ISAC system, including the components, interfaces, and protocols along with the functional blocks and 
+their interactions. The system architecture enable variations crucial features of technology, such as:
+
+1. Scope of Integration between the communication and sensing functionalities
+2. The level of centralization of the processing of communication and sensing functionalities
+3. Scope for fusion of measurements and information collected from different sensing and communication nodes
+4. The entities (UEs, base-station and other units) that can be involved in sensing and communication functionalities
+5. The level of flexibility and adaptability of the system to support different use-cases and applications
+6. The level of complexity and cost of the system
+
+**ISAC Use-cases and Applications**
+
+If the use-cases and application of ISAC demands very strict KPIs then the architecture will need to support a very sofisticated and complex design which might require collaboration
+between multiple modes and might require the centralized processing with a need to collect rich sensing measurements. On the other hand, if the use-cases and application of ISAC 
+demands very relaxed KPIs then the architecture can be very simple and might not require collaboration between multiple modes and might not require the centralized processing with 
+a need to collect rich sensing measurements.
+
+ISAC Architecure in 5G and 6G might look as follows:
+
+
+
+.. image:: images/ISAC_System_Architecture.png
+  :width: 700
+  :alt: ISAC Timeline in 3GPP
